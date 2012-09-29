@@ -1,7 +1,7 @@
 #File manager
 -
 Modern system for easy working with files and images on server.
-Can be used as plugin for tinyMCE or CKEditor, and or as clasic Nette Framework component to
+Can be used as plugin for tinyMCE or CKEditor, and or as clasic Nette Framework component to.
 
 ###Requirements:
 -
