@@ -1,4 +1,4 @@
-#File manager
+#File manager - <small>isn't working</small>
 -
 Modern system for easy working with files and images on the server.
 Can be used as plugin for tinyMCE or CKEditor or as clasic Nette Framework component to.
