@@ -8,7 +8,7 @@ Modern system for easy working with files and images on server
 * [Nette framework](http://nette.org)
 * [Kappa framework](https://github.com/Budry/Kappa)
 
-###Instal
+###Install:
 -
 **Recommended** install with [Composer](http://getcomposer.org/):
 <pre>$ composer install</pre>
