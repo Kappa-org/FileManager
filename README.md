@@ -1,13 +1,14 @@
 #File manager
 -
-Modern system for easy working with files and images on server.
-Can be used as plugin for tinyMCE or CKEditor, and or as clasic Nette Framework component to.
+Modern system for easy working with files and images on the server.
+Can be used as plugin for tinyMCE or CKEditor, or as clasic Nette Framework component to.
 
 ###Requirements:
 -
 * PHP 5.3.*
 * [Nette framework](http://nette.org)
 * [Kappa framework](https://github.com/Budry/Kappa)
+* [Composer](http://getcomposer.org/)
 
 ###Install:
 -
