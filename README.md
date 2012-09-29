@@ -11,4 +11,7 @@ Modern system for easy working with files and images on server
 ###Install:
 -
 **Recommended** install with [Composer](http://getcomposer.org/):
-<pre>$ composer install</pre>
+<pre>$ composer install
+cd libs/File-manager/
+mv Media/ ../../www/assets/file-manager
+</pre>
