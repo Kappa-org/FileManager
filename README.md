@@ -6,7 +6,7 @@ Can be used as plugin for tinyMCE or CKEditor or as clasic Nette Framework compo
 ###Requirements:
 -
 * PHP 5.3.*
-* [Nette framework 2.0.*](http://nette.org)
+* [Nette framework](http://nette.org)
 * [Kappa framework](https://github.com/Budry/Kappa)
 * [Composer](http://getcomposer.org/)
 
