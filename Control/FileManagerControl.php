@@ -298,18 +298,21 @@ class FileManagerControl extends \Nette\Application\UI\Control
 			}
 			else
 			{
-				$i = 0;
-				if(file_exists($path.'/'.$name.$type))
+				if($file->getSize() <= $this->_params['maxFileSize'])
 				{
-					$i++;
-					while(file_exists($path.'/'.$name.'-'.$i.$type))
+					$i = 0;
+					if(file_exists($path.'/'.$name.$type))
 					{
 						$i++;
-						}
-					$file->move($path.'/'.$name.'-'.$i.$type);
+						while(file_exists($path.'/'.$name.'-'.$i.$type))
+						{
+								$i++;
+							}
+						$file->move($path.'/'.$name.'-'.$i.$type);
+					}
+					else
+							$file->move($path.'/'.$name.$type);
 				}
-				else
-					$file->move($path.'/'.$name.$type);
 			}
 		}
 	}
