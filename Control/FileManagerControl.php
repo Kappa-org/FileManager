@@ -275,19 +275,42 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		foreach($files as $file)
 		{
 			$type = strrchr($file->getName(), ".");
-			$name = Parser::getFriendlyString(substr($file->getName(), 0, -strlen($type)));
-			$i = 0;
-			if(file_exists($path.'/'.$name.$type))
+			$name = \Kappa\Utils\Parser::createUrlString(substr($file->getName(), 0, -strlen($type)));
+			if(\Kappa\Utils\Validators::isImage($type))
 			{
-				$i++;
-				while(file_exists($path.'/'.$name.'-'.$i.$type))
+				$image = \Nette\Image::fromFile($file->getTemporaryFile());
+				$sizes = explode('x', $this->_params['maxImgDimension']);
+				foreach($sizes as $key => $size)
+					$sizes[$key] = str_replace('%', 'null', $size);
+				$image->resize($sizes[0], $sizes[1], \Nette\Image::SHRINK_ONLY);
+				$y = 0;
+				if(file_exists($path.'/'.$name.$type))
 				{
-					$i++;
+					$y++;
+					while(file_exists($path.'/'.$name.'-'.$y.$type))
+					{
+						$y++;
+					}
+					$image->save($path.'/'.$name.'-'.$y.$type);
 				}
-				$file->move($path.'/'.$name.'-'.$i.$type);
+				else
+					$image->save($path.'/'.$name.$type);
 			}
 			else
-				$file->move($path.'/'.$name.$type);
+			{
+				$i = 0;
+				if(file_exists($path.'/'.$name.$type))
+				{
+					$i++;
+					while(file_exists($path.'/'.$name.'-'.$i.$type))
+					{
+						$i++;
+						}
+					$file->move($path.'/'.$name.'-'.$i.$type);
+				}
+				else
+					$file->move($path.'/'.$name.$type);
+			}
 		}
 	}
 
