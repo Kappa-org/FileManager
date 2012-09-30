@@ -26,7 +26,7 @@ and you must add *FileManager:* block into parametrs block in config.neom
 **Block *FileManager* must contain this settings**
 <pre>uploadDir: 'path/to/your/upload/folder/'</pre>
 
-and next settings
+and can have this next settings
 
 <pre>
 maxImgDimension: 700x%          # or %x700 | Parametr % will be calculated
