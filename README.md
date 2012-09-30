@@ -21,12 +21,17 @@ $ composer install
 $ mv libs/FileManager/Media/ www/assets/FileManager
 </pre>
 
-and you must added *FileManager:* block into parametrs block in config.neom
+and you must add *FileManager:* block into parametrs block in config.neom
 
-Block *FileManager* can have the following configuration:
-* uploadDir: 'path/to/your/upload/folder/' | **required**
-* maxImgDimension: 700x% | second parameter (%) will be calculated
-* maxFileSize: 50000000 | (50MB) maximum file size as size in "B"
+**Block *FileManager* must contain this settings**
+<pre>uploadDir: 'path/to/your/upload/folder/'</pre>
+
+and next settings
+
+<pre>
+maxImgDimension: 700x%          #second parameter (%) will be calculated
+maxFileSize: 50000000           #(50MB) maximum file size as size in "B"
+</pre>
 
 
 ###Update:
