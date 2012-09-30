@@ -30,7 +30,7 @@ and next settings
 
 <pre>
 maxImgDimension: 700x%          #second parameter (%) will be calculated
-maxFileSize: 50000000           #(50MB) maximum file size as size in "B"
+maxFileSize: 50000000           #(50MB) maximum file size (byte)
 </pre>
 
 
