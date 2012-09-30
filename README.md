@@ -3,7 +3,7 @@
 **NOT WORKING**
 
 Modern system for easy working with files and images on the server.
-Can be used as plugin for tinyMCE or CKEditor or as clasic [Nette Framework](http://nette.org) component too.
+Can be used as plugin for [tinyMCE](http://www.tinymce.com/) or [CKEditor](http://ckeditor.com/) or as clasic [Nette Framework](http://nette.org) component too.
 
 ###Requirements:
 -
