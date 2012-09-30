@@ -21,6 +21,13 @@ $ composer install
 $ mv libs/FileManager/Media/ www/assets/FileManager
 </pre>
 
+and you must added into config.neom this block
+<pre>
+parameters:
+	FileManager:
+                uploadDir: 'media/upload'
+</pre>
+
 ###Update:
 -
 <pre>
