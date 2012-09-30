@@ -25,7 +25,7 @@ and you must added into config.neom this block
 <pre>
 parameters:
 	FileManager:
-                uploadDir: 'media/upload'
+		uploadDir: 'media/upload'
 </pre>
 
 ###Update:
