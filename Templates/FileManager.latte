@@ -1,0 +1,87 @@
+﻿<script>
+	window.top.window.refreshHandle();
+	function refreshHandle(){
+		$('#uploadInput').val('');
+		$('#nameFolder').val('');
+		$.get({link Refresh!});
+	};
+
+</script>
+<div class="Kappa-fileManager">
+	<div id="nahravac_pozadi"></div>
+{snippet Kappa-fileManager}
+	<div id="nahravac">
+		<div class="nahravac_hlavicka">
+			<h1>Správce souborů a složek</h1>
+			<a href="#" class="zavrit Kappa-fileManager-close">Zavřít Správce</a>
+		</div>
+		<div id="nahravac_leva">
+			<div class="nahravac_hlavicka_strana"> Aktuálně vybraný soubor </div>
+			<br />
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpEMzYxM0NDRkYwRkZFMDExQTBBMjhEMkE4OENENjRDOSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEMEFFNjdEM0Y1QkExMUUxQjA0RkEzQTJEMEJDM0JFOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEMEFFNjdEMkY1QkExMUUxQjA0RkEzQTJEMEJDM0JFOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCOTNFOTU0M0I1RUZFMTExODM4QUQ3MUQxMjI2MjVDRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEMzYxM0NDRkYwRkZFMDExQTBBMjhEMkE4OENENjRDOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnlmVoQAAANsSURBVHja7JtBj6IwGECXUUnwwomriYlXExMT/60/ycTEEycTrl70KGJmiGQblkItUFuYfS+ZCZZisY+2H9B68/n88Xj8gXEym81ef4BCQCGgEIWAQkAhoBCFgEJAIaAQhYBCQCGgEIWAQkAhoBCFgEJAIaAQhYBCQCGgEIWAQkAhoBCFgEJAIRhW+P1CJ1GRrkPnA9uWYqegMqvVqig3y7IgCBy0wsrPVtRC5wqyVrNOFOZcr9ei6N1uZ1Dhl8G60PlYTvz+l0pDlHfJRWsW0WSu1Rn2r+7j8VhsrNdrg1fG1+eudM/zhJLiv/ei0mF6fxEf1fmb9qoP6X+GBhVut1sHCt/+WpFYzv/p/rBP/Vo4w3G3QiODUFN+UfuuRrVunE6nYmOz2UwmE6NRacsKrR1gNPdqDqWabsoD1dtyeyb2x/f9+/1efGceoDoIZyqjlCJRPRT1b4siRb8zrL2ALLfCNE3jOBYNcegdaV655VoWphVVL18NTflr96oT5RI7nGF/DoeDcYVTUyGAHMjU1rt+iroSFReB/ol1OENTEY0zhU19kf3obqSIiMZkUMozUpuEYShCsCiK3D+dgbbcbrckScw2RBTaxnhEg0LbGI9oUOjyGQ3hzChZLBbixaHv+wb0odA+4sVh/1cWRKSOIxojQSkKR3+Dj0I3N/jiNhGFo0TEoqI5EpGOifJbw+VySUQ6PvIotPCXx6VGWiAdqW1ECCMe0zAWjnUgRCEKCWccYfDRDOGMA8TKijwo7f+AlHDGZSwTx3GapoyFDIQo/BUKtWawVaZWqif+VrKVEyuzb8szOWuLkI8VOeWjmrZ/vcIuS0R1JtJrrgqrnVFf++VyTp2FAIMiiiKz09dahDOKFUxyS3177cvfoJ6sLe+qPWpEsUySJJfLZUBjoWKdUW2KTu0Ptic00ouaeUHRaixs20x7rjL8lf7KCsVbe6utUBEmvF1KUhnkPu1msCsOP9QKW68v7L/y/e2iwA45FcHUQAiCIMsys4sLC30tOlKdZU3qRP2lTN1y2lwm3pYwDPf7fb7xfD7P57ObVggDhMfcKAQUAgpRiEIUAgoBhShEIQoBhYBCFKIQhYBCQCEKAYWAQkAhCgGFgEJAIQoBhYBCQCEKAYWAQkDhf6nQC4J5lj2oi5Eync5+BBgAzdHmrfmno/IAAAAASUVORK5CYII=" class="nahravac_nahled" alt=""  />
+			<p class="clear"></p>
+			<p>Název souboru:<br /><span id="fileName"></span></p>
+			<form action="#" method="post" id="actionForm">
+				<p>
+
+					<label>Zobrazit jako:</label>
+					<select id="action">
+						<option value="<img src='%path%'>">Náhled</option>
+						<option value="<a href='%path%'>%text%</a>">Odkaz</option>
+					</select>
+
+				</p>
+				<p>
+					<label>Text:</label>
+					<input class="nahravac_input_text" id="text" type="text" />
+
+				</p>
+				<input type="submit" value="Přidat na stránku" class="nahravac_pridat" />
+			</form>
+		</div>
+		<div id="nahravac_prava">
+			<div class="nahravac_hlavicka_strana">
+				<ul>
+					<li><a n:href="Move 'home'" class="ajax">upload</a> /</li>
+					<li n:foreach="$navigation as $path"><a n:href="Move $path" class="ajax">{$path}</a> /</li>
+				</ul>
+			</div>
+			<ul id="nahravac_popisek">
+				<li class="a"><a href="">Název</a></li>
+				<li class="c"><a href="">Datum přidání</a></li>
+				<li class="d"><a href="">Smazat</a></li>
+			</ul>
+			<div id="nahravac_vnitrek">
+				<ul class="nahravac_slozky_a_soubory" n:foreach="$directories as $dir">
+					<li class="a"><a n:href="Move $dir['name']" class="ajax"><img src="{$basePath}/assets/images/ikony/slozka.png" alt="" />{$dir['name']}</a></li>
+					<li class="c"></li>
+					<li class="d"><a n:href="DeleteDir $dir['path']" class="ajax"><img src="{$basePath}/assets/images/ikony/smazat.png" alt="Smazat" /></a></li>
+				</ul>
+				<ul class="nahravac_slozky_a_soubory" n:foreach="$files as $i => $file">
+					<li class="a"><img src="{$basePath}/assets/images/ikony/{$file['icon']}.png" alt="" />
+						<input type="checkbox" value="true" class="file-checkbox" id="file-checkbox-{$i}" data-type="{$file['icon']}" data-name="{$file['name']}" data-path="{$file['path']}"/>
+						<a href="">{$file['name']}</a></li>
+					<li class="c">{$file['date']}</li>
+					<li class="d"><a n:href="DeleteFile $file['path']" class="ajax"><img src="{$basePath}/assets/images/ikony/smazat.png" alt="Smazat" /></a></li>
+				</ul>
+
+			</div>
+			<div class="nahravac_dole">
+				{form addNewDir target=>upload_target, id=>uploadForm}
+						{label name /}
+						{input name}
+						{input submit}
+					{/form}
+			</div>
+			<div class="nahravac_dole">
+				{form addNewFile target=>upload_target, id=>uploadForm}
+						{input files}
+						{input submit class=>"nahrat_vytvorit"}
+					{/form}
+			</div>
+		</div>
+	</div>
+{/snippet}
+	<iframe id="upload_target" name="upload_target" src="#" style="display: none;"></iframe>
+</div>
+
