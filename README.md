@@ -29,7 +29,7 @@ and you must add *FileManager:* block into parametrs block in config.neom
 and can have this next settings
 
 <pre>
-maxImgDimension: 700x%          # or %x700 | Parametr % will be calculated
+maxImgDimension: '700x%'          # or %x700 | Parametr % will be calculated
 maxFileSize: 50000000           # (50MB) maximum file size (byte)
 </pre>
 
