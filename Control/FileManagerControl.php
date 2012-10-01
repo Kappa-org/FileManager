@@ -23,16 +23,16 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	 * @var array
 	 */
 	private $_iconType = array(
-		'doc' => 'doc',
-		'docx' => 'doc',
-		'txt' => 'doc',
-		'xls' => 'xls',
-		'xlsx' => 'xls',
-		'csv' => 'xls',
-		'zip' => 'zip',
-		'rar' => 'zip',
-		'7z' => 'zip',
-		'pdf' => 'pdf',
+		'.doc' => 'doc',
+		'.docx' => 'doc',
+		'.txt' => 'doc',
+		'.xls' => 'xls',
+		'.xlsx' => 'xls',
+		'.csv' => 'xls',
+		'.zip' => 'zip',
+		'.rar' => 'zip',
+		'.7z' => 'zip',
+		'.pdf' => 'pdf',
 	);
 
 	/**
