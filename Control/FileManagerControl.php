@@ -170,8 +170,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	 */
 	private function getIcon($fileName)
 	{
-		$explode = explode('.', $fileName);
-		$type = $explode[count($explode) - 1];
+		$type = strrchr($fileName, ".");
 		if(\Kappa\Utils\Validators::isImage($type))
 			return 'image';
 		if(!\Kappa\Utils\Validators::isImage($type) && !array_key_exists($type, $this->_iconType))
@@ -267,26 +266,17 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	/**
 	 * @param $name
 	 * @param $type
+	 * @param $file
 	 */
-	private function uploadFile($name, $type)
+	private function uploadFile($name, $type, $file)
 	{
 		$path = $this->getActualDir();
 		if(isset($this->_params['maxFileSize']))
 		{
 			if($file->getSize() <= $this->_params['maxFileSize'])
 			{
-				$i = 0;
-				if(file_exists($path.'/'.$name.$type))
-				{
-					$i++;
-					while(file_exists($path.'/'.$name.'-'.$i.$type))
-					{
-						$i++;
-					}
-					$file->move($path.'/'.$name.'-'.$i.$type);
-				}
-				else
-					$file->move($path.'/'.$name.$type);
+				$fileName = \Kappa\Utils\Parser::createUniqueFileName($path, $name, $type);
+				$file->move($fileName);
 			}
 		}
 	}
@@ -304,18 +294,8 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		foreach($sizes as $key => $size)
 			$sizes[$key] = str_replace('%', 'null', $size);
 		$image->resize($sizes[0], $sizes[1], \Nette\Image::SHRINK_ONLY);
-		$y = 0;
-		if(file_exists($path.'/'.$name.$type))
-		{
-			$y++;
-			while(file_exists($path.'/'.$name.'-'.$y.$type))
-			{
-				$y++;
-			}
-			$image->save($path.'/'.$name.'-'.$y.$type);
-		}
-		else
-			$image->save($path.'/'.$name.$type);
+		$fileName = \Kappa\Utils\Parser::createUniqueFileName($path, $name, $type);
+		$image->save($fileName);
 	}
 
 	/**
@@ -332,7 +312,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 			if(\Kappa\Utils\Validators::isImage($type))
 				$this->uploadImage($file, $name, $type);
 			else
-				$this->uploadFile($name, $type);
+				$this->uploadFile($name, $type, $file);
 		}
 	}
 
