@@ -330,9 +330,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 			$type = strrchr($file->getName(), ".");
 			$name = \Kappa\Utils\Parser::createUrlString(substr($file->getName(), 0, -strlen($type)));
 			if(\Kappa\Utils\Validators::isImage($type))
-			{
 				$this->uploadImage($file, $name, $type);
-			}
 			else
 				$this->uploadFile($name, $type);
 		}
