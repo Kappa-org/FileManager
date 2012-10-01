@@ -265,55 +265,76 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	}
 
 	/**
+	 * @param $name
+	 * @param $type
+	 */
+	private function uploadFile($name, $type)
+	{
+		$path = $this->getActualDir();
+		if(isset($this->_params['maxFileSize']))
+		{
+			if($file->getSize() <= $this->_params['maxFileSize'])
+			{
+				$i = 0;
+				if(file_exists($path.'/'.$name.$type))
+				{
+					$i++;
+					while(file_exists($path.'/'.$name.'-'.$i.$type))
+					{
+						$i++;
+					}
+					$file->move($path.'/'.$name.'-'.$i.$type);
+				}
+				else
+					$file->move($path.'/'.$name.$type);
+			}
+		}
+	}
+
+	/**
+	 * @param $file
+	 * @param $name
+	 * @param $type
+	 */
+	private function uploadImage($file, $name, $type)
+	{
+		$path = $this->getActualDir();
+		$image = \Nette\Image::fromFile($file->getTemporaryFile());
+		$sizes = explode('x', $this->_params['maxImgDimension']);
+		foreach($sizes as $key => $size)
+			$sizes[$key] = str_replace('%', 'null', $size);
+		$image->resize($sizes[0], $sizes[1], \Nette\Image::SHRINK_ONLY);
+		$y = 0;
+		if(file_exists($path.'/'.$name.$type))
+		{
+			$y++;
+			while(file_exists($path.'/'.$name.'-'.$y.$type))
+			{
+				$y++;
+			}
+			$image->save($path.'/'.$name.'-'.$y.$type);
+		}
+		else
+			$image->save($path.'/'.$name.$type);
+	}
+
+	/**
 	 * @param \Kappa\Application\UI\Form $form
 	 */
 	public function addNewFiles(\Kappa\Application\UI\Form $form)
 	{
 		$values = $form->getValues();
 		$files = $values['files'];
-		$path = $this->getActualDir();
 		foreach($files as $file)
 		{
 			$type = strrchr($file->getName(), ".");
 			$name = \Kappa\Utils\Parser::createUrlString(substr($file->getName(), 0, -strlen($type)));
 			if(\Kappa\Utils\Validators::isImage($type))
 			{
-				$image = \Nette\Image::fromFile($file->getTemporaryFile());
-				$sizes = explode('x', $this->_params['maxImgDimension']);
-				foreach($sizes as $key => $size)
-					$sizes[$key] = str_replace('%', 'null', $size);
-				$image->resize($sizes[0], $sizes[1], \Nette\Image::SHRINK_ONLY);
-				$y = 0;
-				if(file_exists($path.'/'.$name.$type))
-				{
-					$y++;
-					while(file_exists($path.'/'.$name.'-'.$y.$type))
-					{
-						$y++;
-					}
-					$image->save($path.'/'.$name.'-'.$y.$type);
-				}
-				else
-					$image->save($path.'/'.$name.$type);
+				$this->uploadImage($file, $name, $type);
 			}
 			else
-			{
-				if($file->getSize() <= $this->_params['maxFileSize'])
-				{
-					$i = 0;
-					if(file_exists($path.'/'.$name.$type))
-					{
-						$i++;
-						while(file_exists($path.'/'.$name.'-'.$i.$type))
-						{
-								$i++;
-							}
-						$file->move($path.'/'.$name.'-'.$i.$type);
-					}
-					else
-							$file->move($path.'/'.$name.$type);
-				}
-			}
+				$this->uploadFile($name, $type);
 		}
 	}
 
