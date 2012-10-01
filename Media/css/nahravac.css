@@ -80,7 +80,7 @@ ul#nahravac_popisek li {
 }
 ul#nahravac_popisek li.a {
 	float: left;
-	width: 398px;
+	width: 528px;
 	padding: 12px 0px 0px 10px;
 }
 ul#nahravac_popisek li.b {
@@ -113,7 +113,7 @@ ul.nahravac_slozky_a_soubory li {
 }
 ul.nahravac_slozky_a_soubory li.a {
 	float: left;
-	width: 398px;
+	width: 528px;
 	padding: 12px 0px 0px 10px;
 }
 ul.nahravac_slozky_a_soubory li.b {
