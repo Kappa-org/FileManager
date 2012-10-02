@@ -170,7 +170,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	 */
 	private function getIcon($fileName)
 	{
-		$type = strrchr($fileName, ".");
+		$type = (string)strrchr($fileName, ".");
 		if(\Kappa\Utils\Validators::isImage($type))
 			return 'image';
 		if(!\Kappa\Utils\Validators::isImage($type) && !array_key_exists($type, $this->_iconType))
@@ -194,6 +194,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 				'date' => Date('j.n.Y', $directory->getCTime()),
 			);
 		}
+		$directories = \Kappa\Utils\Arrays::sortBySubArray($directories, 'date');
 		return $directories;
 	}
 
@@ -213,6 +214,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 				'date' => Date('j.n.Y', $file->getCTime()),
 			);
 		}
+		$files = \Kappa\Utils\Arrays::sortBySubArray($files, 'date');
 		return $files;
 	}
 
