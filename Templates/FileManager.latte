@@ -54,7 +54,7 @@
 			<div id="nahravac_vnitrek">
 				<ul class="nahravac_slozky_a_soubory" n:foreach="$directories as $dir">
 					<li class="a"><a n:href="Move $dir['name']" class="ajax"><img src="{$basePath}/assets/images/ikony/slozka.png" alt="" />{$dir['name']}</a></li>
-					<li class="c"></li>
+					<li class="c">{$dir['date']}</li>
 					<li class="d"><a n:href="DeleteDir $dir['path']" class="ajax"><img src="{$basePath}/assets/images/ikony/smazat.png" alt="Smazat" /></a></li>
 				</ul>
 				<ul class="nahravac_slozky_a_soubory" n:foreach="$files as $i => $file">

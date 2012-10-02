@@ -191,6 +191,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 			$directories[] = array(
 				'name' => $directory->getFilename(),
 				'path' => $path,
+				'date' => Date('j.n.Y', $directory->getCTime()),
 			);
 		}
 		return $directories;
