@@ -194,7 +194,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 				'date' => Date('j.n.Y', $directory->getCTime()),
 			);
 		}
-		$directories = \Kappa\Utils\Arrays::sortBySubArray($directories, 'date');
+		$directories = \Kappa\Utils\Arrays::sortBySubArray($directories, 'name');
 		return $directories;
 	}
 
@@ -214,7 +214,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 				'date' => Date('j.n.Y', $file->getCTime()),
 			);
 		}
-		$files = \Kappa\Utils\Arrays::sortBySubArray($files, 'date');
+		$files = \Kappa\Utils\Arrays::sortBySubArray($files, 'name');
 		return $files;
 	}
 
