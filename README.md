@@ -19,7 +19,7 @@ $ cd project/root/path
 $ composer install
 $ mv libs/FileManager/Media/ www/path/FileManager
 </pre>
-If you use Kappa/Sandbox you don't have to do next change and you have several options for settings file manager
+If you use [Kappa/Sanbox](http://github.com/Kappa-org/Sanbox) you don't have to do next change and you have several options for settings file manager
 Location for settings file manager are in config.neom file.
 <pre>
 root/
@@ -41,7 +41,7 @@ maxFileSize: 50000000
 * **maxFileSize:** Maximum file size in byte
 
 
-If you want to use file manager without Kappa/Sandbox you must edit config file.
+If you want to use file manager without [Kappa/Sanbox](http://github.com/Kappa-org/Sanbox) you must edit config file.
 You must add this lines into section services in config file.
 
 <pre>
