@@ -71,4 +71,4 @@ $ rm -r path/to/FileManager/
 $ mv libs/FileManager/Media/ path/to/FileManager
 </pre>
 
-After update is recommended deleting cache in *cache/* folder
+After update is recommended deleting cache in *"cache/"* folder
