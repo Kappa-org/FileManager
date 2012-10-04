@@ -42,7 +42,7 @@ maxFileSize: 50000000
 
 
 If you want to use file manager without [Kappa/Sanbox](http://github.com/Kappa-org/Sanbox) you must edit config file.
-You must add this lines into section services in config file.
+You must add this lines into section *"services"* in config file.
 
 <pre>
 FileManagerFactory:
@@ -51,7 +51,7 @@ FileManagerFactory:
 setParams(%FileManager%)
 </pre>
 
-and add this into section parameters:
+and add this into section *"parameters"*:
 
 <pre>
 FileManager:
@@ -71,4 +71,4 @@ $ rm -r path/to/FileManager/
 $ mv libs/FileManager/Media/ path/to/FileManager
 </pre>
 
-After update is recommended deleting cache in cache/ folder
+After update is recommended deleting cache in *cache/* folder
