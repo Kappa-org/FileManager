@@ -36,9 +36,9 @@ maxImgDimension: '700x%'
 maxFileSize: 50000000
 </pre>
 
-***uploadDir:** Folder for upload your files and folders
-***maxImgDimension:** If uploaded image is larger than dimension entered on this line, it will be  scaled to entered dimension. You can replace second dimension with character % and this dimension will be calculated.
-***maxFileSize:** Maximum file size in byte
+* **uploadDir:** Folder for upload your files and folders
+* **maxImgDimension:** If uploaded image is larger than dimension entered on this line, it will be  scaled to entered dimension. You can replace second dimension with character % and this dimension will be calculated.
+* **maxFileSize:** Maximum file size in byte
 
 
 If you want to use file manager without Kappa/Sandbox you must edit config file.
