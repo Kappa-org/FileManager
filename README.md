@@ -47,8 +47,8 @@ You must add this lines into section *"services"* in config file.
 <pre>
 FileManagerFactory:
 	class: Kappa\Packages\FileManager\FileManagerFactory
-     setup:
-setParams(%FileManager%)
+        setup:
+		- setParams(%FileManager%)
 </pre>
 
 and add this into section *"parameters"*:
@@ -56,8 +56,8 @@ and add this into section *"parameters"*:
 <pre>
 FileManager:
 	uploadDir: 'media/upload'
-     maxImgDimension: '700x%'
-     maxFileSize: 2000000
+        maxImgDimension: '700x%'
+        maxFileSize: 2000000
 </pre>
 
 ###Update:
