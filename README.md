@@ -56,8 +56,8 @@ and add this into section *"parameters"*:
 <pre>
 FileManager:
 	uploadDir: 'media/upload'
-        maxImgDimension: '700x%'
-        maxFileSize: 2000000
+	maxImgDimension: '700x%'
+	maxFileSize: 2000000
 </pre>
 
 ###Update:
