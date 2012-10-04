@@ -47,7 +47,7 @@ You must add this lines into section *"services"* in config file.
 <pre>
 FileManagerFactory:
 	class: Kappa\Packages\FileManager\FileManagerFactory
-        setup:
+	setup:
 		- setParams(%FileManager%)
 </pre>
 
