@@ -34,11 +34,12 @@ and you can change next lines:
 uploadDir: 'path/to/your/upload/folder/'
 maxImgDimension: '700x%'
 maxFileSize: 50000000
-
-uploadDir: 	     	folder for upload your files and folders
-maxImgDimension: 	If uploaded image is larger than dimension entered on this line, it will 				be  scaled to entered dimension. You can replace second dimension 				with character % and this dimension will be calculated.
-maxFileSize: 		Maximum file size in byte
 </pre>
+
+**uploadDir:** 	     	folder for upload your files and folders
+**maxImgDimension:** 	If uploaded image is larger than dimension entered on this line, it will 				be  scaled to entered dimension. You can replace second dimension 				with character % and this dimension will be calculated.
+**maxFileSize:** 		Maximum file size in byte
+
 
 If you want to use file manager without Kappa/Sandbox you must edit config file.
 You must add this lines into section services in config file.
@@ -68,6 +69,6 @@ $ cd project/root/path
 $ composer update
 $ rm -r path/to/FileManager/
 $ mv libs/FileManager/Media/ path/to/FileManager
-<pre>
+</pre>
 
 After update is recommended deleting cache in cache/ folder
