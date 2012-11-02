@@ -15,7 +15,7 @@
 
     "support":{
         "email":"zarubaondra@gmail.com",
-        "issues":""
+        "issues":"https://github.com/Kappa-org/FileManager/issues"
     },
 
     "autoload": {
