@@ -71,7 +71,7 @@ and updated script for configure editor
 <pre>
 plugins : "filemanager, ..."
 theme_advanced_buttons2 : "...,filemanager,...",
-</pr>
+</pre>
 ###Update:
 -
 The best way to update File Manager is using Composer:
