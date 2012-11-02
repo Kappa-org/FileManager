@@ -66,6 +66,12 @@ And last step is copy contain *tinyMCE_plugin* into tinyMCE plugins folder
 $ mv libs/FileManager/tinyMCE_plugin www/path/to/tinyMCE/plugins
 </pre>
 
+and updated script for configure editor
+
+<pre>
+plugins : "filemanager, ..."
+theme_advanced_buttons2 : "...,filemanager,...",
+</pr>
 ###Update:
 -
 The best way to update File Manager is using Composer:
