@@ -53,16 +53,16 @@
 			</ul>
 			<div id="nahravac_vnitrek">
 				<ul class="nahravac_slozky_a_soubory" n:foreach="$directories as $dir">
-					<li class="a"><a n:href="Move $dir['name']" class="ajax"><img src="{$basePath}/assets/images/ikony/slozka.png" alt="" />{$dir['name']}</a></li>
+					<li class="a"><a n:href="Move $dir['name']" class="ajax"><img src="{$basePath}/assets/FileManager/images/ikony/slozka.png" alt="" />{$dir['name']}</a></li>
 					<li class="c">{$dir['date']}</li>
-					<li class="d"><a n:href="DeleteDir $dir['path']" class="ajax"><img src="{$basePath}/assets/images/ikony/smazat.png" alt="Smazat" /></a></li>
+					<li class="d"><a n:href="DeleteDir $dir['path']" class="ajax"><img src="{$basePath}/assets/FileManager/images/ikony/smazat.png" alt="Smazat" /></a></li>
 				</ul>
 				<ul class="nahravac_slozky_a_soubory" n:foreach="$files as $i => $file">
-					<li class="a"><img src="{$basePath}/assets/images/ikony/{$file['icon']}.png" alt="" />
+					<li class="a"><img src="{$basePath}/assets/FileManager/images/ikony/{$file['icon']}.png" alt="" />
 						<input type="checkbox" value="true" class="file-checkbox" id="file-checkbox-{$i}" data-type="{$file['icon']}" data-name="{$file['name']}" data-path="{$basePath}/{$file['path']}"/>
 						<a href="">{$file['name']}</a></li>
 					<li class="c">{$file['date']}</li>
-					<li class="d"><a n:href="DeleteFile $file['path']" class="ajax"><img src="{$basePath}/assets/images/ikony/smazat.png" alt="Smazat" /></a></li>
+					<li class="d"><a n:href="DeleteFile $file['path']" class="ajax"><img src="{$basePath}/assets/FileManager/images/ikony/smazat.png" alt="Smazat" /></a></li>
 				</ul>
 
 			</div>
