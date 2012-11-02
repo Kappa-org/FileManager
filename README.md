@@ -60,6 +60,12 @@ FileManager:
 	maxFileSize: 2000000
 </pre>
 
+And last step is copy contain *tinyMCE_plugin* into tinyMCE plugins folder
+
+<pre>
+$ mv libs/FileManager/tinyMCE_plugin www/path/to/tinyMCE/plugins
+</pre>
+
 ###Update:
 -
 The best way to update File Manager is using Composer:
