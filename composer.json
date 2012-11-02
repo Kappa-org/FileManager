@@ -1,5 +1,5 @@
 {
-    "name": "Kappa/FileManager",
+    "name": "kappa/filemanager",
     "description": "Modern system for easy working with files and images on server",
     "keywords": ["framework", "Nette", "Kappa", "file", "image", "manager", "tinymce", "plugin"],
     "homepage": "https://github.com/Kappa-org/FileManager",
