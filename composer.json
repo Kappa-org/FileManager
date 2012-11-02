@@ -1,0 +1,24 @@
+{
+    "name": "Kappa/FileManager",
+    "description": "Modern system for easy working with files and images on server",
+    "keywords": ["framework", "Nette", "Kappa", "file", "image", "manager", "tinymce", "plugin"],
+    "homepage": "https://github.com/Kappa-org/FileManager",
+    "license": "",
+    "minimum-stability":"dev",
+
+    "authors": [
+        {
+            "name": "Ondřej Záruba",
+            "homepage": "http://zaruba-ondrej.cz/"
+        }
+    ],
+
+    "support":{
+        "email":"zarubaondra@gmail.com",
+        "issues":""
+    },
+
+    "autoload": {
+        "classmap": {"FileManager/": ""}
+    }
+}
