@@ -1,6 +1,5 @@
 #File manager
 -
-**NOT WORKING**
 
 Modern system for easy working with files and folders on the server. Can by used as plugin fot tinyMCE, CKEditor or as clasic Nette Framework component too.
 
