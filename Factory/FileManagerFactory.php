@@ -13,7 +13,7 @@ class FileManagerFactory extends \Nette\Object
 	private $_session;
 	private $_params;
 
-	public function injectControlFactory(\Nette\Http\Session $session)
+	public function injectSession(\Nette\Http\Session $session)
 	{
 		$this->_session = $session;
 	}
