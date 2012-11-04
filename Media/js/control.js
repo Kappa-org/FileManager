@@ -1,18 +1,50 @@
 $(document).live('ready', function(){
     $("#actionForm").live('submit', function(){
-        var selected = new Array();
-        $('.nahravac_slozky_a_soubory input:checked').each(function() {
-            selected.push($(this).attr('id'));
-        });
-        var html = "";
-        for(var i = 0; i < selected.length; i++)
+        try
         {
-            if($("#action").val() == "img")
-                html += '<img src="'+ $("#"+selected[i]).attr('data-path')+'" alt="'+$("#text").val()+'">';
+            if(tinyMCEPopup.getWindowArg('some_custom_arg') == "tinyMCE editor")
+            {
+                var selected = new Array();
+                $('.nahravac_slozky_a_soubory input:checked').each(function() {
+                    selected.push($(this).attr('id'));
+                });
+                var html = "";
+                for(var i = 0; i < selected.length; i++)
+                {
+                    if($("#action").val() == "img")
+                        html += '<img src="'+ $("#"+selected[i]).attr('data-path')+'" alt="'+$("#text").val()+'" width="150" height="110">';
+                    if($("#action").val() == "ahref")
+                        html += '<a href="'+ $("#"+selected[i]).attr('data-path') + '">'+$("#text").val()+'</a>';
+                    if($("#action").val() == "big")
+                        html += '<img src="'+ $("#"+selected[i]).attr('data-path')+'" alt="'+$("#text").val()+'"';
+                }
+                tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
+            }
             else
-                html += '<a href="'+ $("#"+selected[i]).attr('data-path') + '">'+$("#text").val()+'</a>';
+            {
+                var selected = new Array();
+                $('.nahravac_slozky_a_soubory input:checked').each(function() {
+                    selected.push($(this).attr('id'));
+                });
+                html = $("#"+selected[selected.length-1]).attr('data-path');
+                window.opener.$("#imagePreview").remove();
+                window.opener.$(".Kappa-ImagePreview").val(html);
+                var imagePreview = '<div id="imagePreview"><img src="' + html + '" width="150" height="110"></div>';
+                window.opener.$(".Kappa-ImagePreview").after(imagePreview);
+            }
         }
-        tinyMCEPopup.editor.execCommand('mceInsertContent', false, html);
+        catch(err)
+        {
+            var selected = new Array();
+            $('.nahravac_slozky_a_soubory input:checked').each(function() {
+                selected.push($(this).attr('id'));
+            });
+            html = $("#"+selected[selected.length-1]).attr('data-path');
+            window.opener.$("#imagePreview").remove();
+            window.opener.$(".Kappa-ImagePreview").val(html);
+            var imagePreview = '<div id="imagePreview"><img src="' + html + '" width="150" height="110"></div>';
+            window.opener.$(".Kappa-ImagePreview").after(imagePreview);
+        }
         return false;
     });
 
@@ -30,7 +62,6 @@ $(document).live('ready', function(){
                     selected.push($(this).attr('id'));
                 });
                 // TODO: Zjistit proč to bere první a né poslední zaškrtnutý obrázek
-                //alert(selected[selected.length - 1]);
                 $(".nahravac_nahled").attr('src', $("#"+selected[selected.length - 1]).attr('data-path'))
             }
         }
