@@ -56,6 +56,7 @@ $(document).live('ready', function(){
             window.opener.$(".Kappa-ImagePreview").val(urls);
             var imagePreview = '<div id="imagePreview">' + html + '</div>';
             window.opener.$(".Kappa-ImagePreview").after(imagePreview);
+            window.close();
         }
         return false;
     });
