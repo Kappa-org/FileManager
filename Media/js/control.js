@@ -26,16 +26,9 @@ $(document).live('ready', function(){
                 $('.nahravac_slozky_a_soubory input:checked').each(function() {
                     selected.push($(this).attr('id'));
                 });
-                var html = "";
-                var urls = "";
-                for(var i = 0; i < selected.length; i++)
-                {
-                    urls += $("#"+selected[i]).attr('data-path') + '|';
-                    html += '<img src="'+ $("#"+selected[i]).attr('data-path')+'" alt="'+$("#text").val()+'"  width="150" height="110">';
-                }
                 window.opener.$("#imagePreview").remove();
-                window.opener.$(".Kappa-ImagePreview").val(urls);
-                var imagePreview = '<div id="imagePreview">' + html + '</div>';
+                window.opener.$(".Kappa-ImagePreview").val($("#"+selected[0]).attr('data-path'));
+                var imagePreview = '<div id="imagePreview"><img src="'+ $("#"+selected[0]).attr('data-path')+'" alt="'+$("#text").val()+'"  width="150" height="110"></div>';
                 window.opener.$(".Kappa-ImagePreview").after(imagePreview);
             }
         }
@@ -45,16 +38,9 @@ $(document).live('ready', function(){
             $('.nahravac_slozky_a_soubory input:checked').each(function() {
                 selected.push($(this).attr('id'));
             });
-            var html = "";
-            var urls = "";
-            for(var i = 0; i < selected.length; i++)
-            {
-                urls += $("#"+selected[i]).attr('data-path') + '|';
-                html += '<img src="'+ $("#"+selected[i]).attr('data-path')+'" alt="'+$("#text").val()+'"  width="150" height="110">';
-            }
             window.opener.$("#imagePreview").remove();
-            window.opener.$(".Kappa-ImagePreview").val(urls);
-            var imagePreview = '<div id="imagePreview">' + html + '</div>';
+            window.opener.$(".Kappa-ImagePreview").val($("#"+selected[0]).attr('data-path'));
+            var imagePreview = '<div id="imagePreview"><img src="'+ $("#"+selected[0]).attr('data-path')+'" alt="'+$("#text").val()+'"  width="150" height="110"></div>';
             window.opener.$(".Kappa-ImagePreview").after(imagePreview);
             window.close();
         }
