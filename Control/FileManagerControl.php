@@ -239,7 +239,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	{
 		$values = $form->getValues();
 		$path = $this->getActualDir();
-		$path .= $values['name'];
+		$path .= \Kappa\Utils\Parser::createUrlString($values['name']);
 		$i = 0;
 		if(is_dir($path))
 		{
@@ -261,6 +261,8 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	{
 		$form = new \Kappa\Application\UI\Form;
 		$form->addMultifileUpload('files');
+		$form->addSelect('zip', 'Po nahrátí na server', array('rozbalit', 'nerozbalovat'))
+			->setDefaultValue(1);
 		$form->addSubmit('submit', 'Nahrát soubor(y)');
 		$form->onSuccess[] = $this->addNewFiles;
 		return $form;
