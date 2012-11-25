@@ -148,7 +148,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	public function handleDeleteFile($path)
 	{
 		$file = WWW_DIR;
-		$file .= $path;
+		$file .= '/'.$path;
 		@unlink($file);
 		if($this->presenter->isAjax())
 			$this->invalidateControl('Kappa-fileManager');
@@ -268,6 +268,42 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		return $form;
 	}
 
+	private function unZip($filename)
+	{
+		$zip = new \ZipArchive;
+		$res = $zip->open($filename);
+		if ($res === TRUE)
+		{
+			$zip->extractTo(WWW_DIR.'/'.$this->_params['tempDir'].'/');
+			$zip->close();
+			@unlink($filename);
+		}
+	}
+	private function uploadFileFromZip($name, $type, $file)
+	{
+		$fileName = $name.$type;
+		$path = WWW_DIR.'/'.$this->_params['tempDir'].'/';
+		$file->move($path.$fileName);
+		$this->unZip($path.$fileName);
+		foreach (\Nette\Utils\Finder::findFiles('*')->in($path) as $path => $file)
+		{
+			$fileData = array(
+				'name' => $file->getFilename(),
+				'type' => $file->getType(),
+				'size' => $file->getSize(),
+				'tmp_name' => $path,
+				'error' => 0,
+			);
+			$netteFile = new \Nette\Http\FileUpload($fileData);
+			$type = (string)strrchr($file->getFilename(), ".");
+			if(\Kappa\Utils\Validators::isImage($type))
+				$this->uploadImage($netteFile, $file->getFilename(), $type);
+			else
+				$this->uploadFile($name, $type, $netteFile);
+			@unlink($path);
+		}
+	}
+
 	/**
 	 * @param $name
 	 * @param $type
@@ -317,7 +353,12 @@ class FileManagerControl extends \Nette\Application\UI\Control
 			if(\Kappa\Utils\Validators::isImage($type))
 				$this->uploadImage($file, $name, $type);
 			else
-				$this->uploadFile($name, $type, $file);
+			{
+				if($type == ".zip" && $values['zip'] == 0)
+					$this->uploadFileFromZip($name, $type, $file);
+				else
+					$this->uploadFile($name, $type, $file);
+			}
 		}
 	}
 
@@ -327,6 +368,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$this->template->navigation = $this->_session->actualDir;
 		$this->template->directories = $this->getDirectories();
 		$this->template->files = $this->getFiles();
+		$this->template->maxFile = ini_get('max_file_uploads');
 		$this->template->render();
 	}
 }
