@@ -8,7 +8,7 @@
 	$('input:file').live('change', function(){
 		if($(this).get(0).files.length > 20)
 		{
-			alert('Není možné nahrávat více jak 20 souborů najednou. Prosím zazipujte (.zip) a před nahráním vyberte možnost "Po nahrání na server rozbalit"');
+			alert('Není možné nahrávat více jak {$maxFile} souborů najednou. Prosím zazipujte (.zip) a před nahráním vyberte možnost "Po nahrání na server rozbalit"');
 			$(this).val('');
                 }
 	});
