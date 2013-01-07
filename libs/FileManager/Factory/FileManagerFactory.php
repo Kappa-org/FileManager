@@ -9,7 +9,9 @@ namespace Kappa\Packages\FileManager;
 
 class FileManagerFactory extends \Nette\Object
 {
-
+	/**
+	 * @var Nette\Http\Session
+	 */
 	private $_session;
 	private $_params;
 
