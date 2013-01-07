@@ -5,12 +5,13 @@
  * Date: 29.9.12
  */
 
-class FileManagerPresenter extends \Nette\Application\UI\Presenter
+class FileManagerPresenter extends \Kappa\Application\UI\Presenter
 {
 	/**
+	 * @autowire
 	 * @var Kappa\Packages\FileManager\FileManagerFactory
 	 */
-	private $fileManagerFactory;
+	protected $fileManagerFactory;
 
 	public function startup()
 	{
@@ -19,20 +20,12 @@ class FileManagerPresenter extends \Nette\Application\UI\Presenter
 	}
 
 	/**
-	 * @param Kappa\Packages\FileManager\FileManagerFactory $fileManagerFactory
-	 */
-	public function injectFileManagerFactory(\Kappa\Packages\FileManager\FileManagerFactory $fileManagerFactory)
-	{
-		$this->fileManagerFactory = $fileManagerFactory;
-	}
-
-	/**
 	 * @return array
 	 *
 	 */
 	public function formatTemplateFiles()
 	{
-		return array(LIBS_DIR . '/FileManager/Templates/default.latte');
+		return array(__DIR__ . '/Templates/default.latte');
 	}
 
 	/**
