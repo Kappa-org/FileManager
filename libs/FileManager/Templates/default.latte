@@ -57,7 +57,7 @@
 						</tr>
 						<tr n:foreach="$files as $file">
 							<td class="input"><input type="checkbox" data-src="{$file['relativePath']}"></td>
-							<td class="icon"><img src="{$basePath}/assets/FileManager/images/ikony/image.png"></td>
+							<td class="icon"><img src="{$basePath}/assets/FileManager/images/ikony/{$file['icon']}.png"></td>
 							<td>{$file['name']}</td>
 							<td class="button-group">
 								<div class="btn-group">

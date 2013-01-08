@@ -154,9 +154,9 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	private function getIcon($file)
 	{
 		$type = strrchr($file, ".");
-		if(Utils\Validators::isImage($file))
+		if(Validators::isImage($file))
 			return 'image';
-		if(!Utils\Validators::isImage($file) && !array_key_exists($type, $this->_iconType))
+		if(!Validators::isImage($file) && !array_key_exists($type, $this->_iconType))
 			return 'other';
 		if(array_key_exists($type, $this->_iconType))
 			return $this->_iconType[$type];
@@ -229,12 +229,29 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$this->redirect('this');
 	}
 
+	private function getDirectories()
+	{
+		$directories = Directories::getDirectories($this->getActualDir());
+		return $directories;
+	}
+
+	private function getFiles()
+	{
+		$files = Files::getFiles($this->getActualDir());
+		foreach($files as $index => $file)
+		{
+			$files[$index]['relativePath'] = trim(str_replace($this->_params['wwwDir'], "", $file['absolutePath']));
+			$files[$index]['icon'] = $this->getIcon($file['absolutePath']);
+		}
+		return $files;
+	}
+
 	public function render()
 	{
 		$this->template->setFile(__DIR__ . '/../Templates/default.latte');
 		$this->template->navigation = $this->_session->actualDir;
-		$this->template->directories = Directories::getDirectories($this->_params['wwwDir'], $this->getActualDir());
-		$this->template->files = Files::getFiles($this->_params['wwwDir'], $this->getActualDir());
+		$this->template->directories = $this->getDirectories();
+		$this->template->files = $this->getFiles();
 		$this->template->maxFile = ini_get('max_file_uploads');
 		$this->template->render();
 	}
