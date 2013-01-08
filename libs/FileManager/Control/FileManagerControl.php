@@ -78,17 +78,6 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	}
 
 	/**
-	 * @param string $path
-	 * @return string
-	 */
-	private function getPath($path)
-	{
-		$path = explode($this->_params['uploadDir'], $path);
-		$path = $this->_params['uploadDir'].$path[1];
-		return $path;
-	}
-
-	/**
 	 * @param string $move
 	 */
 	public function handleMove($move)
