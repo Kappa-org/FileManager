@@ -6,7 +6,11 @@
  */
 
 namespace Kappa\Packages\FileManager;
-use Kappa\Utils;
+
+use Kappa\Utils\FileSystem\Directories,
+	Kappa\Utils\FileSystem\Files,
+	Kappa\Utils\Arrays,
+	Kappa\Utils\Validators;
 
 class FileManagerControl extends \Nette\Application\UI\Control
 {
@@ -44,6 +48,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$this->_session = $session->getSection('Kappa-FileManager');
 		if(!$this->_session->actualDir)
 			$this->_session->actualDir = array();
+		//unset($this->_session->actualDir);
 	}
 
 	/**
@@ -115,7 +120,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	 */
 	public function handleDeleteDir($path)
 	{
-		if(Utils\Folder::recursiveDelete($path))
+		if(Directories::recursiveDelete($path))
 			if($this->presenter->isAjax())
 				$this->invalidateControl('Kappa-fileManager');
 			else
@@ -123,17 +128,15 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	}
 
 	/**
-	 * @param string $path
+	 * @param string $file
 	 */
-	public function handleDeleteFile($path)
+	public function handleDeleteFile($file)
 	{
-		$file = $this->_params['wwwDir'];
-		$file .= '/'.$path;
-		Utils\Files::deleteFiles($file);
-		if($this->presenter->isAjax())
-			$this->invalidateControl('Kappa-fileManager');
-		else
-			$this->redirect('this');
+		if(Files::deleteFiles($file))
+			if($this->presenter->isAjax())
+				$this->invalidateControl('Kappa-fileManager');
+			else
+				$this->redirect('this');
 	}
 
 	public function handleRefresh()
@@ -160,54 +163,15 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	}
 
 	/**
-	 * @return array
-	 */
-	private function getDirectories()
-	{
-		$actualDir = $this->getActualDir();
-		$directories = array();
-		foreach (\Nette\Utils\Finder::findDirectories('*')->in($actualDir) as $path => $directory)
-		{
-			$directories[] = array(
-				'name' => $directory->getFilename(),
-				'path' => $path,
-				'date' => Date('j.n.Y', $directory->getCTime()),
-			);
-		}
-		$directories = Utils\Arrays::sortBySubArray($directories, 'name');
-		return $directories;
-	}
-
-	/**
-	 * @return array
-	 */
-	private function getFiles()
-	{
-		$actualDir = $this->getActualDir();
-		$files = array();
-		foreach (\Nette\Utils\Finder::findFiles('*')->in($actualDir) as $path => $file)
-		{
-			$files[] = array(
-				'path' => $this->getPath($path),
-				'name' => $file->getFilename(),
-				'icon' => $this->getIcon($path),
-				'date' => Date('j.n.Y', $file->getCTime()),
-			);
-		}
-		$files = Utils\Arrays::sortBySubArray($files, 'name');
-		return $files;
-	}
-
-	/**
 	 * @return \Kappa\Application\UI\Form
 	 */
-	protected function createComponentAddNewDir()
+	protected function createComponentDirectory()
 	{
 		$form = new \Kappa\Application\UI\Form;
-		$form->addText('name', 'Název složky')
+		$form->addText('name', 'Název složky:')
 			->setRequired('Musíte vyplnit jméno složky');
 		$form->addSubmit('submit', 'Vytvořit složku')
-			->setAttribute('class', 'nahrat_vytvorit');
+			->setAttribute('class', 'btn btn-primary');
 		$form->onSuccess[] = $this->createNewDir;
 		return $form;
 	}
@@ -219,93 +183,30 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	{
 		$values = $form->getValues();
 		$path = $this->getActualDir();
-		$path .= Utils\Strings::createUrlString($values['name']);
-		Utils\Folder::create($path, 0777, true);
+		$path .= $values['name'];
+		Directories::create($path, 0777, true);
+		$this->redirect('this');
 	}
 
 	/**
 	 * @return \Kappa\Application\UI\Form
 	 */
-	protected function createComponentAddNewFile()
+	protected function createComponentFile()
 	{
 		$form = new \Kappa\Application\UI\Form;
-		$form->addMultifileUpload('files');
-		$form->addSelect('zip', 'Po nahrátí na server', array('rozbalit', 'nerozbalovat'))
-			->setDefaultValue(1);
-		$form->addSubmit('submit', 'Nahrát soubor(y)');
+		$form->addMultifileUpload('files', 'Vyberte soubory:');
+		$form->addSubmit('submit', 'Nahrát soubor(y)')
+			->setAttribute('class', 'btn btn-primary');
 		$form->onSuccess[] = $this->addNewFiles;
 		return $form;
 	}
 
-	private function unZip($filename)
+	private function getSizes()
 	{
-		$zip = new \ZipArchive;
-		$res = $zip->open($filename);
-		if ($res === true)
-		{
-			$zip->extractTo($this->_params['wwwDir'].'/'.$this->_params['tempDir'].'/');
-			$zip->close();
-			@unlink($filename);
-		}
-	}
-	private function uploadFileFromZip($name, $type, $file)
-	{
-		$fileName = $name.$type;
-		$path = $this->_params['wwwDir'].'/'.$this->_params['tempDir'].'/';
-		$file->move($path.$fileName);
-		$this->unZip($path.$fileName);
-		foreach (\Nette\Utils\Finder::findFiles('*')->in($path) as $path => $file)
-		{
-			$fileData = array(
-				'name' => $file->getFilename(),
-				'type' => $file->getType(),
-				'size' => $file->getSize(),
-				'tmp_name' => $path,
-				'error' => 0,
-			);
-			$netteFile = new \Nette\Http\FileUpload($fileData);
-			$type = (string)strrchr($file->getFilename(), ".");
-			if(Utils\Validators::isImage($type))
-				$this->uploadImage($netteFile, $file->getFilename(), $type);
-			else
-				$this->uploadFile($name, $type, $netteFile);
-			@unlink($path);
-		}
-	}
-
-	/**
-	 * @param $name
-	 * @param $type
-	 * @param $file
-	 */
-	private function uploadFile($name, $type, $file)
-	{
-		$path = $this->getActualDir();
-		if(isset($this->_params['maxFileSize']))
-		{
-			if($file->getSize() <= $this->_params['maxFileSize'])
-			{
-				$fileName = Utils\Files::createUniqueFileName($path, $name, $type);
-				$file->move($fileName);
-			}
-		}
-	}
-
-	/**
-	 * @param $file
-	 * @param $name
-	 * @param $type
-	 */
-	private function uploadImage($file, $name, $type)
-	{
-		$path = $this->getActualDir();
-		$image = \Nette\Image::fromFile($file->getTemporaryFile());
-		$sizes = explode('x', $this->_params['maxImgDimension']);
+		$sizes = explode('x', $this->_params['maxSize']);
 		foreach($sizes as $key => $size)
 			$sizes[$key] = str_replace('%', 'null', $size);
-		$image->resize($sizes[0], $sizes[1], \Nette\Image::SHRINK_ONLY);
-		$fileName = Utils\Files::createUniqueFileName($path, $name, $type);
-		$image->save($fileName);
+		return $sizes;
 	}
 
 	/**
@@ -317,26 +218,23 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$files = $values['files'];
 		foreach($files as $file)
 		{
-			$type = strrchr($file->getName(), ".");
-			$name = Utils\Strings::createUrlString(substr($file->getName(), 0, -strlen($type)));
-			if(Utils\Validators::isImage($file->getTemporaryFile()))
-				$this->uploadImage($file, $name, $type);
+			$size = $this->getSizes();
+			$newImage = $this->getActualDir().$file->getName();
+			if(Validators::isImage($file->getTemporaryFile()))
+				Files::saveImage($file->getTemporaryFile(), $newImage, $size, "SHRINK_ONLY", true);
 			else
-			{
-				if($type == ".zip" && $values['zip'] == 0)
-					$this->uploadFileFromZip($name, $type, $file);
-				else
-					$this->uploadFile($name, $type, $file);
-			}
+				if($file->size <= $this->_params['maxFileSize'])
+					Files::saveFile($file, $this->getActualDir(), true);
 		}
+		$this->redirect('this');
 	}
 
 	public function render()
 	{
-		$this->template->setFile(__DIR__ . '/../Templates/FileManager.latte');
+		$this->template->setFile(__DIR__ . '/../Templates/default.latte');
 		$this->template->navigation = $this->_session->actualDir;
-		$this->template->directories = $this->getDirectories();
-		$this->template->files = $this->getFiles();
+		$this->template->directories = Directories::getDirectories($this->_params['wwwDir'], $this->getActualDir());
+		$this->template->files = Files::getFiles($this->_params['wwwDir'], $this->getActualDir());
 		$this->template->maxFile = ini_get('max_file_uploads');
 		$this->template->render();
 	}
