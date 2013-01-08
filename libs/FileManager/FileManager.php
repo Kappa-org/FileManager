@@ -13,6 +13,11 @@ class FileManagerPresenter extends \Kappa\Application\UI\Presenter
 	 */
 	protected $fileManagerFactory;
 
+	public function beforeRender()
+	{
+		$this->template->assetsDir = $this->context->getParameters()['FileManager']['assetsDir'];
+	}
+
 	public function startup()
 	{
 		parent::startup();
