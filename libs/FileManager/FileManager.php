@@ -25,7 +25,7 @@ class FileManagerPresenter extends \Kappa\Application\UI\Presenter
 	 */
 	public function formatTemplateFiles()
 	{
-		return array(__DIR__ . '/Templates/default.latte');
+		return array(__DIR__ . '/Templates/@layout.latte');
 	}
 
 	/**
