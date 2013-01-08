@@ -1,0 +1,9 @@
+body {margin: 0; padding: 0; font-family: "Helvetica";}
+#body {width: 100%; float:left;}
+.button-group {width: 50px;}
+.content {min-width: 500px; width: 680px; float: left;}
+.icon {width: 20px;}
+.info-panel {max-width: 230px; padding: 0 10px; margin-right: 10px; float: left;}
+.input {width: 20px;}
+.input a {margin-left: 5px;}
+h2 {font-size: 14px; border-bottom: 1px solid #e1e1e1;}
