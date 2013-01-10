@@ -15,7 +15,9 @@ class FileManagerPresenter extends \Kappa\Application\UI\Presenter
 
 	public function beforeRender()
 	{
-		$this->template->assetsDir = $this->context->getParameters()['FileManager']['assetsDir'];
+		$assetsDir = $this->context->getParameters();
+		$assetsDir = $assetsDir['FileManager']['assetsDir'];
+		$this->template->assetsDir = $assetsDir;
 	}
 
 	public function startup()
