@@ -1,0 +1,214 @@
+
+body {
+	background: #ffffff url(../images/pozadi.png) repeat-x;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	line-height: 1.5;
+	margin: 0 auto;
+}
+#nahravac {
+	width: 960px;
+	height: 540px;
+	background: #eff3f7;
+}
+#nahravac .nahravac_hlavicka {
+	width: 960px;
+	height: 45px;
+	border-bottom: 1px solid #cfcfcf;
+}
+#nahravac .nahravac_hlavicka h1 {
+	font-size: 18px;
+	font-weight: normal;
+	float: left;
+	margin: 10px 0px 0px 30px;
+	color: #000000;
+}
+#nahravac .zavrit {
+	float: right;
+	padding: 15px 15px 10px 10px;
+}
+#nahravac_leva {
+	float: left;
+	width: 240px;
+	height: 494px;
+	border-right: 1px solid #cfcfcf;
+}
+.nahravac_hlavicka_strana {
+	width: auto;
+	height: 26px;
+	padding: 10px 0px 0px 20px;
+	border-bottom: 1px solid #cfcfcf;
+	background: url(../images/nahravac_pruh_a.png) repeat-x;
+	font-weight: bold;
+}
+.nahravac_hlavicka_strana ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.nahravac_hlavicka_strana ul li {
+	float: left;
+	padding: 0px 5px 0px 0px;
+}
+#nahravac_prava {
+	float: left;
+	width: 719px;
+	height: 494px;
+}
+#nahravac_vnitrek {
+	float: left;
+	width: 719px;
+	height: 291px;
+	overflow: scroll;
+	background: #ffffff;
+}
+ul#nahravac_popisek {
+	float: left;
+	width: 719px;
+	height: 39px;
+	background: url(../images/nahravac_pruh_b.png) repeat-x;
+	border-bottom: 1px solid #cfcfcf;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ul#nahravac_popisek li {
+	float: left;
+	padding: 12px 0px 0px 0px;
+}
+ul#nahravac_popisek li.a {
+	float: left;
+	width: 528px;
+	padding: 12px 0px 0px 10px;
+}
+ul#nahravac_popisek li.b {
+	float: left;
+	width: 130px;
+}
+ul#nahravac_popisek li.c {
+	float: left;
+	width: 110px;
+}
+ul#nahravac_popisek li.d {
+	float: left;
+	width: 55px;
+}
+ul#nahravac_popisek li a {
+	font-weight: bold;
+	color: #000000;
+}
+ul.nahravac_slozky_a_soubory {
+	float: left;
+	height: 34px;
+	border-bottom: 1px solid #cfcfcf;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ul.nahravac_slozky_a_soubory li {
+	float: left;
+	padding: 12px 0px 0px 0px;
+}
+ul.nahravac_slozky_a_soubory li.a {
+	float: left;
+	width: 528px;
+	padding: 12px 0px 0px 10px;
+}
+ul.nahravac_slozky_a_soubory li.b {
+	float: left;
+	width: 130px;
+}
+ul.nahravac_slozky_a_soubory li.c {
+	float: left;
+	width: 110px;
+}
+ul.nahravac_slozky_a_soubory li.d {
+	float: left;
+	width: 54px;
+}
+ul.nahravac_slozky_a_soubory li img {
+	float: left;
+	margin: 2px 10px 0px 0px;
+}
+ul.nahravac_slozky_a_soubory li input {
+	float: left;
+	margin: 2px 10px 0px 0px;
+}
+ul.nahravac_slozky_a_soubory li label{
+	font-weight: normal;
+	color: #df0242;
+	text-decoration: underline;
+	padding: 0px 0px 0px 0px;
+	float: left;
+}
+#nahravac_leva p {
+	padding: 3px 0px 3px 10px;
+	font-weight: bold;
+}
+#nahravac_leva p span {
+	font-weight: normal;
+	color: #df0242;
+}
+#nahravac label.popisek {
+	padding: 5px 0px 0px 0px;
+	font-weight: bold;
+	float: left;
+	width: 85px;
+}
+.nahravac_nahled {
+	float: left;
+	margin: 10px 20px 20px 20px;
+	background: url(../images/foto_nahled.png) no-repeat;
+	width: 150px;
+	height: 110px;
+	padding: 10px 10px 10px 10px;
+}
+#nahravac a {
+	color: #df0242;
+}
+.nahravac_input_text {
+	float: left;
+	width: 130px;
+}
+input.nahravac_pridat {
+	width: 200px;
+	height: 35px;
+	background: url(../images/nahravac_tlac_a.png) top no-repeat;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 13px;
+	text-shadow: #b00032 -1px -1px 0px;
+	border: none;
+	margin: 20px 0px 0px 15px;
+	cursor: pointer;
+}
+input.nahravac_pridat:hover {
+	background: url(../images/nahravac_tlac_a.png) bottom no-repeat;
+	text-shadow: #b00032 1px 1px 0px;
+}
+.nahravac_dole {
+	float: left;
+	width: 699px;
+	height: 47px;
+	padding: 15px 0px 0px 20px;
+	background: url(../images/nahravac_pruh_c.png) repeat-x;
+	border-bottom: 1px solid #cfcfcf;
+}
+input.nahrat_vytvorit {
+	width: 200px;
+	height: 25px;
+	background: url(../images/nahravac_tlac_b.png) top no-repeat;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 13px;
+	text-shadow: #b00032 -1px -1px 0px;
+	border: none;
+	margin: 0px 0px 0px 15px;
+	cursor: pointer;
+}
+input.nahrat_vytvorit:hover {
+	background: url(../images/nahravac_tlac_b.png) bottom no-repeat;
+	text-shadow: #b00032 -1px -1px 0px;
+}
