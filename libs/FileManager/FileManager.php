@@ -5,6 +5,8 @@
  * Date: 29.9.12
  */
 
+namespace App;
+
 class FileManagerPresenter extends \Kappa\Application\UI\Presenter
 {
 	/**
