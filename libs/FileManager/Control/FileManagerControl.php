@@ -48,7 +48,6 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$this->_session = $session->getSection('Kappa-FileManager');
 		if(!$this->_session->actualDir)
 			$this->_session->actualDir = array();
-		//unset($this->_session->actualDir);
 	}
 
 	/**
