@@ -241,6 +241,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$this->template->directories = $this->getDirectories();
 		$this->template->files = $this->getFiles();
 		$this->template->maxFile = ini_get('max_file_uploads');
+		$this->template->assetsFile = $this->_params['assetsDir'];
 		$this->template->render();
 	}
 }
