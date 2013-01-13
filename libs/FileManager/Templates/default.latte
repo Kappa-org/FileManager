@@ -1,4 +1,5 @@
-﻿<div id="filemanager">
+﻿{snippet Kappa-fileManager}
+<div id="filemanager">
 	<div class="navbar navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container">
@@ -26,8 +27,8 @@
 		</div>
 		<div class="content">
 			<ul class="breadcrumb">
-				<li><a n:href="Move 'home'" class="ajax">home</a> /</li>
-				<li n:foreach="$navigation as $path"><a n:href="Move $path" class="ajax">{$path}</a> /</li>
+				<li><a n:href="Move! 'home'" class="ajax">home</a> /</li>
+				<li n:foreach="$navigation as $path"><a n:href="Move! $path" class="ajax">{$path}</a> /</li>
 			</ul>
 			<div class="bs-docs-example">
 				<ul id="myTab" class="nav nav-tabs">
@@ -101,3 +102,4 @@
 		</div>
 	</div>
 </div>
+{/snippet}
