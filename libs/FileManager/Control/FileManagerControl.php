@@ -230,6 +230,10 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	private function getDirectories()
 	{
 		$directories = Directories::getDirectories($this->getActualDir());
+		foreach($directories as $index => $directory)
+		{
+			$directories[$index]['relativePath'] = trim(str_replace($this->_params['wwwDir'], "", $directory['absolutePath']));
+		}
 		return $directories;
 	}
 
