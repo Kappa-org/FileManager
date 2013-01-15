@@ -49,7 +49,7 @@
 							</thead>
 							<tbody id="list-checkboxs">
 							<tr n:foreach="$directories as $directory">
-								<td class="input"><input type="checkbox" disabled="disabled"></td>
+								<td class="input"><input type="checkbox"{if $openType == "images"} disabled="disabled"{/if}></td>
 								<td class="icon"><img src="{$basePath}/{$assetsFile}/images/ikony/slozka.png"></td>
 								<td><a n:href="Move! $directory['name']">{$directory['name']}</a></td>
 								<td class="button-group">
@@ -59,7 +59,7 @@
 								</td>
 							</tr>
 							<tr n:foreach="$files as $file">
-								<td class="input"><input type="checkbox" class="img-checkbox" data-src="{$file['relativePath']}" data-type="{$file['icon']}"></td>
+								<td class="input"><input type="checkbox" class="img-checkbox"{if $openType == "folders"} disabled="disabled"{/if} data-src="{$file['relativePath']}" data-type="{$file['icon']}"></td>
 								<td class="icon"><img src="{$basePath}/{$assetsFile}/images/ikony/{$file['icon']}.png"></td>
 								<td>{$file['name']}</td>
 								<td class="button-group">

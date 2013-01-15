@@ -25,6 +25,11 @@ class FileManagerControl extends \Nette\Application\UI\Control
 	private $_params;
 
 	/**
+	 * @var string
+	 */
+	private $openType;
+
+	/**
 	 * @var array
 	 */
 	private $_iconType = array(
@@ -39,6 +44,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		'.7z' => 'zip',
 		'.pdf' => 'pdf',
 	);
+
 
 	/**
 	 * @param \Nette\Http\Session $session
@@ -58,6 +64,10 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$this->_params = $params;
 	}
 
+	public function setOpenType($type)
+	{
+		$this->openType = $type;
+	}
 
 	/**
 	 * @return string
@@ -242,6 +252,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		$this->template->files = $this->getFiles();
 		$this->template->maxFile = ini_get('max_file_uploads');
 		$this->template->assetsFile = $this->_params['assetsDir'];
+		$this->template->openType = $this->openType;
 		$this->template->render();
 	}
 }

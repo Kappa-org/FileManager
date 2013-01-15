@@ -43,6 +43,7 @@ class FileManagerPresenter extends \Kappa\Application\UI\Presenter
 	protected function createComponentManager()
 	{
 		$manager = $this->fileManagerFactory;
+		$manager->setOpenType($this->action);
 		return $manager->create();
 	}
 }
