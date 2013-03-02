@@ -1,0 +1,128 @@
+﻿{snippet Kappa-fileManager}
+<div id="filemanager">
+	<div class="navbar navbar-inverse">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">Správce souborů</a>
+			</div>
+		</div>
+	</div>
+	<div class="space"></div>
+	<div id="body">
+		<div class="info-panel">
+			<img id="image-preview" src="http://placehold.it/200x200" width="200" height="200">
+
+			<h2>Vložení do stránky:</h2>
+
+			<form action="#" id="insert-form">
+				<label>Vložit jako:</label>
+				<select id="action">
+					<option value="img">Obrázek</option>
+					<option value="ahref">Odkaz</option>
+				</select>
+
+				<div class="form-title">
+					<label>Titulek obrázku:</label>
+					<input type="text" id="title">
+				</div>
+				<input type="submit" class="btn btn-block btn-primary" value="Vložit do stránky">
+			</form>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a n:href="Move! 'home'" class="ajax">home</a> /</li>
+				<li n:foreach="$navigation as $path"><a n:href="Move! $path" class="ajax">{$path}</a> /
+				</li>
+			</ul>
+			<div class="bs-docs-example">
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active"><a href="#list" data-toggle="tab">Přehled souborů</a></li>
+					<li><a href="#folder" data-toggle="tab">Nová složka</a></li>
+					<li><a href="#files" data-toggle="tab">Nové soubory</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade in active" id="list">
+						<table class="table table-striped table-hover">
+							<thead>
+							<tr>
+								<th class="input"><input type="checkbox" id="check-all">
+								</th>
+								<th class="icon"></th>
+								<th>Jméno</th>
+								<th class="button-group">Akce</th>
+							</tr>
+							</thead>
+							<tbody id="list-checkboxs">
+							<tr n:foreach="$directories as $directory">
+								<td class="input"><input
+									type="checkbox"{if $openType == "images"}
+									disabled="disabled"{/if}
+									data-src="{$directory['relativePath']}"></td>
+								<td class="icon"><img
+									src="{$basePath}/{$assetsFile}/images/ikony/slozka.png">
+								</td>
+								<td>
+									<a n:href="Move! $directory['name']">{$directory['name']}</a>
+								</td>
+								<td class="button-group">
+									<div class="btn-group">
+										<a n:href="DeleteDir! $directory['absolutePath']"
+										   class="btn btn-mini"><i
+											class="icon-remove-circle"></i></a>
+									</div>
+								</td>
+							</tr>
+							<tr n:foreach="$files as $file">
+								<td class="input"><input type="checkbox"
+								                         class="img-checkbox"{if $openType == "folders"}
+								                         disabled="disabled"{/if}
+								                         data-src="{$file['relativePath']}"
+								                         data-type="{$file['icon']}">
+								</td>
+								<td class="icon"><img
+									src="{$basePath}/{$assetsFile}/images/ikony/{$file['icon']}.png">
+								</td>
+								<td>{$file['name']}</td>
+								<td class="button-group">
+									<div class="btn-group">
+										<a n:href="DeleteFile! $file['absolutePath']"
+										   class="btn btn-mini"><i
+											class="icon-remove-circle"></i></a>
+									</div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane fade in" id="folder">
+						{form directory}
+							<table class="table">
+								<tr>
+									<td width="100">{label name /}</td>
+									<td width="200">{input name}</td>
+									<td>{input submit}</td>
+								</tr>
+							</table>
+						{/form}
+					</div>
+					<div class="tab-pane fade" id="files">
+						{form file}
+							<table class="table table-bordered">
+								<tr>
+									<td width="120">{label files /}</td>
+									<td width="100">{input files}</td>
+								</tr>
+								<tr>
+									<td width="120">Vyberte soubory:</td>
+									<td width="100">{input submit}</td>
+								</tr>
+
+							</table>
+						{/form}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/snippet}
