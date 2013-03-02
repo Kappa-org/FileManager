@@ -1,24 +1,36 @@
 {
-    "name": "kappa/filemanager",
-    "description": "Modern system for easy working with files and images on server",
-    "keywords": ["framework", "Nette", "Kappa", "file", "image", "manager", "tinymce", "plugin"],
-    "homepage": "https://github.com/Kappa-org/FileManager",
-    "license": "",
-    "minimum-stability":"dev",
+	"name": "kappa/filemanager",
+	"description": "Modern system for easy working with files and images on server",
+	"keywords": ["framework", "Nette", "Kappa", "file", "image", "manager", "tinymce", "plugin"],
+	"homepage": "https://github.com/Kappa-org/FileManager",
+	"license": "",
+	"minimum-stability":"dev",
 
-    "authors": [
-        {
-            "name": "Ondřej Záruba",
-            "homepage": "http://zaruba-ondrej.cz/"
-        }
-    ],
+	"authors": [
+		{
+			"name": "Ondřej Záruba",
+			"homepage": "http://zaruba-ondrej.cz/"
+		}
+	],
 
-    "support":{
-        "email":"zarubaondra@gmail.com",
-        "issues":"https://github.com/Kappa-org/FileManager/issues"
-    },
+	"support":{
+		"email":"zarubaondra@gmail.com",
+		"issues":"https://github.com/Kappa-org/FileManager/issues"
+	},
 
-    "autoload": {
-        "classmap": {"FileManager/": ""}
-    }
+	"require":{
+		"php": ">= 5.3.0",
+		"nette/nette":"dev-master",
+		"kappa/framework":"dev-master"
+	},
+
+	"require-dev": {
+		"nette/tester":"dev-master",
+		"mikey179/vfsStream":"dev-master"
+	},
+
+
+	"autoload": {
+		"psr-0": {"Kappa": "./"}
+	}
 }
