@@ -1,4 +1,9 @@
 /nbproject
 /.git
 /.idea
-md.txt
+/vendor
+/*/*/coverage.dat
+/tests/test.log
+*.actual
+*.expected
+composer.lock
