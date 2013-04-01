@@ -10,6 +10,8 @@
 
 namespace Kappa\App\AdminModule;
 
+use Kappa\Application\UI\SecuredPresenter;
+
 class FileManagerPresenter extends SecuredPresenter
 {
 	/**
