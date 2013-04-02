@@ -242,7 +242,7 @@ class FileManagerControl extends \Nette\Application\UI\Control
 
 	public function render()
 	{
-		$this->template->setFile(__DIR__ . '/../Templates/default.latte');
+		$this->template->setFile(__DIR__ . '/Templates/default.latte');
 		$this->template->navigation = $this->_session->actualDir;
 		$this->template->directories = $this->getDirectories();
 		$this->template->files = $this->getFiles();
