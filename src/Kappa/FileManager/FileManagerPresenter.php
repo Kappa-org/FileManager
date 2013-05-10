@@ -8,9 +8,7 @@
  * @package Kappa
  */
 
-use Kappa\Application\UI\SecuredPresenter;
-
-class FileManagerPresenter extends SecuredPresenter
+class FileManagerPresenter extends \Nette\Application\UI\Presenter
 {
 	/**
 	 * @inject
