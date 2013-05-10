@@ -5,7 +5,7 @@
  * Date: 1.9.12
  */
 
-namespace Kappa\Packages\FileManager;
+namespace Kappa\FileManager;
 
 use Kappa\Utils\FileSystem\Directories,
 	Kappa\Utils\FileSystem\Files,

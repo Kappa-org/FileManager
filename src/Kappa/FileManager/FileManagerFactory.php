@@ -5,7 +5,7 @@
  * Date: 29.9.12
  */
 
-namespace Kappa\Packages\FileManager;
+namespace Kappa\FileManager;
 
 class FileManagerFactory extends \Nette\Object
 {
@@ -41,7 +41,7 @@ class FileManagerFactory extends \Nette\Object
 
 	public function create()
 	{
-		$manager = new \Kappa\Packages\FileManager\FileManagerControl;
+		$manager = new \Kappa\FileManager\FileManagerControl;
 		$manager->setSession($this->_session);
 		$manager->setParams($this->_params);
 		$manager->setOpenType($this->openType);

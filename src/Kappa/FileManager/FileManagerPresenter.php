@@ -13,10 +13,10 @@ use Kappa\Application\UI\SecuredPresenter;
 class FileManagerPresenter extends SecuredPresenter
 {
 	/**
-	 * @autowire
-	 * @var \Kappa\Packages\FileManager\FileManagerFactory
+	 * @inject
+	 * @var \Kappa\FileManager\FileManagerFactory
 	 */
-	protected $fileManagerFactory;
+	public $fileManagerFactory;
 
 	public function beforeRender()
 	{
@@ -41,7 +41,7 @@ class FileManagerPresenter extends SecuredPresenter
 	}
 
 	/**
-	 * @return \Kappa\Packages\FileManager\FileManagerControl
+	 * @return \Kappa\FileManager\FileManagerControl
 	 */
 	protected function createComponentManager()
 	{
