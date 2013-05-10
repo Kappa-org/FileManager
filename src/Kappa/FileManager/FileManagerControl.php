@@ -1,37 +1,37 @@
 <?php
 /**
  * FileManagerControl.php
- * Author: Ondřej Záruba <zarubaondra@gmail.com>
- * Date: 1.9.12
+ *
+ * @author Ondřej Záruba <zarubaondra@gmail.com>
+ * @date 1.9.12
+ *
+ * @package Kappa\FileManager
  */
 
 namespace Kappa\FileManager;
 
-use Kappa\Utils\FileSystem\Directories,
-	Kappa\Utils\FileSystem\Files,
-	Kappa\Utils\Arrays,
-	Kappa\Utils\Validators;
+use Kappa\Application\UI\Control;
+use Kappa\Utils\FileSystem\Directories;
+use Kappa\Utils\FileSystem\Files;
+use Kappa\Utils\Validators;
 
-class FileManagerControl extends \Nette\Application\UI\Control
+/**
+ * Class FileManagerControl
+ *
+ * @package Kappa\FileManager
+ */
+class FileManagerControl extends Control
 {
-	/**
-	 * @var Nette\Http\Session
-	 */
+	/** @var \Nette\Http\Session */
 	private $_session;
 
-	/**
-	 * @var array
-	 */
+	/** @var array */
 	private $_params;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $openType;
 
-	/**
-	 * @var array
-	 */
+	/** @var array */
 	private $_iconType = array(
 		'.doc' => 'doc',
 		'.docx' => 'doc',
@@ -44,7 +44,6 @@ class FileManagerControl extends \Nette\Application\UI\Control
 		'.7z' => 'zip',
 		'.pdf' => 'pdf',
 	);
-
 
 	/**
 	 * @param \Nette\Http\Session $session

@@ -5,7 +5,7 @@
  * @author Ondřej Záruba <zarubaondra@gmail.com>
  * @date 29.9.12
  *
- * @package Kappa
+ * @package Kappa\FileManager
  */
 
 class FileManagerPresenter extends \Nette\Application\UI\Presenter
@@ -31,7 +31,6 @@ class FileManagerPresenter extends \Nette\Application\UI\Presenter
 
 	/**
 	 * @return array
-	 *
 	 */
 	public function formatTemplateFiles()
 	{
