@@ -8,6 +8,9 @@
  * @package Kappa\FileManager
  */
 
+/**
+ * Class FileManagerPresenter
+ */
 class FileManagerPresenter extends \Nette\Application\UI\Presenter
 {
 	/**
@@ -43,7 +46,7 @@ class FileManagerPresenter extends \Nette\Application\UI\Presenter
 	protected function createComponentManager()
 	{
 		$manager = $this->fileManagerFactory;
-		$manager->setOpenType($this->action);
+		$manager->setType($this->action);
 		return $manager->create();
 	}
 }

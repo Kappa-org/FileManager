@@ -20,36 +20,36 @@ use Nette\Object;
 class FileManagerFactory extends Object
 {
 	/** @var \Nette\Http\Session */
-	private $_session;
+	private $session;
 
 	/** @var array */
-	private $_params;
+	private $params;
 
 	/** @var string */
-	private $openType;
+	private $type;
 
 	/**
 	 * @param \Nette\Http\Session $session
 	 */
 	public function injectSession(\Nette\Http\Session $session)
 	{
-		$this->_session = $session;
+		$this->session = $session;
 	}
 
 	/**
-	 * @param array $parmas
+	 * @param array $params
 	 */
-	public function setParams($parmas)
+	public function setParams($params)
 	{
-		$this->_params = $parmas;
+		$this->params = $params;
 	}
 
 	/**
 	 * @param string $type
 	 */
-	public function setOpenType($type)
+	public function setType($type)
 	{
-		$this->openType = $type;
+		$this->type = $type;
 	}
 
 	/**
@@ -58,9 +58,9 @@ class FileManagerFactory extends Object
 	public function create()
 	{
 		$manager = new \Kappa\FileManager\FileManagerControl;
-		$manager->setSession($this->_session);
-		$manager->setParams($this->_params);
-		$manager->setOpenType($this->openType);
+		$manager->setSession($this->session);
+		$manager->setParams($this->params);
+		$manager->setType($this->type);
 		return $manager;
 	}
 }

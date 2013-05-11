@@ -23,13 +23,13 @@ use Kappa\Utils\Validators;
 class FileManagerControl extends Control
 {
 	/** @var \Nette\Http\Session */
-	private $_session;
+	private $session;
 
 	/** @var array */
 	private $_params;
 
 	/** @var string */
-	private $openType;
+	private $type;
 
 	/** @var array */
 	private $_iconType = array(
@@ -50,9 +50,9 @@ class FileManagerControl extends Control
 	 */
 	public function setSession(\Nette\Http\Session $session)
 	{
-		$this->_session = $session->getSection('Kappa-FileManager');
-		if (!$this->_session->actualDir)
-			$this->_session->actualDir = array();
+		$this->session = $session->getSection('Kappa-FileManager');
+		if (!$this->session->actualDir)
+			$this->session->actualDir = array();
 	}
 
 	/**
@@ -63,9 +63,9 @@ class FileManagerControl extends Control
 		$this->_params = $params;
 	}
 
-	public function setOpenType($type)
+	public function setType($type)
 	{
-		$this->openType = $type;
+		$this->type = $type;
 	}
 
 	/**
@@ -77,8 +77,8 @@ class FileManagerControl extends Control
 		$dir .= '/';
 		$dir .= $this->_params['uploadDir'];
 		$dir .= '/';
-		if (count($this->_session->actualDir)) {
-			$dir .= implode('/', $this->_session->actualDir);
+		if (count($this->session->actualDir)) {
+			$dir .= implode('/', $this->session->actualDir);
 			$dir .= '/';
 		}
 		return $dir;
@@ -90,16 +90,16 @@ class FileManagerControl extends Control
 	public function handleMove($move)
 	{
 		if ($move == "home")
-			$this->_session->actualDir = array();
+			$this->session->actualDir = array();
 		else {
-			if (in_array($move, $this->_session->actualDir)) {
-				$index = array_search($move, $this->_session->actualDir) + 1;
-				$to = count($this->_session->actualDir) - 1;
+			if (in_array($move, $this->session->actualDir)) {
+				$index = array_search($move, $this->session->actualDir) + 1;
+				$to = count($this->session->actualDir) - 1;
 				for ($i = $index; $i <= $to; $i++) {
-					unset($this->_session->actualDir[$i]);
+					unset($this->session->actualDir[$i]);
 				}
 			} else
-				$this->_session->actualDir[] = $move;
+				$this->session->actualDir[] = $move;
 		}
 		if ($this->presenter->isAjax())
 			$this->invalidateControl('Kappa-fileManager');
@@ -242,12 +242,12 @@ class FileManagerControl extends Control
 	public function render()
 	{
 		$this->template->setFile(__DIR__ . '/Templates/default.latte');
-		$this->template->navigation = $this->_session->actualDir;
+		$this->template->navigation = $this->session->actualDir;
 		$this->template->directories = $this->getDirectories();
 		$this->template->files = $this->getFiles();
 		$this->template->maxFile = ini_get('max_file_uploads');
 		$this->template->assetsFile = $this->_params['assetsDir'];
-		$this->template->openType = $this->openType;
+		$this->template->openType = $this->type;
 		$this->template->render();
 	}
 }
