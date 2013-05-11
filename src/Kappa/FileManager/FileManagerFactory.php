@@ -10,6 +10,7 @@
 
 namespace Kappa\FileManager;
 
+use Nette\Http\Session;
 use Nette\Object;
 
 /**
@@ -29,9 +30,9 @@ class FileManagerFactory extends Object
 	private $type;
 
 	/**
-	 * @param \Nette\Http\Session $session
+	 * @param Session $session
 	 */
-	public function injectSession(\Nette\Http\Session $session)
+	public function __construct(Session $session)
 	{
 		$this->session = $session;
 	}
@@ -57,8 +58,7 @@ class FileManagerFactory extends Object
 	 */
 	public function create()
 	{
-		$manager = new \Kappa\FileManager\FileManagerControl;
-		$manager->setSession($this->session);
+		$manager = new FileManagerControl($this->session);
 		$manager->setParams($this->params);
 		$manager->setType($this->type);
 		return $manager;

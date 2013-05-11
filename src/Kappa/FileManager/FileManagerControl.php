@@ -14,6 +14,7 @@ use Kappa\Application\UI\Control;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\FileUpload;
 use Kappa\FileSystem\Image;
+use Nette\Http\Session;
 
 /**
  * Class FileManagerControl
@@ -22,7 +23,7 @@ use Kappa\FileSystem\Image;
  */
 class FileManagerControl extends Control
 {
-	/** @var \Nette\Http\Session */
+	/** @var \Nette\Http\SessionSection */
 	private $session;
 
 	/** @var array */
@@ -32,9 +33,9 @@ class FileManagerControl extends Control
 	private $type;
 
 	/**
-	 * @param \Nette\Http\Session $session
+	 * @param Session $session
 	 */
-	public function setSession(\Nette\Http\Session $session)
+	public function __construct(Session $session)
 	{
 		$this->session = $session->getSection('Kappa-FileManager');
 		if (!$this->session->actualDir)
@@ -49,6 +50,9 @@ class FileManagerControl extends Control
 		$this->_params = $params;
 	}
 
+	/**
+	 * @param string $type
+	 */
 	public function setType($type)
 	{
 		$this->type = $type;
@@ -154,6 +158,10 @@ class FileManagerControl extends Control
 		$this->redirect('this');
 	}
 
+	/**
+	 * @param string $path
+	 * @return string
+	 */
 	private function createUniqueDirName($path)
 	{
 		$i = 0;
@@ -199,6 +207,10 @@ class FileManagerControl extends Control
 		$this->redirect('this');
 	}
 
+	/**
+	 * @param string $path
+	 * @return string
+	 */
 	private function createUniqueFileName($path)
 	{
 		$i = 0;
