@@ -11,10 +11,10 @@ Modern system for easy working with files and folders on the server. Can by used
 
 ##Installation
 
-The best way to install Kdyby/FileManager is using Composer:
+The best way to install Kappa/FileManager is using Composer:
 
 ```bash
-$ composer require kappa/filesystem:@dev
+$ composer require kappa/filemanager:@dev
 ```
 
 Add section **FileManager** into *parameters*
