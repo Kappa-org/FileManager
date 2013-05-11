@@ -32,7 +32,7 @@
 	"autoload": {
 		"psr-0": {"Kappa": "src/"},
 		"classmap": [
-			"Kappa/Packages/FileManager/FileManagerPresenter.php"
+			"src/Kappa/FileManager/FileManagerPresenter.php"
 		]
 	}
 
