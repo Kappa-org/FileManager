@@ -14,6 +14,7 @@ use Kappa\Application\UI\Control;
 use Kappa\FileManager\Forms\Directory\IDirectoryFormFactory;
 use Kappa\FileManager\Forms\File\IFileFormFactory;
 use Kappa\FileSystem\Directory;
+use Kappa\FileSystem\File;
 use Nette\Http\Session;
 
 /**
