@@ -193,14 +193,6 @@ class FileManagerControl extends Control
 		return $form;
 	}
 
-	private function getSizes()
-	{
-		$sizes = explode('x', $this->_params['maxSize']);
-		foreach ($sizes as $key => $size)
-			$sizes[$key] = str_replace('%', 'null', $size);
-		return $sizes;
-	}
-
 	/**
 	 * @param \Kappa\Application\UI\Form $form
 	 */
@@ -209,10 +201,9 @@ class FileManagerControl extends Control
 		$values = $form->getValues();
 		$files = $values['files'];
 		foreach ($files as $file) {
-			$size = $this->getSizes();
 			$newImage = $this->getActualDir() . $file->getName();
 			if (Validators::isImage($file->getTemporaryFile()))
-				Files::saveImage($file->getTemporaryFile(), $newImage, $size, "SHRINK_ONLY", true);
+				Files::saveImage($file->getTemporaryFile(), $newImage, array($this->_params['maxWidth'], $this->_params['maxHeight']), "SHRINK_ONLY", true);
 			else
 				if ($file->size <= $this->_params['maxFileSize'])
 					Files::saveFile($file, $this->getActualDir(), true);
