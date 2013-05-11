@@ -11,9 +11,9 @@
 namespace Kappa\FileManager;
 
 use Kappa\Application\UI\Control;
+use Kappa\FileManager\Forms\Directory\IDirectoryFormFactory;
+use Kappa\FileManager\Forms\File\IFileFormFactory;
 use Kappa\FileSystem\Directory;
-use Kappa\FileSystem\FileUpload;
-use Kappa\FileSystem\Image;
 use Nette\Http\Session;
 
 /**
@@ -32,14 +32,24 @@ class FileManagerControl extends Control
 	/** @var string */
 	private $type;
 
+	/** @var \Kappa\FileManager\Forms\File\IFileFormFactory */
+	private $fileFormFactory;
+
+	/** @var \Kappa\FileManager\Forms\Directory\IDirectoryFormFactory */
+	private $directoryFormFactory;
+
 	/**
 	 * @param Session $session
+	 * @param IFileFormFactory $fileFormFactory
+	 * @param IDirectoryFormFactory $directoryFormFactory
 	 */
-	public function __construct(Session $session)
+	public function __construct(Session $session, IFileFormFactory $fileFormFactory, IDirectoryFormFactory $directoryFormFactory)
 	{
 		$this->session = $session->getSection('Kappa-FileManager');
 		if (!$this->session->actualDir)
 			$this->session->actualDir = array();
+		$this->fileFormFactory = $fileFormFactory;
+		$this->directoryFormFactory = $directoryFormFactory;
 	}
 
 	/**
@@ -136,44 +146,7 @@ class FileManagerControl extends Control
 	 */
 	protected function createComponentDirectory()
 	{
-		$form = new \Kappa\Application\UI\Form;
-		$form->addText('name', 'Název složky:')
-			->setRequired('Musíte vyplnit jméno složky');
-		$form->addSubmit('submit', 'Vytvořit složku')
-			->setAttribute('class', 'btn btn-primary');
-		$form->onSuccess[] = $this->createNewDir;
-		return $form;
-	}
-
-	/**
-	 * @param \Kappa\Application\UI\Form $form
-	 */
-	public function createNewDir(\Kappa\Application\UI\Form $form)
-	{
-		$values = $form->getValues();
-		$path = $this->getActualDir()->getInfo()->getPathname();
-		$path .= DIRECTORY_SEPARATOR . $values['name'];
-		$path = $this->createUniqueDirName($path);
-		new Directory($path);
-		$this->redirect('this');
-	}
-
-	/**
-	 * @param string $path
-	 * @return string
-	 */
-	private function createUniqueDirName($path)
-	{
-		$i = 0;
-		if (is_dir($path)) {
-			$i++;
-			while (is_dir($path . '-' . $i)) {
-				$i++;
-			}
-			return $path . '-' . $i;
-		} else {
-			return $path;
-		}
+		return $this->directoryFormFactory->create($this->getActualDir());
 	}
 
 	/**
@@ -181,50 +154,7 @@ class FileManagerControl extends Control
 	 */
 	protected function createComponentFile()
 	{
-		$form = new \Kappa\Application\UI\Form;
-		$form->addMultifileUpload('files', 'Vyberte soubory:');
-		$form->addSubmit('submit', 'Nahrát soubor(y)')
-			->setAttribute('class', 'btn btn-primary');
-		$form->onSuccess[] = $this->addNewFiles;
-		return $form;
-	}
-
-	/**
-	 * @param \Kappa\Application\UI\Form $form
-	 */
-	public function addNewFiles(\Kappa\Application\UI\Form $form)
-	{
-		$values = $form->getValues();
-		foreach ($values['files'] as $file) {
-			$newFile = $this->getActualDir()->getInfo()->getPathname() . DIRECTORY_SEPARATOR . $file->getName();
-			if($file->isImage()) {
-				new Image($file->getTemporaryFile(), $this->createUniqueFileName($newFile), array($this->_params['maxWidth'], $this->_params['maxHeight']), "shrink_only");
-			} else {
-				if ($file->size <= $this->_params['maxFileSize'])
-					new FileUpload($file, $this->createUniqueFileName($newFile));
-			}
-		}
-		$this->redirect('this');
-	}
-
-	/**
-	 * @param string $path
-	 * @return string
-	 */
-	private function createUniqueFileName($path)
-	{
-		$i = 0;
-		if (file_exists($path)) {
-			$i++;
-			$type = strrchr($path, ".");
-			$newFile = str_replace($type, "-" . $i . $type, $path);
-			while (file_exists($newFile)) {
-				$i++;
-				$newFile = str_replace($type, "-" . $i . $type, $path);
-			}
-			return $newFile;
-		} else
-			return $path;
+		return $this->fileFormFactory->create($this->getActualDir(), $this->_params);
 	}
 
 	public function render()
