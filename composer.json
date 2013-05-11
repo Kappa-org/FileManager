@@ -21,7 +21,8 @@
 	"require":{
 		"php": ">= 5.3.0",
 		"nette/nette":"dev-master",
-		"kappa/framework":"dev-master"
+		"kappa/framework":"dev-master",
+		"kappa/filesystem":"dev-master"
 	},
 
 	"require-dev": {
