@@ -134,14 +134,6 @@ class FileManagerControl extends Control
 			$this->redirect('this');
 	}
 
-	public function handleRefresh()
-	{
-		if ($this->presenter->isAjax())
-			$this->invalidateControl('Kappa-fileManager');
-		else
-			$this->redirect('this');
-	}
-
 	/**
 	 * @return \Kappa\Application\UI\Form
 	 */
