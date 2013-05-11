@@ -57,16 +57,16 @@
 								<td class="input"><input
 									type="checkbox"{if $openType == "images"}
 									disabled="disabled"{/if}
-									data-src="{$directory['relativePath']}"></td>
+									data-src="{$directory->getRelativePath($basePath)}"></td>
 								<td class="icon"><img
 									src="{$basePath}/{$assetsFile}/images/ikony/slozka.png">
 								</td>
 								<td>
-									<a n:href="Move! $directory['name']">{$directory['name']}</a>
+									<a n:href="Move! $directory->getBasename()">{$directory->getBasename()}</a>
 								</td>
 								<td class="button-group">
 									<div class="btn-group">
-										<a n:href="DeleteDir! $directory['absolutePath']"
+										<a n:href="DeleteDir! $directory->getPathname()"
 										   class="btn btn-mini"><i
 											class="icon-remove-circle"></i></a>
 									</div>
@@ -76,16 +76,16 @@
 								<td class="input"><input type="checkbox"
 								                         class="img-checkbox"{if $openType == "folders"}
 								                         disabled="disabled"{/if}
-								                         data-src="{$file['relativePath']}"
-								                         data-type="{$file['icon']}">
+								                         data-src="{$file->getRelativePath($basePath)}"
+								                         data-type="{if $file->isImage()}image{else}other{/if}">
 								</td>
 								<td class="icon"><img
-									src="{$basePath}/{$assetsFile}/images/ikony/{$file['icon']}.png">
+									src="{$basePath}/{$assetsFile}/images/ikony/{if $file->isImage()}image{else}other{/if}.png">
 								</td>
-								<td>{$file['name']}</td>
+								<td>{$file->getBasename()}</td>
 								<td class="button-group">
 									<div class="btn-group">
-										<a n:href="DeleteFile! $file['absolutePath']"
+										<a n:href="DeleteFile! $file->getPathname()"
 										   class="btn btn-mini"><i
 											class="icon-remove-circle"></i></a>
 									</div>

@@ -11,9 +11,9 @@
 namespace Kappa\FileManager;
 
 use Kappa\Application\UI\Control;
-use Kappa\Utils\FileSystem\Directories;
-use Kappa\Utils\FileSystem\Files;
-use Kappa\Utils\Validators;
+use Kappa\FileSystem\Directory;
+use Kappa\FileSystem\FileUpload;
+use Kappa\FileSystem\Image;
 
 /**
  * Class FileManagerControl
@@ -30,20 +30,6 @@ class FileManagerControl extends Control
 
 	/** @var string */
 	private $type;
-
-	/** @var array */
-	private $_iconType = array(
-		'.doc' => 'doc',
-		'.docx' => 'doc',
-		'.txt' => 'doc',
-		'.xls' => 'xls',
-		'.xlsx' => 'xls',
-		'.csv' => 'xls',
-		'.zip' => 'zip',
-		'.rar' => 'zip',
-		'.7z' => 'zip',
-		'.pdf' => 'pdf',
-	);
 
 	/**
 	 * @param \Nette\Http\Session $session
@@ -69,7 +55,7 @@ class FileManagerControl extends Control
 	}
 
 	/**
-	 * @return string
+	 * @return Directory
 	 */
 	private function getActualDir()
 	{
@@ -81,7 +67,7 @@ class FileManagerControl extends Control
 			$dir .= implode('/', $this->session->actualDir);
 			$dir .= '/';
 		}
-		return $dir;
+		return new Directory($dir);
 	}
 
 	/**
@@ -112,23 +98,25 @@ class FileManagerControl extends Control
 	 */
 	public function handleDeleteDir($path)
 	{
-		if (Directories::recursiveDelete($path))
-			if ($this->presenter->isAjax())
-				$this->invalidateControl('Kappa-fileManager');
-			else
-				$this->redirect('this');
+		$directory = new Directory($path);
+		$directory->remove();
+		if ($this->presenter->isAjax())
+			$this->invalidateControl('Kappa-fileManager');
+		else
+			$this->redirect('this');
 	}
 
 	/**
-	 * @param string $file
+	 * @param string $path
 	 */
-	public function handleDeleteFile($file)
+	public function handleDeleteFile($path)
 	{
-		if (Files::deleteFiles($file))
-			if ($this->presenter->isAjax())
-				$this->invalidateControl('Kappa-fileManager');
-			else
-				$this->redirect('this');
+		$file = new File($path);
+		$file->remove();
+		if ($this->presenter->isAjax())
+			$this->invalidateControl('Kappa-fileManager');
+		else
+			$this->redirect('this');
 	}
 
 	public function handleRefresh()
@@ -137,21 +125,6 @@ class FileManagerControl extends Control
 			$this->invalidateControl('Kappa-fileManager');
 		else
 			$this->redirect('this');
-	}
-
-	/**
-	 * @param string $file
-	 * @return string
-	 */
-	private function getIcon($file)
-	{
-		$type = strrchr($file, ".");
-		if (Validators::isImage($file))
-			return 'image';
-		if (!Validators::isImage($file) && !array_key_exists($type, $this->_iconType))
-			return 'other';
-		if (array_key_exists($type, $this->_iconType))
-			return $this->_iconType[$type];
 	}
 
 	/**
@@ -174,10 +147,25 @@ class FileManagerControl extends Control
 	public function createNewDir(\Kappa\Application\UI\Form $form)
 	{
 		$values = $form->getValues();
-		$path = $this->getActualDir();
-		$path .= $values['name'];
-		Directories::create($path, 0777, true);
+		$path = $this->getActualDir()->getInfo()->getPathname();
+		$path .= DIRECTORY_SEPARATOR . $values['name'];
+		$path = $this->createUniqueDirName($path);
+		new Directory($path);
 		$this->redirect('this');
+	}
+
+	private function createUniqueDirName($path)
+	{
+		$i = 0;
+		if (is_dir($path)) {
+			$i++;
+			while (is_dir($path . '-' . $i)) {
+				$i++;
+			}
+			return $path . '-' . $i;
+		} else {
+			return $path;
+		}
 	}
 
 	/**
@@ -199,43 +187,40 @@ class FileManagerControl extends Control
 	public function addNewFiles(\Kappa\Application\UI\Form $form)
 	{
 		$values = $form->getValues();
-		$files = $values['files'];
-		foreach ($files as $file) {
-			$newImage = $this->getActualDir() . $file->getName();
-			if (Validators::isImage($file->getTemporaryFile()))
-				Files::saveImage($file->getTemporaryFile(), $newImage, array($this->_params['maxWidth'], $this->_params['maxHeight']), "SHRINK_ONLY", true);
-			else
+		foreach ($values['files'] as $file) {
+			$newFile = $this->getActualDir()->getInfo()->getPathname() . DIRECTORY_SEPARATOR . $file->getName();
+			if($file->isImage()) {
+				new Image($file->getTemporaryFile(), $this->createUniqueFileName($newFile), array($this->_params['maxWidth'], $this->_params['maxHeight']), "shrink_only");
+			} else {
 				if ($file->size <= $this->_params['maxFileSize'])
-					Files::saveFile($file, $this->getActualDir(), true);
+					new FileUpload($file, $this->createUniqueFileName($newFile));
+			}
 		}
 		$this->redirect('this');
 	}
 
-	private function getDirectories()
+	private function createUniqueFileName($path)
 	{
-		$directories = Directories::getDirectories($this->getActualDir());
-		foreach ($directories as $index => $directory) {
-			$directories[$index]['relativePath'] = trim(str_replace($this->_params['wwwDir'], "", $directory['absolutePath']));
-		}
-		return $directories;
-	}
-
-	private function getFiles()
-	{
-		$files = Files::getFiles($this->getActualDir());
-		foreach ($files as $index => $file) {
-			$files[$index]['relativePath'] = trim(str_replace($this->_params['wwwDir'], "", $file['absolutePath']));
-			$files[$index]['icon'] = $this->getIcon($file['absolutePath']);
-		}
-		return $files;
+		$i = 0;
+		if (file_exists($path)) {
+			$i++;
+			$type = strrchr($path, ".");
+			$newFile = str_replace($type, "-" . $i . $type, $path);
+			while (file_exists($newFile)) {
+				$i++;
+				$newFile = str_replace($type, "-" . $i . $type, $path);
+			}
+			return $newFile;
+		} else
+			return $path;
 	}
 
 	public function render()
 	{
 		$this->template->setFile(__DIR__ . '/Templates/default.latte');
 		$this->template->navigation = $this->session->actualDir;
-		$this->template->directories = $this->getDirectories();
-		$this->template->files = $this->getFiles();
+		$this->template->directories = $this->getActualDir()->getDirectories();
+		$this->template->files = $this->getActualDir()->getFiles();
 		$this->template->maxFile = ini_get('max_file_uploads');
 		$this->template->assetsFile = $this->_params['assetsDir'];
 		$this->template->openType = $this->type;
