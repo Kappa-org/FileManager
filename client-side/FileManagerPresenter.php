@@ -37,7 +37,7 @@ class FileManagerPresenter extends \Nette\Application\UI\Presenter
 	 */
 	public function formatTemplateFiles()
 	{
-		return array(__DIR__ . '/Templates/@layout.latte');
+		return array(__DIR__ . '/../src/Kappa/FileManager/Templates/@layout.latte');
 	}
 
 	/**
