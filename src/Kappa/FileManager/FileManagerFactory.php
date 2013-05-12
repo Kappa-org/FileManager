@@ -52,7 +52,7 @@ class FileManagerFactory extends Object
 	/**
 	 * @param array $params
 	 */
-	public function setParams($params)
+	public function setParams(array $params)
 	{
 		$this->params = $params;
 	}
