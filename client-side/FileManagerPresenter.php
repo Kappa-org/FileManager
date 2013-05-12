@@ -21,15 +21,7 @@ class FileManagerPresenter extends \Nette\Application\UI\Presenter
 
 	public function beforeRender()
 	{
-		$assetsDir = $this->context->getParameters();
-		$assetsDir = $assetsDir['FileManager']['assetsDir'];
-		$this->template->assetsDir = $assetsDir;
-	}
-
-	public function startup()
-	{
-		parent::startup();
-		$this->setLayout(false);
+		$this->template->assetsDir = 'FileManager';
 	}
 
 	/**
