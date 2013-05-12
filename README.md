@@ -6,7 +6,8 @@ Modern system for easy working with files and folders on the server. Can by used
 
 * PHP 5.3.* or higher
 * [Nette Framework](http://nette.org)
-* [Kappa\Framework](https://github.com/Budry/Kappa)
+* [Kappa\Framework](https://github.com/Kappa-org/Framework)
+* [Kappa\FileSystem](https://github.com/Kappa-org/FileSystem)
 * [Composer](http://getcomposer.org/)
 
 ##Installation
