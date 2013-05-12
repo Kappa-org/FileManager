@@ -68,7 +68,7 @@ class FileManagerExtension extends CompilerExtension
 			$compiler->addExtension('fileManager', new FileManagerExtension());
 		};
 		self::addExtension('addSelectDirectory', '\Kappa\FileManager\Forms\Controls\SelectDirectory');
-		self::addExtension('addSelectImage', '\Kappa\FileManager\Forms\Controls\SelectImage');
+		self::addExtension('addSelectFile', '\Kappa\FileManager\Forms\Controls\SelectFile');
 	}
 
 	/**

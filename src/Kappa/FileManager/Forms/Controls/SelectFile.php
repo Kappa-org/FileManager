@@ -1,6 +1,6 @@
 <?php
 /**
- * SelectImage.php
+ * SelectFile.php
  *
  * @author Ondřej Záruba <zarubaondra@gmail.com>
  * @date 12.5.13
@@ -17,7 +17,7 @@ use Nette\Forms\Controls\TextBase;
  *
  * @package Kappa\FileManager\Forms\Controls
  */
-class SelectImage extends TextBase
+class SelectFile extends TextBase
 {
 	/** @var string */
 	private $_value;
