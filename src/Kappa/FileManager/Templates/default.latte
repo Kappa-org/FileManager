@@ -60,16 +60,16 @@
 								<td class="input"><input
 									type="checkbox"{if $openType == "images"}
 									disabled="disabled"{/if}
-									data-src="{$directory->getRelativePath($basePath)}"></td>
+									data-src="{$directory->getInfo()->getRelativePath($basePath)}"></td>
 								<td class="icon"><img
 									src="{$basePath}/{$assetsFile}/images/ikony/slozka.png">
 								</td>
 								<td>
-									<a n:href="Move! $directory->getBasename()">{$directory->getBasename()}</a>
+									<a n:href="Move! $directory->getInfo()->getBasename()">{$directory->getInfo()->getBasename()}</a>
 								</td>
 								<td class="button-group">
 									<div class="btn-group">
-										<a n:href="DeleteDir! $directory->getPathname()"
+										<a n:href="DeleteDir! $directory->getInfo()->getPathname()"
 										   class="btn btn-mini"><i
 											class="icon-remove-circle"></i></a>
 									</div>
@@ -79,16 +79,16 @@
 								<td class="input"><input type="checkbox"
 								                         class="img-checkbox"{if $openType == "folders"}
 								                         disabled="disabled"{/if}
-								                         data-src="{$file->getRelativePath($basePath)}"
-								                         data-type="{if $file->isImage()}image{else}other{/if}">
+								                         data-src="{$file->getInfo()->getRelativePath($basePath)}"
+								                         data-type="{if $file->getInfo()->isImage()}image{else}other{/if}">
 								</td>
 								<td class="icon"><img
-									src="{$basePath}/{$assetsFile}/images/ikony/{if $file->isImage()}image{else}other{/if}.png">
+									src="{$basePath}/{$assetsFile}/images/ikony/{if $file->getInfo()->isImage()}image{else}other{/if}.png">
 								</td>
-								<td>{$file->getBasename()}</td>
+								<td>{$file->getInfo()->getBasename()}</td>
 								<td class="button-group">
 									<div class="btn-group">
-										<a n:href="DeleteFile! $file->getPathname()"
+										<a n:href="DeleteFile! $file->getInfo()->getPathname()"
 										   class="btn btn-mini"><i
 											class="icon-remove-circle"></i></a>
 									</div>
