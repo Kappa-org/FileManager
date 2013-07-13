@@ -1,11 +1,11 @@
 <?php
 /**
- * FileManagerControl.php
+ * This file is part of the Kappa package.
  *
- * @author Ondřej Záruba <zarubaondra@gmail.com>
- * @date 1.9.12
+ * (c) Ondřej Záruba <zarubaondra@gmail.com>
  *
- * @package Kappa\FileManager
+ * For the full copyright and license information, please view the license.md
+ * file that was distributed with this source code.
  */
 
 namespace Kappa\FileManager;
@@ -19,7 +19,6 @@ use Nette\Http\Session;
 
 /**
  * Class FileManagerControl
- *
  * @package Kappa\FileManager
  */
 class FileManagerControl extends Control

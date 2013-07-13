@@ -1,11 +1,11 @@
 <?php
 /**
- * FileForm.php
+ * This file is part of the Kappa package.
  *
- * @author Ondřej Záruba <zarubaondra@gmail.com>
- * @date 10.5.13
+ * (c) Ondřej Záruba <zarubaondra@gmail.com>
  *
- * @package Kappa\FileManager
+ * For the full copyright and license information, please view the license.md
+ * file that was distributed with this source code.
  */
 
 namespace Kappa\FileManager\Forms\File;
@@ -15,7 +15,6 @@ use Kappa\FileSystem\Directory;
 
 /**
  * Class FileForm
- *
  * @package Kappa\FileManager\Forms\File
  */
 class FileForm extends Form

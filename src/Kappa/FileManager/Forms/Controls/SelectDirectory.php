@@ -1,11 +1,11 @@
 <?php
 /**
- * SelectDirectory.php
+ * This file is part of the Kappa package.
  *
- * @author Ondřej Záruba <zarubaondra@gmail.com>
- * @date 12.5.13
+ * (c) Ondřej Záruba <zarubaondra@gmail.com>
  *
- * @package Kappa\FileManager
+ * For the full copyright and license information, please view the license.md
+ * file that was distributed with this source code.
  */
 
 namespace Kappa\FileManager\Forms\Controls;
@@ -14,7 +14,6 @@ use Nette\Forms\Controls\TextBase;
 
 /**
  * Class SelectDirectory
- *
  * @package Kappa\FileManager\Forms\Controls
  */
 class SelectDirectory extends TextBase
