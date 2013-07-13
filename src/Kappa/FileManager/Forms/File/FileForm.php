@@ -50,7 +50,8 @@ class FileForm extends Form
 
 	private function compose()
 	{
-		$this->addMultifileUpload('files', 'Vyberte soubory:');
+		$this->addUpload('files', 'Vyberte soubory:')
+			->setAttribute('multiple');
 		$this->addSubmit('submit', 'Nahrát soubor(y)')
 			->setAttribute('class', 'btn btn-primary');
 		$this->onSuccess[] = $this->formSubmitted;
