@@ -31,7 +31,8 @@ class DirectoryFormSubmitted extends Object
 		$path = $directory->getInfo()->getPathname();
 		$path .= DIRECTORY_SEPARATOR . $values['name'];
 		$path = $this->createUniqueName($path);
-		new Directory($path);
+		$directory = new Directory($path);
+		$directory->create();
 		if($presenter->isAjax()) {
 			$form->restore();
 			$presenter->invalidateControl('Kappa-fileManager');
