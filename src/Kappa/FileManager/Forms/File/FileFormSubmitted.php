@@ -11,8 +11,8 @@
 namespace Kappa\FileManager\Forms\File;
 
 use Kappa\FileSystem\Directory;
-use Kappa\FileSystem\FileUpload;
-use Kappa\FileSystem\Image;
+use Kappa\NetteFileSystem\FileUpload;
+use Kappa\NetteFileSystem\Image;
 use Nette\Object;
 
 /**
@@ -33,18 +33,16 @@ class FileFormSubmitted extends Object
 		foreach ($values['files'] as $file) {
 			$newFile = $directory->getInfo()->getPathname() . DIRECTORY_SEPARATOR . $file->getName();
 			if($file->isImage()) {
-				new Image($file->getTemporaryFile(), $newFile, array($params['maxWidth'], $params['maxHeight']), "shrink_only");
+				$image = Image::fromFile($file->getTemporaryFile());
+				$image->resize($params['maxWidth'], $params['maxHeight'], "shrink_only");
+				$image->save($newFile);
 			} else {
 				if ($file->size <= $params['maxFileSize'])
 					new FileUpload($file, $this->createUniqueName($newFile));
 			}
 		}
-		if($presenter->isAjax()) {
-			$form->restore();
-			$presenter->invalidateControl('Kappa-fileManager');
-		} else {
-			$presenter->redirect('this');
-		}
+
+		$presenter->redirect('this');
 	}
 
 	/**
