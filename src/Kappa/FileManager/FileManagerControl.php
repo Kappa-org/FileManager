@@ -153,6 +153,7 @@ class FileManagerControl extends Control
 	public function render()
 	{
 		$this->template->setFile(__DIR__ . '/Templates/default.latte');
+		$this->template->assetsDir = $this->_params['assetsDir'];
 		$this->template->navigation = $this->session->actualDir;
 		$this->template->directories = $this->getActualDir()->getDirectories();
 		$this->template->files = $this->getActualDir()->getFiles();
