@@ -66,19 +66,5 @@ class FileManagerExtension extends CompilerExtension
 		$config->onCompile[] = function (\Nette\Configurator $config, Compiler $compiler) {
 			$compiler->addExtension('fileManager', new FileManagerExtension());
 		};
-		self::addExtension('addSelectDirectory', '\Kappa\FileManager\Forms\Controls\SelectDirectory');
-		self::addExtension('addSelectFile', '\Kappa\FileManager\Forms\Controls\SelectFile');
-	}
-
-	/**
-	 * @param string $name
-	 * @param string $class
-	 */
-	private static function addExtension($name, $class)
-	{
-		\Nette\Forms\Container::extensionMethod($name, function (\Nette\Forms\Container $container, $name, $label = null) use ($class) {
-				return $container[$name] = new $class($label);
-			}
-		);
 	}
 }
