@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Správce souborů</title>
+
+	<link href="{$basePath}/{$assetsDir}/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="{$basePath}/{$assetsDir}/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="{$basePath}/{$assetsDir}/css/style.css" rel="stylesheet" type="text/css"/>
+
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/netteForms.js"></script>
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/jquery.nette.js"></script>
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/nette.ajax.js"></script>
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/ajax.js"></script>
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="{$basePath}/{$assetsDir}/js/control.js"></script>
+
+	<script type="text/javascript">
+		$('#myTab a').click(function (e) {
+			e.preventDefault();
+			$(this).tab('show');
+		})
+	</script>
+</head>
+<body>
+{include #content}
+</body>
+</html>
