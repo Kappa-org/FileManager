@@ -10,7 +10,6 @@ Modern system for easy working with files and folders on the server. Can by used
 * [Nette Framework](http://nette.org)
 * [Kappa\Framework](https://github.com/Kappa-org/Framework)
 * [Kappa\FileSystem](https://github.com/Kappa-org/FileSystem)
-* [Composer](http://getcomposer.org/)
 
 ##Installation
 
@@ -20,7 +19,31 @@ The best way to install Kappa/FileManager is using Composer:
 $ composer require kappa/filemanager:@dev
 ```
 
-Add section fileManager into config and register extension
+### 1. Step
+
+Add into composer.json
+```json
+"minimum-stability": "dev"
+```
+
+### 2. Step
+
+Register extension:
+
+```php
+\Kappa\FileManager\DI\FileManagerExtension::register($configurator);
+```
+
+or If you use Nette 2.1-dev:
+
+```yaml
+extensions:
+	fileManager: Kappa\FileManager\Component\DI\FileManagerExtension
+```
+
+### 3. Step
+
+Add section fileManager into
 
 ```yaml
 fileManager:
@@ -32,12 +55,15 @@ fileManager:
 	assetsDir: FileManager
 ```
 
-```php
-\Kappa\FileManager\DI\FileManagerExtension::register($configurator);
-```
+### 4. Step
 
-and set route for FileManagerPresenter
+Add route for FileManager
 
 ```php
-$router[] = new Route('file-manager/', 'FileManager:image');
+$router[] = new Route('/file-manager/<type>', array(
+	'module' => 'FileManager',
+	'presenter' => 'FileManager',
+	'action' => 'default',
+	'type' => 'images',
+));
 ```
