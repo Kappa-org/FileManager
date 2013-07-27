@@ -11,7 +11,6 @@
 namespace Kappa\FileManager\Component\Forms\Directory;
 
 use Kappa\FileSystem\Directory;
-use Kappa\Utils\FileSystem\Directories;
 use Nette\Object;
 
 /**
