@@ -41,6 +41,9 @@ class FileManagerPresenter extends Presenter
 		return array(__DIR__ . '/../Templates/component.latte');
 	}
 
+	/**
+	 * @return \Kappa\FileManager\Component\FileManagerControl
+	 */
 	protected function createComponentFileManager()
 	{
 		$manager = $this->fileManagerFactory;
