@@ -10,7 +10,7 @@
 
 namespace Kappa\FileManager\Module\Presenters;
 
-use Nette\Application\UI\Presenter;
+use Kappa\Application\UI\Presenter;
 
 class FileManagerPresenter extends Presenter
 {
