@@ -65,6 +65,14 @@ class FileManagerFactory extends Object
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getAssetsDir()
+	{
+		return $this->params['assetsDir'];
+	}
+
+	/**
 	 * @return FileManagerControl
 	 */
 	public function create()
