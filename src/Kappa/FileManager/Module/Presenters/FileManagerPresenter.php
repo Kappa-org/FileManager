@@ -25,6 +25,22 @@ class FileManagerPresenter extends Presenter
 		$this->template->assetsDir = $this->fileManagerFactory->getAssetsDir();
 	}
 
+	/**
+	 * @return array
+	 */
+	public function formatLayoutTemplateFiles()
+	{
+		return array(__DIR__ . '/../Templates/@layout.latte');
+	}
+
+	/**
+	 * @return array
+	 */
+	public function formatTemplateFiles()
+	{
+		return array(__DIR__ . '/../Templates/component.latte');
+	}
+
 	protected function createComponentFileManager()
 	{
 		$manager = $this->fileManagerFactory;
