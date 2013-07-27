@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager\Application\UI;
+namespace Kappa\FileManager\Component\Application\UI;
 
 use Kappa\Application\UI\Form as BaseForm;
 use Nette\ComponentModel\IContainer;
@@ -26,7 +26,7 @@ class Form extends BaseForm
 	public function __construct(IContainer $parent = null, $name = null)
 	{
 		parent::__construct($parent, $name);
-		$this->addExtension('addSelectDirectory', '\Kappa\FileManager\Forms\Controls\SelectDirectory');
-		$this->addExtension('addSelectFile', '\Kappa\FileManager\Forms\Controls\SelectFile');
+		$this->addExtension('addSelectDirectory', '\Kappa\FileManager\Component\Forms\Controls\SelectDirectory');
+		$this->addExtension('addSelectFile', '\Kappa\FileManager\Component\Forms\Controls\SelectFile');
 	}
 }

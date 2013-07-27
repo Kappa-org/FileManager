@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager\Forms\Directory;
+namespace Kappa\FileManager\Component\Forms\Directory;
 
 use Kappa\Application\UI\Form;
 use Kappa\FileSystem\Directory;

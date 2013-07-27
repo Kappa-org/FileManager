@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager;
+namespace Kappa\FileManager\Component;
 
-use Kappa\FileManager\Forms\Directory\IDirectoryFormFactory;
-use Kappa\FileManager\Forms\File\IFileFormFactory;
+use Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory;
+use Kappa\FileManager\Component\Forms\File\IFileFormFactory;
 use Nette\Http\Session;
 use Nette\Object;
 
@@ -30,10 +30,10 @@ class FileManagerFactory extends Object
 	/** @var string */
 	private $type;
 
-	/** @var \Kappa\FileManager\Forms\File\IFileFormFactory */
+	/** @var \Kappa\FileManager\Component\Forms\File\IFileFormFactory */
 	private $fileFormFactory;
 
-	/** @var \Kappa\FileManager\Forms\Directory\IDirectoryFormFactory */
+	/** @var \Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory */
 	private $directoryFormFactory;
 
 	/**

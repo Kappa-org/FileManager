@@ -16,7 +16,7 @@ class FileManagerPresenter extends Presenter
 {
 	/**
 	 * @inject
-	 * @var \Kappa\FileManager\FileManagerFactory
+	 * @var \Kappa\FileManager\Component\FileManagerFactory
 	 */
 	public $fileManagerFactory;
 

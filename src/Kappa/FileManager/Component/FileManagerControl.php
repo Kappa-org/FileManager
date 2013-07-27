@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager;
+namespace Kappa\FileManager\Component;
 
 use Kappa\Application\UI\Control;
-use Kappa\FileManager\Forms\Directory\IDirectoryFormFactory;
-use Kappa\FileManager\Forms\File\IFileFormFactory;
+use Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory;
+use Kappa\FileManager\Component\Forms\File\IFileFormFactory;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\File;
 use Nette\Http\Session;
@@ -32,10 +32,10 @@ class FileManagerControl extends Control
 	/** @var string */
 	private $type;
 
-	/** @var \Kappa\FileManager\Forms\File\IFileFormFactory */
+	/** @var \Kappa\FileManager\Component\Forms\File\IFileFormFactory */
 	private $fileFormFactory;
 
-	/** @var \Kappa\FileManager\Forms\Directory\IDirectoryFormFactory */
+	/** @var \Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory */
 	private $directoryFormFactory;
 
 	/**

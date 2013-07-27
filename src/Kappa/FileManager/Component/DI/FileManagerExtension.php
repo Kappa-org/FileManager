@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager\DI;
+namespace Kappa\FileManager\Component\DI;
 
 use Nette\Configurator;
 use Nette\DI\Compiler;
@@ -36,25 +36,25 @@ class FileManagerExtension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		$builder->addDefinition($this->prefix("fileFormSubmitted"))
-			->setClass('Kappa\FileManager\Forms\File\FileFormSubmitted');
+			->setClass('Kappa\FileManager\Component\Forms\File\FileFormSubmitted');
 
 		$builder->addDefinition($this->prefix('directoryFormSubmitted'))
-			->setClass('Kappa\FileManager\Forms\Directory\DirectoryFormSubmitted');
+			->setClass('Kappa\FileManager\Component\Forms\Directory\DirectoryFormSubmitted');
 
 		$builder->addDefinition($this->prefix('fileManagerFactory'))
-			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', '@fileManager.fileForm', '@fileManager.directoryForm'))
+			->setClass('Kappa\FileManager\Component\FileManagerFactory', array('@session', '@fileManager.fileForm', '@fileManager.directoryForm'))
 			->addSetup('setParams', array($config));
 
 		$builder->addDefinition($this->prefix('fileForm'))
-			->setFactory('Kappa\FileManager\Forms\File\FileForm', array($builder->literal('$directory'), $builder->literal('$params')))
+			->setFactory('Kappa\FileManager\Component\Forms\File\FileForm', array($builder->literal('$directory'), $builder->literal('$params')))
 			->setParameters(array('Kappa\FileSystem\Directory directory', 'array params'))
-			->setImplement('Kappa\FileManager\Forms\File\IFileFormFactory')
+			->setImplement('Kappa\FileManager\Component\Forms\File\IFileFormFactory')
 			->setAutowired(false);
 
 		$builder->addDefinition($this->prefix('directoryForm'))
-			->setFactory('Kappa\FileManager\Forms\Directory\DirectoryForm', array($builder->literal('$directory')))
+			->setFactory('Kappa\FileManager\Component\Forms\Directory\DirectoryForm', array($builder->literal('$directory')))
 			->setParameters(array('Kappa\FileSystem\Directory directory'))
-			->setImplement('Kappa\FileManager\Forms\Directory\IDirectoryFormFactory')
+			->setImplement('Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory')
 			->setAutowired(false);
 	}
 
