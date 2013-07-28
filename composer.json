@@ -5,7 +5,6 @@
 	"homepage": "https://github.com/Kappa-org/FileManager",
 	"license": "",
 	"type": "kappa-filemanager",
-	"minimum-stability": "dev",
 	"authors": [
 		{
 			"name": "Ondřej Záruba",
