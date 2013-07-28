@@ -4,6 +4,7 @@
 	"keywords": ["framework", "Nette", "Kappa", "file", "image", "manager", "tinymce", "plugin"],
 	"homepage": "https://github.com/Kappa-org/FileManager",
 	"license": "",
+	"type": "kappa-filemanager",
 	"minimum-stability": "dev",
 	"authors": [
 		{
