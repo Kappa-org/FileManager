@@ -19,7 +19,8 @@
 		"php": ">= 5.3.0",
 		"nette/nette": "@dev",
 		"kappa/framework": "@dev",
-		"kappa/nette-filesystem": "@dev"
+		"kappa/nette-filesystem": "@dev",
+		"kappa/assets-installer": "@dev"
 	},
 	"require-dev": {
 		"kappa/tester": "1.0.*"

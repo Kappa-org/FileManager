@@ -27,7 +27,7 @@ class FileManagerExtension extends CompilerExtension
 		'maxHeight' => null,
 		'maxFileSize' => 32000000,
 		'wwwDir' => '%wwwDir%',
-		'assetsDir' => 'FileManager',
+		'assetsDir' => 'kappa-filemanager',
 	);
 
 	public function loadConfiguration()
