@@ -10,7 +10,7 @@
 
 namespace Kappa\FileManager\Component;
 
-use Kappa\Application\UI\Control;
+use Nette\Application\UI\Control;
 use Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory;
 use Kappa\FileManager\Component\Forms\File\IFileFormFactory;
 use Kappa\FileSystem\Directory;
