@@ -5,3 +5,4 @@
 *.actual
 *.expected
 composer.lock
+node_modules
