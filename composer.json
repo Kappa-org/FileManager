@@ -1,7 +1,7 @@
 {
 	"name": "kappa/filemanager",
-	"description": "Modern system for easy working with files and images on server",
-	"keywords": ["framework", "Nette", "Kappa", "file", "image", "manager", "tinymce", "plugin"],
+	"description": "Component for easy work with files and directories",
+	"keywords": ["framework", "Nette", "Kappa", "file", "image", "directory", "manager", "tinymce", "plugin"],
 	"homepage": "https://github.com/Kappa-org/FileManager",
 	"license": "",
 	"type": "kappa-assets",
