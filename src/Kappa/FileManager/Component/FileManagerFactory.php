@@ -69,7 +69,10 @@ class FileManagerFactory extends Object
 	 */
 	public function getAssetsDir()
 	{
-		return $this->params['assetsDir'];
+		return array(
+			'js' => $this->params['js'],
+			'css' => $this->params['css']
+		);
 	}
 
 	/**
