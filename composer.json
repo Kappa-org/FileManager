@@ -3,7 +3,7 @@
 	"description": "Component for easy work with files and directories",
 	"keywords": ["framework", "Nette", "Kappa", "file", "image", "directory", "manager", "tinymce", "plugin"],
 	"homepage": "https://github.com/Kappa-org/FileManager",
-	"license": "",
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
 	"type": "kappa-assets",
 	"authors": [
 		{
