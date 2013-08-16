@@ -5,32 +5,42 @@
 			<a class="navbar-brand" href="#">Správce souborů</a>
 		</div>
 	</nav>
-	<div class="space"></div>
 	<div id="body">
 		<div class="info-panel">
 			<img id="image-preview" src="http://placehold.it/200x200" width="200" height="200">
-
 			<h2>Vložení do stránky:</h2>
-
+			<hr>
 			<form action="#" id="insert-form">
-				<label>Vložit jako:</label>
-				<select id="action">
-					<option value="img">Obrázek</option>
-					<option value="ahref">Odkaz</option>
-				</select>
-
-				<div class="form-title">
-					<label>Titulek obrázku:</label>
-					<input type="text" id="title">
-				</div>
-				<input type="submit" class="btn btn-block btn-primary" value="Vložit do stránky">
+				<table>
+					<tr>
+						<td>Vložit jako</td>
+					</tr>
+					<tr>
+						<td>
+							<select data-filemanager="type" class="form-control">
+								<option value="img">Obrázek</option>
+								<option value="link">Odkaz</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Text:</td>
+					</tr>
+					<tr>
+						<td><input type="text" data-filemanager="text" class="form-control"></td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" class="btn btn-block btn-primary" value="Vložit do stránky">
+						</td>
+					</tr>
+				</table>
 			</form>
 		</div>
 		<div class="content">
 			<ul class="breadcrumb">
-				<li><a n:href="Move! 'home'" class="ajax">home</a> /</li>
-				<li n:foreach="$navigation as $path"><a n:href="Move! $path" class="ajax">{$path}</a> /
-				</li>
+				<li><a n:href="Move! 'home'" class="ajax">home</a></li>
+				<li n:foreach="$navigation as $path"><a n:href="Move! $path" class="ajax">{$path}</a></li>
 			</ul>
 			<div class="bs-docs-example">
 				<ul id="myTab" class="nav nav-tabs">
@@ -40,53 +50,41 @@
 				</ul>
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade in active" id="list">
-						<table class="table table-striped table-hover">
+						<table class="table">
 							<thead>
 							<tr>
-								<th class="input"><input type="checkbox" id="check-all">
-								</th>
+								<th class="check"><input type="checkbox" id="check-all"></th>
 								<th class="icon"></th>
 								<th>Jméno</th>
-								<th class="button-group">Akce</th>
+								<th class="actions">Akce</th>
 							</tr>
 							</thead>
 							<tbody id="list-checkboxs">
 							<tr n:foreach="$directories as $directory">
-								<td class="input"><input
-									type="checkbox"{if $openType == "images"}
-									disabled="disabled"{/if}
-									data-src="{$directory->getInfo()->getRelativePath($basePath)}"></td>
-								<td class="icon"><img
-									src="{$basePath}/{$assetsFile}/images/ikony/slozka.png">
+								<td class="input">
+									<input type="checkbox"{if $openType == "files"} disabled{/if} data-src="{$directory->getInfo()->getRelativePath($basePath)}">
+								</td>
+								<td class="icon">
+									<img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAANCAIAAAD5fKMWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3RThBOUVBOTZFNTJFMTExQTUzNkRBNTMyQTlCOTgzMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0MzQwMTYxMkY0NDMxMUUxODIzQjk1MTYzMTA1REJBNCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0MzQwMTYxMUY0NDMxMUUxODIzQjk1MTYzMTA1REJBNCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MDFFOTNFODg0RjNFMTExQjU1QURDMDc1RjU3NDNDMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3RThBOUVBOTZFNTJFMTExQTUzNkRBNTMyQTlCOTgzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmW7SKMAAAE1SURBVHjadFK9SgRBDE6G5UDwQXyREyx9AUsbbYVTGxu18AVEuM7e8lCwtvU1BEG8/Z1JMjHZvXNP8EIIm8z3fZNkFlUVAF4uEda2f62wxYoBOj17WBWYF+fh4Db/i8bnC5jO5mOByMLTzQkLkqBFS1sK9nE6b1wbJ3sjegJKdHj1apdYpn00yx9vd0e7joYQNH32tAwcDQJM5jpEohyrplxKxh6dM+QE+KWx1xEGIRUaOMApKFV151Pa/L4WaW3AsR/nZ9DB1bysXakgRj+QZP3+gtXkEdccR2fxtRacverTbKC9GY+iThB3kF5bggtwgkx/dpuirjmAQVjGTririsCb4BU0Rb9BuFn1nVGX7+3yu2pjWZOIbMr7wDHVddd0TkZbyP3xzvBylkcO236S2WP5I8AAHznumtndKQEAAAAASUVORK5CYII=" />
 								</td>
 								<td>
-									<a n:href="Move! $directory->getInfo()->getBasename()">{$directory->getInfo()->getBasename()}</a>
+									<a n:href="Move! $directory->getInfo()->getBasename()" class="ajax">{$directory->getInfo()->getBasename()}</a>
 								</td>
 								<td class="button-group">
-									<div class="btn-group">
-										<a n:href="DeleteDir! $directory->getInfo()->getPathname()"
-										   class="btn btn-mini"><i
-											class="icon-remove-circle"></i></a>
-									</div>
+									<a n:href="DeleteDir! $directory->getInfo()->getPathname()" class="btn btn-danger btn-xs ajax" data-toggle="tooltip" data-placement="left" data-original-title="Remove directory">x</a>
+
 								</td>
 							</tr>
 							<tr n:foreach="$files as $file">
-								<td class="input"><input type="checkbox"
-								                         class="img-checkbox"{if $openType == "folders"}
-								                         disabled="disabled"{/if}
-								                         data-src="{$file->getInfo()->getRelativePath($basePath)}"
-								                         data-type="{if $file->getInfo()->isImage()}image{else}other{/if}">
+								<td class="input">
+									<input type="checkbox" class="img-checkbox"{if $openType == "directories"} disabled{/if} data-src="{$file->getInfo()->getRelativePath($basePath)}" data-type="{if $file->getInfo()->isImage()}image{else}other{/if}">
 								</td>
-								<td class="icon"><img
-									src="{$basePath}/{$assetsFile}/images/ikony/{if $file->getInfo()->isImage()}image{else}other{/if}.png">
+								<td class="icon">
+									<img alt="" src="data:image/png;base64,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" />
 								</td>
 								<td>{$file->getInfo()->getBasename()}</td>
 								<td class="button-group">
-									<div class="btn-group">
-										<a n:href="DeleteFile! $file->getInfo()->getPathname()"
-										   class="btn btn-mini"><i
-											class="icon-remove-circle"></i></a>
-									</div>
+										<a n:href="DeleteFile! $file->getInfo()->getPathname()" class="btn btn-danger btn-xs ajax" data-toggle="tooltip" data-placement="left" data-original-title="Remove file">x</a>
 								</td>
 							</tr>
 							</tbody>
@@ -94,10 +92,13 @@
 					</div>
 					<div class="tab-pane fade in" id="folder">
 						{form directory}
-							<table class="table">
+							<table class="table table-bordered">
 								<tr>
-									<td width="100">{label name /}</td>
-									<td width="200">{input name}</td>
+									<td >{label name /}</td>
+									<td>{input name class=>'form-control'}</td>
+								</tr>
+								<tr>
+									<td></td>
 									<td>{input submit}</td>
 								</tr>
 							</table>
@@ -107,14 +108,13 @@
 						{form file}
 							<table class="table table-bordered">
 								<tr>
-									<td width="120">{label files /}</td>
-									<td width="100">{input files}</td>
+									<td >{label files /}</td>
+									<td>{input files class=>'form-control'}</td>
 								</tr>
 								<tr>
-									<td width="120">Vyberte soubory:</td>
-									<td width="100">{input submit}</td>
+									<td></td>
+									<td>{input submit}</td>
 								</tr>
-
 							</table>
 						{/form}
 					</div>
