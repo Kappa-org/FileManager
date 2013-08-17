@@ -42,7 +42,12 @@ module.exports = function(grunt) {
 						'<%= paths.components %>/bootstrap/bootstrap.js',
 						'<%= paths.components %>/nette/netteForms.js',
 						'<%= paths.components %>/nette/nette.ajax.js',
-						'<%= paths.dist %>/js/<%= pkg.name %>.js'
+						'<%= paths.assets %>/js/<%= pkg.name %>.js'
+					],
+					'<%= paths.dist %>/js/<%= pkg.name %>.forms.js': [
+						'<%= paths.components %>/jquery/jquery.js',
+						'<%= paths.components %>/nette/netteForms.js',
+						'<%= paths.assets %>/js/<%= pkg.name %>.forms.js',
 					]
 				}
 			}
@@ -52,7 +57,7 @@ module.exports = function(grunt) {
 				files: {
 					'<%= paths.dist %>/css/<%= pkg.name %>.css': [
 						'<%= paths.components %>/bootstrap/bootstrap.css',
-						'<%= paths.dist %>/css/<%= pkg.name %>.css'
+						'<%= paths.assets %>/css/<%= pkg.name %>.css'
 					]
 				}
 			}
@@ -63,10 +68,12 @@ module.exports = function(grunt) {
 					join: true
 				},
 				files: {
-					'<%= paths.dist %>/js/<%= pkg.name %>.js': [
-						'<%= paths.assets %>/coffee/*.coffee',
-						'!<%= paths.assets %>/coffee/bootstrap.coffee',
+					'<%= paths.assets %>/js/<%= pkg.name %>.js': [
 						'<%= paths.assets %>/coffee/bootstrap.coffee'
+					],
+					'<%= paths.assets %>/js/<%= pkg.name %>.forms.js': [
+						'<%= paths.assets %>/coffee/Windows.coffee',
+						'<%= paths.assets %>/coffee/forms.coffee'
 					]
 				}
 			}
@@ -74,7 +81,7 @@ module.exports = function(grunt) {
 		less: {
 			build: {
 				files: {
-					'<%= paths.dist %>/css/<%= pkg.name %>.css': [
+					'<%= paths.assets %>/css/<%= pkg.name %>.css': [
 						'<%= paths.assets %>/less/*.less',
 						'!<%= paths.assets %>/less/_*.less'
 					]
