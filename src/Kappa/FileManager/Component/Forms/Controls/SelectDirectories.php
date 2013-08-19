@@ -49,7 +49,7 @@ class SelectDirectories extends TextBase
 	public function getControl()
 	{
 		$control = parent::getControl();
-		$control->addAttributes(array('data-kappa-form' => 'Kappa-SelectDirectory'));
+		$control->addAttributes(array('data-kappa-filemanager' => 'directories'));
 		$control->addValue($this->_value);
 		return $control;
 	}
