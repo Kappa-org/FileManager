@@ -13,10 +13,10 @@ namespace Kappa\FileManager\Component\Forms\Controls;
 use Nette\Forms\Controls\TextBase;
 
 /**
- * Class SelectFile
+ * Class SelectDirectory
  * @package Kappa\FileManager\Forms\Controls
  */
-class SelectFile extends TextBase
+class SelectDirectories extends TextBase
 {
 	/** @var string */
 	private $_value;
@@ -49,7 +49,7 @@ class SelectFile extends TextBase
 	public function getControl()
 	{
 		$control = parent::getControl();
-		$control->addAttributes(array('data-kappa-form' => 'Kappa-SelectImage'));
+		$control->addAttributes(array('data-kappa-form' => 'Kappa-SelectDirectory'));
 		$control->addValue($this->_value);
 		return $control;
 	}
