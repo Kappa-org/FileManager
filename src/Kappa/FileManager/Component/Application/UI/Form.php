@@ -26,7 +26,7 @@ class Form extends BaseForm
 	public function __construct(IContainer $parent = null, $name = null)
 	{
 		parent::__construct($parent, $name);
-		$this->addExtension('addSelectDirectories', '\Kappa\FileManager\Component\Forms\Controls\SelectDirectory');
-		$this->addExtension('addSelectFiles', '\Kappa\FileManager\Component\Forms\Controls\SelectFile');
+		$this->addExtension('addSelectDirectories', '\Kappa\FileManager\Component\Forms\Controls\SelectDirectories');
+		$this->addExtension('addSelectFiles', '\Kappa\FileManager\Component\Forms\Controls\SelectFiles');
 	}
 }
