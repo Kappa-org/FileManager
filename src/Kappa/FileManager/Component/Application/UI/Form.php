@@ -11,7 +11,8 @@
 namespace Kappa\FileManager\Component\Application\UI;
 
 use Kappa\Application\UI\Form as BaseForm;
-use Nette\ComponentModel\IContainer;
+use Kappa\FileManager\Component\Forms\Controls\SelectDirectories;
+use Kappa\FileManager\Component\Forms\Controls\SelectFiles;
 
 /**
  * Class Form
@@ -20,13 +21,26 @@ use Nette\ComponentModel\IContainer;
 class Form extends BaseForm
 {
 	/**
-	 * @param IContainer $parent
-	 * @param string|null $name
+	 * @param string $name
+	 * @param string|null $label
+	 * @return SelectFiles
 	 */
-	public function __construct(IContainer $parent = null, $name = null)
+	public function addSelectFiles($name, $label = null)
 	{
-		parent::__construct($parent, $name);
-		$this->addExtension('addSelectDirectories', '\Kappa\FileManager\Component\Forms\Controls\SelectDirectories');
-		$this->addExtension('addSelectFiles', '\Kappa\FileManager\Component\Forms\Controls\SelectFiles');
+		$control = new SelectFiles($label);
+
+		return $this[$name] = $control;
+	}
+
+	/**
+	 * @param string $name
+	 * @param string|null $label
+	 * @return SelectDirectories
+	 */
+	public function addSelectDirectories($name, $label = null)
+	{
+		$control = new SelectDirectories($label);
+
+		return $this[$name] = $control;
 	}
 }
