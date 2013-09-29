@@ -45,7 +45,7 @@ class FileManagerExtension extends CompilerExtension
 			->setClass('Kappa\FileManager\Component\Forms\Directory\DirectoryFormSubmitted');
 
 		$builder->addDefinition($this->prefix('fileManagerFactory'))
-			->setClass('Kappa\FileManager\Component\FileManagerFactory', array('@session', '@fileManager.fileForm', '@fileManager.directoryForm'))
+			->setClass('Kappa\FileManager\Component\FileManagerFactory', array('@session', '@filemanager.fileForm', '@filemanager.directoryForm'))
 			->addSetup('setParams', array($config));
 
 		$builder->addDefinition($this->prefix('fileForm'))
