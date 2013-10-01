@@ -12,6 +12,10 @@ namespace Kappa\FileManager\Application\UI;
 
 use Nette\Application\UI\Presenter;
 
+/**
+ * Class FileManagerPresenter
+ * @package Kappa\FileManager\Application\UI
+ */
 class FileManagerPresenter extends Presenter
 {
 	/**
