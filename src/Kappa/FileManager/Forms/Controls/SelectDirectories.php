@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager\Component\Forms\Controls;
+namespace Kappa\FileManager\Forms\Controls;
 
 use Nette\Forms\Controls\TextBase;
 
 /**
- * Class SelectFile
+ * Class SelectDirectory
  * @package Kappa\FileManager\Forms\Controls
  */
-class SelectFiles extends TextBase
+class SelectDirectories extends TextBase
 {
 	/** @var string */
 	private $_value;
@@ -49,7 +49,7 @@ class SelectFiles extends TextBase
 	public function getControl()
 	{
 		$control = parent::getControl();
-		$control->addAttributes(array('data-kappa-filemanager' => 'files'));
+		$control->addAttributes(array('data-kappa-filemanager' => 'directories'));
 		$control->addValue($this->_value);
 		return $control;
 	}

@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager\Component\Application\UI;
+namespace Kappa\FileManager\Application\UI;
 
 use Kappa\Application\UI\Form as BaseForm;
-use Kappa\FileManager\Component\Forms\Controls\SelectDirectories;
-use Kappa\FileManager\Component\Forms\Controls\SelectFiles;
+use Kappa\FileManager\Forms\Controls\SelectDirectories;
+use Kappa\FileManager\Forms\Controls\SelectFiles;
 
 /**
  * Class Form

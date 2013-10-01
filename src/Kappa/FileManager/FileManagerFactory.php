@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager\Component;
+namespace Kappa\FileManager;
 
-use Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory;
-use Kappa\FileManager\Component\Forms\File\IFileFormFactory;
+use Kappa\FileManager\Forms\Directory\IDirectoryFormFactory;
+use Kappa\FileManager\Forms\File\IFileFormFactory;
 use Nette\Http\Session;
 use Nette\Object;
 

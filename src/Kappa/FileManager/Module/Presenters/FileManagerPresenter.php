@@ -16,7 +16,7 @@ class FileManagerPresenter extends Presenter
 {
 	/**
 	 * @inject
-	 * @var \Kappa\FileManager\Component\FileManagerFactory
+	 * @var \Kappa\FileManager\FileManagerFactory
 	 */
 	public $fileManagerFactory;
 
@@ -42,7 +42,7 @@ class FileManagerPresenter extends Presenter
 	}
 
 	/**
-	 * @return \Kappa\FileManager\Component\FileManagerControl
+	 * @return \Kappa\FileManager\FileManagerControl
 	 */
 	protected function createComponentFileManager()
 	{

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
  
-namespace Kappa\FileManager\Component\Forms\File;
+namespace Kappa\FileManager\Forms\File;
 
 use Kappa\FileSystem\Directory;
 use Kappa\NetteFileSystem\FileUpload;
