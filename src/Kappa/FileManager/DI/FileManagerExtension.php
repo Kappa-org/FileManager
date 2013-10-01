@@ -36,7 +36,7 @@ class FileManagerExtension extends CompilerExtension
 		$config = $this->getConfig($this->defaultParams);
 		$builder = $this->getContainerBuilder();
 		$presenterFactory = $builder->getDefinition('nette.presenterFactory');
-		$presenterFactory->addSetup('setMapping', array(array('FileManager' => 'Kappa\FileManager\Module\Presenters\*Presenter')));
+		$presenterFactory->addSetup('setMapping', array(array('FileManager' => 'Kappa\FileManager\Application\UI\*Presenter')));
 
 		$builder->addDefinition($this->prefix("fileFormSubmitted"))
 			->setClass('Kappa\FileManager\Forms\File\FileFormSubmitted');
