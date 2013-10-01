@@ -38,7 +38,7 @@ class FileManagerPresenter extends Presenter
 	 */
 	public function formatTemplateFiles()
 	{
-		return array(__DIR__ . '/../../Templates/component.latte');
+		return array(__DIR__ . '/../../Templates/default.latte');
 	}
 
 	/**
