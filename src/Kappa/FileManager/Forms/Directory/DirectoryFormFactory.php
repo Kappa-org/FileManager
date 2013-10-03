@@ -30,7 +30,7 @@ class DirectoryFormFactory extends Object
 	public function __construct(ITemplateFormFactory $formFactory, DirectoryFormProcessor $processor)
 	{
 		$this->formFactory = $formFactory->setProcessor($processor)
-			->setTemplate(__DIR__ . '/../../Templates/directoryForm.latte');
+			->setTemplate(__DIR__ . '/../../templates/forms/directoryForm.latte');
 	}
 
 	/**
