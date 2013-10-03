@@ -77,6 +77,7 @@ class FileManagerFactory extends Object
 		$manager = new FileManagerControl($this->session, $this->directoryFormFactory);
 		$manager->setParams($this->params);
 		$manager->setType($this->type);
+
 		return $manager;
 	}
 }
