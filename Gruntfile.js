@@ -42,11 +42,6 @@ module.exports = function(grunt) {
 						'<%= paths.components %>/nette/netteForms.js',
 						'<%= paths.components %>/nette/nette.ajax.js',
 						'<%= paths.assets %>/js/<%= pkg.name %>.js'
-					],
-					'<%= paths.dist %>/js/<%= pkg.name %>.forms.js': [
-						'<%= paths.components %>/jquery/jquery.js',
-						'<%= paths.components %>/nette/netteForms.js',
-						'<%= paths.assets %>/js/<%= pkg.name %>.forms.js',
 					]
 				}
 			}
@@ -69,10 +64,6 @@ module.exports = function(grunt) {
 				files: {
 					'<%= paths.assets %>/js/<%= pkg.name %>.js': [
 						'<%= paths.assets %>/coffee/bootstrap.coffee'
-					],
-					'<%= paths.assets %>/js/<%= pkg.name %>.forms.js': [
-						'<%= paths.assets %>/coffee/Windows.coffee',
-						'<%= paths.assets %>/coffee/forms.coffee'
 					]
 				}
 			}
