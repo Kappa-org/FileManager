@@ -49,6 +49,6 @@ class DirectoryFormProcessor extends FormProcessor
 		} catch (\Exception $e) {
 			$form->getPresenter()->flashMessage("Složku '{$values['name']}' se nepodařilo vytořit");
 		}
-		$form->getPresenter()->invalidateControl('Kappa-fileManager');
+		$form->getPresenter()->redirect('this');
 	}
 }
