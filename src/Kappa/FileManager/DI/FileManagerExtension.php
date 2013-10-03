@@ -27,8 +27,8 @@ class FileManagerExtension extends CompilerExtension
 		'maxHeight' => null,
 		'maxFileSize' => 32000000,
 		'wwwDir' => '%wwwDir%',
-		'js' => 'dist/js/filemanager.js',
-		'css' => 'dist/css/filemanager.css',
+		'js' => 'public/js/filemanager.js',
+		'css' => 'public/css/filemanager.css',
 	);
 
 	public function loadConfiguration()
