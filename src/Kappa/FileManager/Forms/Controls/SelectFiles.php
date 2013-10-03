@@ -40,6 +40,7 @@ class SelectFiles extends TextBase
 		if (!$form || !$form->isAnchored() || !$form->isSubmitted()) {
 			$this->_value = $value;
 		}
+
 		return $this;
 	}
 
@@ -51,6 +52,7 @@ class SelectFiles extends TextBase
 		$control = parent::getControl();
 		$control->addAttributes(array('data-kappa-filemanager' => 'files'));
 		$control->addValue($this->_value);
+
 		return $control;
 	}
 }

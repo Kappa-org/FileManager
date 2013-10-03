@@ -76,6 +76,7 @@ class FileManagerControl extends Control
 			$dir .= implode('/', $this->session->actualDir);
 			$dir .= '/';
 		}
+
 		return new Directory($dir, Directory::LOAD);
 	}
 
@@ -84,22 +85,24 @@ class FileManagerControl extends Control
 	 */
 	public function handleMove($move)
 	{
-		if ($move == "home")
+		if ($move == "home") {
 			$this->session->actualDir = array();
-		else {
+		} else {
 			if (in_array($move, $this->session->actualDir)) {
 				$index = array_search($move, $this->session->actualDir) + 1;
 				$to = count($this->session->actualDir) - 1;
 				for ($i = $index; $i <= $to; $i++) {
 					unset($this->session->actualDir[$i]);
 				}
-			} else
+			} else {
 				$this->session->actualDir[] = $move;
+			}
 		}
-		if ($this->presenter->isAjax())
+		if ($this->presenter->isAjax()) {
 			$this->invalidateControl('Kappa-fileManager');
-		else
+		} else {
 			$this->redirect('this');
+		}
 	}
 
 	/**
@@ -114,10 +117,11 @@ class FileManagerControl extends Control
 		} else {
 			$this->flashMessage("Složku '{$dirName}' se nepodařilo odstranit", 'error');
 		}
-		if ($this->presenter->isAjax())
+		if ($this->presenter->isAjax()) {
 			$this->invalidateControl('Kappa-fileManager');
-		else
+		} else {
 			$this->redirect('this');
+		}
 	}
 
 	/**
@@ -132,10 +136,11 @@ class FileManagerControl extends Control
 		} else {
 			$this->flashMessage("Soubor '{$fileName}' se nepodařilo odstranit", 'error');
 		}
-		if ($this->presenter->isAjax())
+		if ($this->presenter->isAjax()) {
 			$this->invalidateControl('Kappa-fileManager');
-		else
+		} else {
 			$this->redirect('this');
+		}
 	}
 
 	/**

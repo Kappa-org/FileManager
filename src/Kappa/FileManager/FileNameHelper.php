@@ -24,7 +24,6 @@ class FileNameHelper extends Object
 	 */
 	public function getUniqueFileName($path)
 	{
-
 	}
 
 	public function getUniqueDirectoryName($path)

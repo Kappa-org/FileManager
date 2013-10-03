@@ -52,6 +52,7 @@ class FileManagerPresenter extends Presenter
 	{
 		$manager = $this->fileManagerFactory;
 		$manager->setType($this->getParameter('type'));
+
 		return $manager->create();
 	}
 }
