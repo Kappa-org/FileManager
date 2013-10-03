@@ -32,10 +32,10 @@ class FileManagerControl extends Control
 	/** @var string */
 	private $type;
 
-	/** @var \Kappa\FileManager\Component\Forms\File\IFileFormFactory */
+	/** @var \Kappa\FileManager\Forms\File\IFileFormFactory */
 	private $fileFormFactory;
 
-	/** @var \Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory */
+	/** @var \Kappa\FileManager\Forms\Directory\IDirectoryFormFactory */
 	private $directoryFormFactory;
 
 	/**
@@ -81,7 +81,7 @@ class FileManagerControl extends Control
 			$dir .= implode('/', $this->session->actualDir);
 			$dir .= '/';
 		}
-		return new Directory($dir);
+		return new Directory($dir, Directory::LOAD);
 	}
 
 	/**
@@ -112,7 +112,7 @@ class FileManagerControl extends Control
 	 */
 	public function handleDeleteDir($path)
 	{
-		$directory = new Directory($path);
+		$directory = new Directory($path, Directory::LOAD);
 		$directory->remove();
 		if ($this->presenter->isAjax())
 			$this->invalidateControl('Kappa-fileManager');
@@ -125,7 +125,7 @@ class FileManagerControl extends Control
 	 */
 	public function handleDeleteFile($path)
 	{
-		$file = new File($path);
+		$file = new File($path, File::LOAD);
 		$file->remove();
 		if ($this->presenter->isAjax())
 			$this->invalidateControl('Kappa-fileManager');

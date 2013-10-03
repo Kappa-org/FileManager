@@ -11,8 +11,8 @@
 namespace Kappa\FileManager\Forms\File;
 
 use Kappa\FileSystem\Directory;
-use Kappa\NetteFileSystem\FileUpload;
-use Kappa\NetteFileSystem\Image;
+use Kappa\FileSystem\FileUpload;
+use Kappa\FileSystem\Image;
 use Nette\Object;
 
 /**
