@@ -35,25 +35,22 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			build: {
-				files: {
-					'<%= paths.dist %>/js/<%= pkg.name %>.js': [
-						'<%= paths.components %>/jquery/jquery.js',
-						'<%= paths.components %>/bootstrap/bootstrap.js',
-						'<%= paths.components %>/nette/netteForms.js',
-						'<%= paths.components %>/nette/nette.ajax.js',
-						'<%= paths.assets %>/js/<%= pkg.name %>.js'
-					]
-				}
+				expand: true,
+				flatten: true,
+				cwd: '<%= paths.dist %>/js',
+				src: ['*.js'],
+				dest: '<%= paths.dist %>/js',
+				ext: '.js'
 			}
 		},
 		cssmin: {
 			build: {
-				files: {
-					'<%= paths.dist %>/css/<%= pkg.name %>.css': [
-						'<%= paths.components %>/bootstrap/bootstrap.css',
-						'<%= paths.assets %>/css/<%= pkg.name %>.css'
-					]
-				}
+				expand: true,
+				flatten: true,
+				cwd: '<%= paths.dist %>/css',
+				src: ['*.css'],
+				dest: '<%= paths.dist %>/css',
+				ext: '.css'
 			}
 		},
 		coffee: {
