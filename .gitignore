@@ -5,3 +5,5 @@ coverage.dat
 *.expected
 composer.lock
 node_modules
+client-side/assets/js
+client-side/assets/css
