@@ -74,6 +74,19 @@ module.exports = function(grunt) {
 					]
 				}
 			}
+		},
+		concat: {
+			build: {
+				files: {
+					'<%= paths.dist %>/js/<%= pkg.name %>.js': [
+						'<%= paths.components %>/jquery/jquery.js',
+						'<%= paths.components %>/bootstrap/bootstrap.js',
+						'<%= paths.components %>/nette/nette.ajax.js',
+						'<%= paths.components %>/nette/netteForms.js',
+						'<%= paths.assets %>/js/<%= pkg.name %>.js'
+					]
+				}
+			}
 		}
 	});
 };
