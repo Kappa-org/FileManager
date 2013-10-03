@@ -22,9 +22,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.registerTask('default', ['coffee', 'less', 'uglify', 'cssmin']);
-	grunt.registerTask('js', ['coffee', 'uglify']);
-	grunt.registerTask('css', ['less', 'cssmin']);
+
+	grunt.registerTask('default', ['coffee', 'less', 'concat']);
+	grunt.registerTask('compile', ['coffee', 'less', 'cssmin', 'uglify']);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
