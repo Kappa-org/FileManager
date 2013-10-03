@@ -1,0 +1,28 @@
+﻿{snippet Kappa-fileManager}
+	<div id="filemanager">
+		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Správce souborů</a>
+			</div>
+		</nav>
+		<div id="body">
+			{include "panel.latte"}
+			<div class="content">
+				{include "breadcrumb.latte"}
+				{include "flashes.latte"}
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active"><a href="#list" data-toggle="tab">Přehled souborů</a></li>
+					<li><a href="#folder" data-toggle="tab">Nová složka</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade in active" id="list">
+						{include "list.latte"}
+					</div>
+					<div class="tab-pane fade in" id="folder">
+						{control directory}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{/snippet}

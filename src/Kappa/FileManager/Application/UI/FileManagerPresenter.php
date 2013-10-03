@@ -34,7 +34,7 @@ class FileManagerPresenter extends Presenter
 	 */
 	public function formatLayoutTemplateFiles()
 	{
-		return array(__DIR__ . '/../../Templates/@layout.latte');
+		return array(__DIR__ . '/../../templates/@layout.latte');
 	}
 
 	/**
@@ -42,7 +42,7 @@ class FileManagerPresenter extends Presenter
 	 */
 	public function formatTemplateFiles()
 	{
-		return array(__DIR__ . '/../../Templates/default.latte');
+		return array(__DIR__ . '/../../templates/default.latte');
 	}
 
 	/**
