@@ -108,7 +108,12 @@ class FileManagerControl extends Control
 	public function handleDeleteDir($path)
 	{
 		$directory = new Directory($path, Directory::LOAD);
-		$directory->remove();
+		$dirName = $directory->getBaseName();
+		if ($directory->remove()) {
+			$this->flashMessage("Složka '{$dirName}' byla odstraněna", 'success');
+		} else {
+			$this->flashMessage("Složku '{$dirName}' se nepodařilo odstranit", 'error');
+		}
 		if ($this->presenter->isAjax())
 			$this->invalidateControl('Kappa-fileManager');
 		else
@@ -121,7 +126,12 @@ class FileManagerControl extends Control
 	public function handleDeleteFile($path)
 	{
 		$file = new File($path, File::LOAD);
-		$file->remove();
+		$fileName = $file->getBaseName();
+		if ($file->remove()) {
+			$this->flashMessage("Soubor '{$fileName}' byl odstraněn", 'success');
+		} else {
+			$this->flashMessage("Soubor '{$fileName}' se nepodařilo odstranit", 'error');
+		}
 		if ($this->presenter->isAjax())
 			$this->invalidateControl('Kappa-fileManager');
 		else
