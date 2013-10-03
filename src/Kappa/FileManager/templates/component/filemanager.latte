@@ -10,18 +10,11 @@
 			<div class="content">
 				{include "breadcrumb.latte"}
 				{include "flashes.latte"}
-				<ul id="myTab" class="nav nav-tabs">
-					<li class="active"><a href="#list" data-toggle="tab">Přehled souborů</a></li>
-					<li><a href="#folder" data-toggle="tab">Nová složka</a></li>
-				</ul>
-				<div id="myTabContent" class="tab-content">
-					<div class="tab-pane fade in active" id="list">
-						{include "list.latte"}
-					</div>
-					<div class="tab-pane fade in" id="folder">
-						{control directory}
-					</div>
-				</div>
+				<a href="#upload" data-toggle="modal" class="btn btn-default">Nahrát soubory</a>
+				{control directory}
+				<h2>Seznam souborů:</h2>
+				<hr>
+				{include "list.latte"}
 			</div>
 		</div>
 	</div>

@@ -1,12 +1,20 @@
-{form $form}
-	<table class="table table-bordered">
-		<tr>
-			<td >{label name /}</td>
-			<td>{input name class=>'form-control'}</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>{input send class=>'btn btn-primary'}</td>
-		</tr>
-	</table>
-{/form}
+<a href="#newDirectory" data-toggle="modal" class="btn btn-default">Vytvořit složku</a>
+<div class="modal fade" id="newDirectory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		{form $form}
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Vytvořit novou složku</h4>
+				</div>
+				<div class="modal-body">
+					{label name /} {input name class=>'form-control'}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					{input send class=>'btn btn-primary'}
+				</div>
+			</div>
+		{/form}
+	</div>
+</div>
