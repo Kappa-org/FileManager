@@ -20,7 +20,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 	grunt.registerTask('default', ['coffee', 'less', 'uglify', 'cssmin']);
@@ -86,16 +85,6 @@ module.exports = function(grunt) {
 						'!<%= paths.assets %>/less/_*.less'
 					]
 				}
-			}
-		},
-		watch: {
-			coffee: {
-				files: '<%= paths.assets %>/coffee/*.coffee',
-				tasks: 'js'
-			},
-			less: {
-				files: '<%= paths.assets %>/less/*.less',
-				tasks: 'css'
 			}
 		}
 	});
