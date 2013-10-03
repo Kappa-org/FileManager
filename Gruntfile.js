@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
-
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.registerTask('default', ['coffee', 'less', 'uglify', 'cssmin']);
 	grunt.registerTask('js', ['coffee', 'uglify']);
 	grunt.registerTask('css', ['less', 'cssmin']);
