@@ -40,9 +40,13 @@ class FileManagerExtension extends CompilerExtension
 
 		$builder->addDefinition($this->prefix("fileFormSubmitted"))
 			->setClass('Kappa\FileManager\Forms\File\FileFormSubmitted');
+		$builder->addDefinition($this->prefix('directoryForm'))
+			->setClass('Kappa\FileManager\Forms\Directory\DirectoryFormFactory');
+		$builder->addDefinition($this->prefix('directoryFormProcessor'))
+			->setClass('Kappa\FileManager\Forms\Directory\DirectoryFormProcessor');
+		$builder->addDefinition($this->prefix('fileNameHelper'))
+			->setClass('Kappa\FileManager\FileNameHelper');
 
-		$builder->addDefinition($this->prefix('directoryFormSubmitted'))
-			->setClass('Kappa\FileManager\Forms\Directory\DirectoryFormSubmitted');
 
 		$builder->addDefinition($this->prefix('fileManagerFactory'))
 			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', '@filemanager.fileForm', '@filemanager.directoryForm'))
@@ -52,12 +56,6 @@ class FileManagerExtension extends CompilerExtension
 			->setFactory('Kappa\FileManager\Forms\File\FileForm', array($builder->literal('$directory'), $builder->literal('$params')))
 			->setParameters(array('Kappa\FileSystem\Directory directory', 'array params'))
 			->setImplement('Kappa\FileManager\Forms\File\IFileFormFactory')
-			->setAutowired(false);
-
-		$builder->addDefinition($this->prefix('directoryForm'))
-			->setFactory('Kappa\FileManager\Forms\Directory\DirectoryForm', array($builder->literal('$directory')))
-			->setParameters(array('Kappa\FileSystem\Directory directory'))
-			->setImplement('Kappa\FileManager\Forms\Directory\IDirectoryFormFactory')
 			->setAutowired(false);
 	}
 

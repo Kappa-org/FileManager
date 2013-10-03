@@ -10,7 +10,7 @@
 
 namespace Kappa\FileManager;
 
-use Kappa\FileManager\Forms\Directory\IDirectoryFormFactory;
+use Kappa\FileManager\Forms\Directory\DirectoryFormFactory;
 use Kappa\FileManager\Forms\File\IFileFormFactory;
 use Nette\Http\Session;
 use Nette\Object;
@@ -30,18 +30,18 @@ class FileManagerFactory extends Object
 	/** @var string */
 	private $type;
 
-	/** @var \Kappa\FileManager\Component\Forms\File\IFileFormFactory */
+	/** @var \Kappa\FileManager\Forms\File\IFileFormFactory */
 	private $fileFormFactory;
 
-	/** @var \Kappa\FileManager\Component\Forms\Directory\IDirectoryFormFactory */
+
 	private $directoryFormFactory;
 
 	/**
 	 * @param Session $session
 	 * @param IFileFormFactory $fileFormFactory
-	 * @param IDirectoryFormFactory $directoryFormFactory
+	 * @param DirectoryFormFactory $directoryFormFactory
 	 */
-	public function __construct(Session $session, IFileFormFactory $fileFormFactory, IDirectoryFormFactory $directoryFormFactory)
+	public function __construct(Session $session, IFileFormFactory $fileFormFactory, DirectoryFormFactory $directoryFormFactory)
 	{
 		$this->session = $session;
 		$this->fileFormFactory = $fileFormFactory;

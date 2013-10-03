@@ -10,8 +10,8 @@
 
 namespace Kappa\FileManager;
 
+use Kappa\FileManager\Forms\Directory\DirectoryFormFactory;
 use Nette\Application\UI\Control;
-use Kappa\FileManager\Forms\Directory\IDirectoryFormFactory;
 use Kappa\FileManager\Forms\File\IFileFormFactory;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\File;
@@ -35,15 +35,15 @@ class FileManagerControl extends Control
 	/** @var \Kappa\FileManager\Forms\File\IFileFormFactory */
 	private $fileFormFactory;
 
-	/** @var \Kappa\FileManager\Forms\Directory\IDirectoryFormFactory */
+	/** @var \Kappa\FileManager\Forms\Directory\DirectoryFormFactory */
 	private $directoryFormFactory;
 
 	/**
 	 * @param Session $session
 	 * @param IFileFormFactory $fileFormFactory
-	 * @param IDirectoryFormFactory $directoryFormFactory
+	 * @param DirectoryFormFactory $directoryFormFactory
 	 */
-	public function __construct(Session $session, IFileFormFactory $fileFormFactory, IDirectoryFormFactory $directoryFormFactory)
+	public function __construct(Session $session, IFileFormFactory $fileFormFactory, DirectoryFormFactory $directoryFormFactory)
 	{
 		$this->session = $session->getSection('Kappa-FileManager');
 		if (!$this->session->actualDir)
@@ -138,7 +138,7 @@ class FileManagerControl extends Control
 	 */
 	protected function createComponentDirectory()
 	{
-		return $this->directoryFormFactory->create($this->getActualDir());
+		return $this->directoryFormFactory->createForm($this->getActualDir());
 	}
 
 	/**
