@@ -4,7 +4,7 @@
  * (c) Ondřej Záruba <zarubaondra@gmail.com>
  *
  * For the full copyright and license information, please view the license.md
- * file that was distributed with this source code.
+ * file that was publicributed with this source code.
  */
 
 /**
@@ -13,7 +13,7 @@
  * (c) Ondřej Záruba <zarubaondra@gmail.com>
  *
  * For the full copyright and license information, please view the license.md
- * file that was distributed with this source code.
+ * file that was publicributed with this source code.
  */
 
 module.exports = function(grunt) {
@@ -30,16 +30,16 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		paths: {
 			assets: 'client-side/assets',
-			dist: 'client-side/dist',
+			public: 'client-side/public',
 			components: '<%= paths.assets %>/components'
 		},
 		uglify: {
 			build: {
 				expand: true,
 				flatten: true,
-				cwd: '<%= paths.dist %>/js',
+				cwd: '<%= paths.public %>/js',
 				src: ['*.js'],
-				dest: '<%= paths.dist %>/js',
+				dest: '<%= paths.public %>/js',
 				ext: '.js'
 			}
 		},
@@ -47,9 +47,9 @@ module.exports = function(grunt) {
 			build: {
 				expand: true,
 				flatten: true,
-				cwd: '<%= paths.dist %>/css',
+				cwd: '<%= paths.public %>/css',
 				src: ['*.css'],
-				dest: '<%= paths.dist %>/css',
+				dest: '<%= paths.public %>/css',
 				ext: '.css'
 			}
 		},
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 		concat: {
 			build: {
 				files: {
-					'<%= paths.dist %>/js/<%= pkg.name %>.js': [
+					'<%= paths.public %>/js/<%= pkg.name %>.js': [
 						'<%= paths.components %>/jquery/jquery.js',
 						'<%= paths.components %>/bootstrap/bootstrap.js',
 						'<%= paths.components %>/nette/nette.ajax.js',
