@@ -22,7 +22,7 @@ use Nette\Diagnostics\Debugger;
 class FileManagerExtension extends CompilerExtension
 {
 	private $defaultParams = array(
-		'uploadDir' => 'media/upload',
+		'uploadDir' => 'uploads',
 		'maxWidth' => 940,
 		'maxHeight' => null,
 		'maxFileSize' => 32000000,
