@@ -45,9 +45,9 @@ class DirectoryFormProcessor extends FormProcessor
 		$newDirectory = $this->fileNameHelper->getUniqueDirectoryName($newPath);
 		try {
 			new Directory($newDirectory);
-			$form->getParent()->flashMessage("Nová složka '{$values['name']}' byla vytvořena");
+			$form->getParent()->flashMessage("Nová složka '{$values['name']}' byla vytvořena", 'success');
 		} catch (\Exception $e) {
-			$form->getParent()->flashMessage("Složku '{$values['name']}' se nepodařilo vytořit");
+			$form->getParent()->flashMessage("Složku '{$values['name']}' se nepodařilo vytořit", 'error');
 		}
 		$form->restore();
 		$form->getParent()->redirect('this');
