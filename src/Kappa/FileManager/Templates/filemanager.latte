@@ -1,48 +1,47 @@
 ﻿{snippet Kappa-fileManager}
-<div id="filemanager">
-	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Správce souborů</a>
-		</div>
-	</nav>
-	<div id="body">
-		<div class="info-panel">
-			<img id="image-preview" src="http://placehold.it/200x200" width="200" height="200">
-			<h2>Vložení do stránky:</h2>
-			<hr>
-			<form action="#" id="insert-form">
-				<table>
-					<tr>
-						<td>Vložit jako</td>
-					</tr>
-					<tr>
-						<td>
-							<select data-filemanager="type" class="form-control">
-								<option value="img">Obrázek</option>
-								<option value="link">Odkaz</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>Text:</td>
-					</tr>
-					<tr>
-						<td><input type="text" data-filemanager="text" class="form-control"></td>
-					</tr>
-					<tr>
-						<td>
-							<input type="submit" class="btn btn-block btn-primary" value="Vložit do stránky">
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		<div class="content">
-			<ul class="breadcrumb">
-				<li><a n:href="Move! 'home'" class="ajax">home</a></li>
-				<li n:foreach="$navigation as $path"><a n:href="Move! $path" class="ajax">{$path}</a></li>
-			</ul>
-			<div class="bs-docs-example">
+	<div id="filemanager">
+		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Správce souborů</a>
+			</div>
+		</nav>
+		<div id="body">
+			<div class="info-panel">
+				<img id="image-preview" src="http://placehold.it/200x200" width="200" height="200">
+				<h2>Vložení do stránky:</h2>
+				<hr>
+				<form action="#" id="insert-form">
+					<table>
+						<tr>
+							<td>Vložit jako</td>
+						</tr>
+						<tr>
+							<td>
+								<select data-filemanager="type" class="form-control">
+									<option value="img">Obrázek</option>
+									<option value="link">Odkaz</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Text:</td>
+						</tr>
+						<tr>
+							<td><input type="text" data-filemanager="text" class="form-control"></td>
+						</tr>
+						<tr>
+							<td>
+								<input type="submit" class="btn btn-block btn-primary" value="Vložit do stránky">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="content">
+				<ul class="breadcrumb">
+					<li><a n:href="Move! 'home'" class="ajax">home</a></li>
+					<li n:foreach="$navigation as $path"><a n:href="Move! $path" class="ajax">{$path}</a></li>
+				</ul>
 				<ul id="myTab" class="nav nav-tabs">
 					<li class="active"><a href="#list" data-toggle="tab">Přehled souborů</a></li>
 					<li><a href="#folder" data-toggle="tab">Nová složka</a></li>
@@ -83,7 +82,7 @@
 								</td>
 								<td>{$file->getInfo()->getBasename()}</td>
 								<td class="button-group">
-										<a n:href="DeleteFile! $file->getInfo()->getPathname()" class="btn btn-danger btn-xs ajax" data-toggle="tooltip" data-placement="left" data-original-title="Remove file">x</a>
+									<a n:href="DeleteFile! $file->getInfo()->getPathname()" class="btn btn-danger btn-xs ajax" data-toggle="tooltip" data-placement="left" data-original-title="Remove file">x</a>
 								</td>
 							</tr>
 							</tbody>
@@ -96,5 +95,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 {/snippet}
