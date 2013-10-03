@@ -38,8 +38,6 @@ class FileManagerExtension extends CompilerExtension
 		$presenterFactory = $builder->getDefinition('nette.presenterFactory');
 		$presenterFactory->addSetup('setMapping', array(array('FileManager' => 'Kappa\FileManager\Application\UI\*Presenter')));
 
-		$builder->addDefinition($this->prefix("fileFormSubmitted"))
-			->setClass('Kappa\FileManager\Forms\File\FileFormSubmitted');
 		$builder->addDefinition($this->prefix('directoryForm'))
 			->setClass('Kappa\FileManager\Forms\Directory\DirectoryFormFactory');
 		$builder->addDefinition($this->prefix('directoryFormProcessor'))
@@ -47,16 +45,9 @@ class FileManagerExtension extends CompilerExtension
 		$builder->addDefinition($this->prefix('fileNameHelper'))
 			->setClass('Kappa\FileManager\FileNameHelper');
 
-
 		$builder->addDefinition($this->prefix('fileManagerFactory'))
-			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', '@filemanager.fileForm', '@filemanager.directoryForm'))
+			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', '@filemanager.directoryForm'))
 			->addSetup('setParams', array($config));
-
-		$builder->addDefinition($this->prefix('fileForm'))
-			->setFactory('Kappa\FileManager\Forms\File\FileForm', array($builder->literal('$directory'), $builder->literal('$params')))
-			->setParameters(array('Kappa\FileSystem\Directory directory', 'array params'))
-			->setImplement('Kappa\FileManager\Forms\File\IFileFormFactory')
-			->setAutowired(false);
 	}
 
 	/**

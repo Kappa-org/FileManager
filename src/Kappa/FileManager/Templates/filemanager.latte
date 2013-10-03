@@ -46,7 +46,6 @@
 				<ul id="myTab" class="nav nav-tabs">
 					<li class="active"><a href="#list" data-toggle="tab">Přehled souborů</a></li>
 					<li><a href="#folder" data-toggle="tab">Nová složka</a></li>
-					<li><a href="#files" data-toggle="tab">Nové soubory</a></li>
 				</ul>
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade in active" id="list">
@@ -92,20 +91,6 @@
 					</div>
 					<div class="tab-pane fade in" id="folder">
 						{control directory}
-					</div>
-					<div class="tab-pane fade" id="files">
-						{form file}
-							<table class="table table-bordered">
-								<tr>
-									<td >{label files /}</td>
-									<td>{input files class=>'form-control'}</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>{input submit}</td>
-								</tr>
-							</table>
-						{/form}
 					</div>
 				</div>
 			</div>

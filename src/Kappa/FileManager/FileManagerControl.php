@@ -32,23 +32,18 @@ class FileManagerControl extends Control
 	/** @var string */
 	private $type;
 
-	/** @var \Kappa\FileManager\Forms\File\IFileFormFactory */
-	private $fileFormFactory;
-
 	/** @var \Kappa\FileManager\Forms\Directory\DirectoryFormFactory */
 	private $directoryFormFactory;
 
 	/**
 	 * @param Session $session
-	 * @param IFileFormFactory $fileFormFactory
 	 * @param DirectoryFormFactory $directoryFormFactory
 	 */
-	public function __construct(Session $session, IFileFormFactory $fileFormFactory, DirectoryFormFactory $directoryFormFactory)
+	public function __construct(Session $session, DirectoryFormFactory $directoryFormFactory)
 	{
 		$this->session = $session->getSection('Kappa-FileManager');
 		if (!$this->session->actualDir)
 			$this->session->actualDir = array();
-		$this->fileFormFactory = $fileFormFactory;
 		$this->directoryFormFactory = $directoryFormFactory;
 	}
 
@@ -139,14 +134,6 @@ class FileManagerControl extends Control
 	protected function createComponentDirectory()
 	{
 		return $this->directoryFormFactory->createForm($this->getActualDir());
-	}
-
-	/**
-	 * @return \Kappa\Application\UI\Form
-	 */
-	protected function createComponentFile()
-	{
-		return $this->fileFormFactory->create($this->getActualDir(), $this->_params);
 	}
 
 	public function render()
