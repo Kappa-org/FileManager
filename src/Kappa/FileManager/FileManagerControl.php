@@ -157,7 +157,6 @@ class FileManagerControl extends Control
 		$this->template->navigation = $this->session->actualDir;
 		$this->template->directories = $this->getActualDir()->getDirectories();
 		$this->template->files = $this->getActualDir()->getFiles();
-		$this->template->maxFile = ini_get('max_file_uploads');
 		$this->template->openType = $this->type;
 		$this->template->render();
 	}
