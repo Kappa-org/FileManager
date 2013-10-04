@@ -158,6 +158,7 @@ class FileManagerControl extends Control
 		$this->template->directories = $this->getActualDir()->getDirectories();
 		$this->template->files = $this->getActualDir()->getFiles();
 		$this->template->openType = $this->type;
+		$this->template->params = $this->_params;
 		$this->template->render();
 	}
 }
