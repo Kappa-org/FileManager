@@ -83,6 +83,7 @@ module.exports = function(grunt) {
 						'<%= paths.components %>/bootstrap/bootstrap.js',
 						'<%= paths.components %>/nette/nette.ajax.js',
 						'<%= paths.components %>/nette/netteForms.js',
+						'<%= paths.components %>/plupload/plupload.full.min.js',
 						'<%= paths.assets %>/js/<%= pkg.name %>.js'
 					]
 				}
