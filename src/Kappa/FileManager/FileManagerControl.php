@@ -15,6 +15,7 @@ use Nette\Application\UI\Control;
 use Kappa\FileManager\Forms\File\IFileFormFactory;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\File;
+use Nette\Http\FileUpload;
 use Nette\Http\Session;
 
 /**
@@ -140,6 +141,14 @@ class FileManagerControl extends Control
 			$this->invalidateControl('Kappa-fileManager');
 		} else {
 			$this->redirect('this');
+		}
+	}
+
+	public function handleUpload()
+	{
+		if (array_key_exists('file', $_FILES)) {
+			$file = new FileUpload($_FILES['file']);
+			$file->move($this->getActualDir()->getPath() . DIRECTORY_SEPARATOR . $file->getName());
 		}
 	}
 
