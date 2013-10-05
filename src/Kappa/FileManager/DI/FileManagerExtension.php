@@ -25,7 +25,7 @@ class FileManagerExtension extends CompilerExtension
 		'uploadDir' => 'uploads',
 		'maxWidth' => 940,
 		'maxHeight' => null,
-		'maxFileSize' => 32000000,
+		'maxFileSize' => '32mb',
 		'wwwDir' => '%wwwDir%',
 		'js' => 'public/js/filemanager.js',
 		'css' => 'public/css/filemanager.css',
