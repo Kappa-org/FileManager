@@ -12,7 +12,6 @@ namespace Kappa\FileManager;
 
 use Kappa\FileManager\Forms\Directory\DirectoryFormFactory;
 use Nette\Application\UI\Control;
-use Kappa\FileManager\Forms\File\IFileFormFactory;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\File;
 use Nette\Http\FileUpload;
