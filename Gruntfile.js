@@ -24,8 +24,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 
-	grunt.registerTask('default', ['coffee', 'less', 'concat']);
-	grunt.registerTask('compile', ['coffee', 'less', 'cssmin', 'uglify']);
+	grunt.registerTask('default', ['coffee', 'less', 'concat', 'copy']);
+	grunt.registerTask('compile', ['coffee', 'less', 'copy', 'cssmin', 'uglify']);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
