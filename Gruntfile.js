@@ -22,6 +22,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	grunt.registerTask('default', ['coffee', 'less', 'concat']);
 	grunt.registerTask('compile', ['coffee', 'less', 'cssmin', 'uglify']);
@@ -87,6 +88,14 @@ module.exports = function(grunt) {
 						'<%= paths.assets %>/js/<%= pkg.name %>.js'
 					]
 				}
+			}
+		},
+		copy: {
+			build: {
+				expand: true,
+				cwd: '<%= paths.components %>/plupload/',
+				src: '*',
+				dest: '<%= paths.public %>/plupload'
 			}
 		}
 	});
