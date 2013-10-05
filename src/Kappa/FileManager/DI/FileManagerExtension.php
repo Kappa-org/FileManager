@@ -29,6 +29,7 @@ class FileManagerExtension extends CompilerExtension
 		'wwwDir' => '%wwwDir%',
 		'js' => 'public/js/filemanager.js',
 		'css' => 'public/css/filemanager.css',
+		'plupload' => 'public/components/plupload',
 	);
 
 	public function loadConfiguration()
