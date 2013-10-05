@@ -39,21 +39,15 @@ class FileManagerControl extends Control
 	/**
 	 * @param Session $session
 	 * @param DirectoryFormFactory $directoryFormFactory
+	 * @param DataProvider $dataProvider
 	 */
-	public function __construct(Session $session, DirectoryFormFactory $directoryFormFactory)
+	public function __construct(Session $session, DirectoryFormFactory $directoryFormFactory, DataProvider $dataProvider)
 	{
 		$this->session = $session->getSection('Kappa-FileManager');
 		if (!$this->session->actualDir)
 			$this->session->actualDir = array();
 		$this->directoryFormFactory = $directoryFormFactory;
-	}
-
-	/**
-	 * @param array $params
-	 */
-	public function setParams(array $params)
-	{
-		$this->_params = $params;
+		$this->_params = $dataProvider;
 	}
 
 	/**
@@ -69,9 +63,9 @@ class FileManagerControl extends Control
 	 */
 	private function getActualDir()
 	{
-		$dir = $this->_params['wwwDir'];
+		$dir = $this->_params->getWwwDir();
 		$dir .= '/';
-		$dir .= $this->_params['uploadDir'];
+		$dir .= $this->_params->getUploadDir();
 		$dir .= '/';
 		if (count($this->session->actualDir)) {
 			$dir .= implode('/', $this->session->actualDir);

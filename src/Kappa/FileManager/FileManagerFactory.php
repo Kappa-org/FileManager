@@ -23,7 +23,7 @@ class FileManagerFactory extends Object
 	/** @var \Nette\Http\Session */
 	private $session;
 
-	/** @var array */
+	/** @var \Kappa\FileManager\DataProvider */
 	private $params;
 
 	/** @var string */
@@ -35,19 +35,13 @@ class FileManagerFactory extends Object
 	/**
 	 * @param Session $session
 	 * @param DirectoryFormFactory $directoryFormFactory
+	 * @param DataProvider $dataProvider
 	 */
-	public function __construct(Session $session, DirectoryFormFactory $directoryFormFactory)
+	public function __construct(Session $session, DirectoryFormFactory $directoryFormFactory, DataProvider $dataProvider)
 	{
 		$this->session = $session;
 		$this->directoryFormFactory = $directoryFormFactory;
-	}
-
-	/**
-	 * @param array $params
-	 */
-	public function setParams(array $params)
-	{
-		$this->params = $params;
+		$this->params = $dataProvider;
 	}
 
 	/**
@@ -64,8 +58,8 @@ class FileManagerFactory extends Object
 	public function getAssetsDir()
 	{
 		return array(
-			'js' => $this->params['js'],
-			'css' => $this->params['css']
+			'js' => $this->params->getJs(),
+			'css' => $this->params->getCss(),
 		);
 	}
 
@@ -74,8 +68,7 @@ class FileManagerFactory extends Object
 	 */
 	public function create()
 	{
-		$manager = new FileManagerControl($this->session, $this->directoryFormFactory);
-		$manager->setParams($this->params);
+		$manager = new FileManagerControl($this->session, $this->directoryFormFactory, $this->params);
 		$manager->setType($this->type);
 
 		return $manager;
