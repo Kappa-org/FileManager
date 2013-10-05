@@ -1,6 +1,6 @@
 <div class="modal fade" id="newDirectory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-		{form $form}
+		{form $form class => 'ajax'}
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -11,7 +11,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					{input send class=>'btn btn-primary'}
+					{input send class=>'btn btn-primary closeModal', 'data-target' => "newDirectory" }
 				</div>
 			</div>
 		{/form}
