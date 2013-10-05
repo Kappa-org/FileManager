@@ -42,6 +42,14 @@ class DataProvider extends Object
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getJson()
+	{
+		return json_encode($this->data);
+	}
+
+	/**
 	 * @param string $methodName
 	 * @return string
 	 */
