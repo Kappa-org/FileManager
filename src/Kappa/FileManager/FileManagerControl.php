@@ -142,7 +142,7 @@ class FileManagerControl extends Control
 	{
 		if (array_key_exists('file', $_FILES)) {
 			$file = new FileUpload($_FILES['file']);
-			$file->move($this->getActualDir()->getPath() . DIRECTORY_SEPARATOR . $file->getName());
+			$file->move($this->getActualDir()->getPath() . DIRECTORY_SEPARATOR . $file->getSanitizedName());
 		}
 	}
 
