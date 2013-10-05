@@ -26,7 +26,7 @@ class FileManagerPresenter extends Presenter
 
 	protected function beforeRender()
 	{
-		$this->template->assetsDir = $this->fileManagerFactory->getAssetsDir();
+		$this->template->params = $this->fileManagerFactory->getParams();
 	}
 
 	/**

@@ -53,14 +53,11 @@ class FileManagerFactory extends Object
 	}
 
 	/**
-	 * @return string
+	 * @return DataProvider
 	 */
-	public function getAssetsDir()
+	public function getParams()
 	{
-		return array(
-			'js' => $this->params->getJs(),
-			'css' => $this->params->getCss(),
-		);
+		return $this->params;
 	}
 
 	/**
@@ -68,7 +65,7 @@ class FileManagerFactory extends Object
 	 */
 	public function create()
 	{
-		$manager = new FileManagerControl($this->session, $this->directoryFormFactory, $this->params);
+		$manager = new FileManagerControl($this->session, $this->directoryFormFactory, $this->getParams());
 		$manager->setType($this->type);
 
 		return $manager;
