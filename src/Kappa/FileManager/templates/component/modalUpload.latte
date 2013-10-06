@@ -61,7 +61,7 @@
 			},
 			FileUploaded: function() {
 				if (uploader.files.length == (uploader.total.uploaded + uploader.total.failed)) {
-					window.location.reload();
+					window.location.href = '?fileManager-message=Soubor(y) byl(y) úspěšně nahrány&fileManager-type=success&do=fileManager-reload'
 				}
 			},
 			Error: function(up, err) {

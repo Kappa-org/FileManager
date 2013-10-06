@@ -148,6 +148,16 @@ class FileManagerControl extends Control
 	}
 
 	/**
+	 * @param string $message
+	 * @param string|null $type
+	 */
+	public function handleReload($message, $type = null)
+	{
+		$this->flashMessage($message, $type);
+		$this->redirect('this');
+	}
+
+	/**
 	 * @return \Kappa\Application\UI\Form
 	 */
 	protected function createComponentDirectory()
