@@ -11,7 +11,7 @@
 namespace Kappa\FileManager\Forms\Directory;
 
 use Kappa\Application\UI\Form;
-use Kappa\FileManager\FileNameHelper;
+use Kappa\FileManager\Helpers\FileNameHelper;
 use Kappa\FileSystem\Directory;
 use Kappa\Forms\FormProcessor;
 use Kappa\Utils\Strings;
@@ -22,7 +22,7 @@ use Kappa\Utils\Strings;
  */
 class DirectoryFormProcessor extends FormProcessor
 {
-	/** @var \Kappa\FileManager\FileNameHelper */
+	/** @var \Kappa\FileManager\Helpers\FileNameHelper */
 	private $fileNameHelper;
 
 	/**

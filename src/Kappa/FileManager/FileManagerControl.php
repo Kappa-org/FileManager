@@ -11,6 +11,7 @@
 namespace Kappa\FileManager;
 
 use Kappa\FileManager\Forms\Directory\DirectoryFormFactory;
+use Kappa\FileManager\Helpers\DataProvider;
 use Nette\Application\UI\Control;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\File;
@@ -26,7 +27,7 @@ class FileManagerControl extends Control
 	/** @var \Nette\Http\SessionSection */
 	private $session;
 
-	/** @var array */
+	/** @var \Kappa\FileManager\Helpers\DataProvider */
 	private $_params;
 
 	/** @var string */

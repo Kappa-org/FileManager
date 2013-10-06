@@ -11,6 +11,7 @@
 namespace Kappa\FileManager;
 
 use Kappa\FileManager\Forms\Directory\DirectoryFormFactory;
+use Kappa\FileManager\Helpers\DataProvider;
 use Nette\Http\Session;
 use Nette\Object;
 
@@ -23,7 +24,7 @@ class FileManagerFactory extends Object
 	/** @var \Nette\Http\Session */
 	private $session;
 
-	/** @var \Kappa\FileManager\DataProvider */
+	/** @var \Kappa\FileManager\Helpers\DataProvider */
 	private $params;
 
 	/** @var string */

@@ -40,7 +40,7 @@ class FileManagerExtension extends CompilerExtension
 		$presenterFactory = $builder->getDefinition('nette.presenterFactory');
 		$presenterFactory->addSetup('setMapping', array(array('FileManager' => 'Kappa\FileManager\Application\UI\*Presenter')));
 		$dataProvider = $builder->addDefinition($this->prefix('dataProvider'))
-			->setClass('Kappa\FileManager\DataProvider');
+			->setClass('Kappa\FileManager\Helpers\DataProvider');
 		foreach ($config as $key => $value) {
 			$setterName = "set" . strtoupper(substr($key, 0, 1)) . substr($key, 1, strlen($key) - 1);
 			$dataProvider->addSetup($setterName, array($value));
@@ -50,7 +50,7 @@ class FileManagerExtension extends CompilerExtension
 		$builder->addDefinition($this->prefix('directoryFormProcessor'))
 			->setClass('Kappa\FileManager\Forms\Directory\DirectoryFormProcessor');
 		$builder->addDefinition($this->prefix('fileNameHelper'))
-			->setClass('Kappa\FileManager\FileNameHelper');
+			->setClass('Kappa\FileManager\Helpers\FileNameHelper');
 
 		$builder->addDefinition($this->prefix('fileManagerFactory'))
 			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', '@filemanager.directoryForm', '@filemanager.dataProvider'));

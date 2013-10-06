@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kappa\FileManager;
+namespace Kappa\FileManager\Helpers;
 
 use Nette\Object;
 
