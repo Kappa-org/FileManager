@@ -10,7 +10,7 @@
  * @testCase
  */
 
-namespace filemanager\Tests;
+namespace Kappa\FileManager\Tests;
 
 use Kappa\FileManager\Helpers\DataProvider;
 use Kappa\Tester\TestCase;
