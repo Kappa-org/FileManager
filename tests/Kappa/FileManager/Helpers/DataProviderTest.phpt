@@ -30,6 +30,15 @@ class DataProviderTest extends TestCase
 		Assert::null($dp->setTestData('TestString'));
 		Assert::same('TestString', $dp->getTestData());
 	}
+
+	public function testGetJson()
+	{
+		$dp = new DataProvider();
+		Assert::null($dp->setTestData('Test string'));
+		Assert::same('Test string', $dp->getTestData());
+		Assert::same(json_encode(array('testData' => 'Test string')), $dp->getJson());
+	}
 }
+
 
 \run(new DataProviderTest());
