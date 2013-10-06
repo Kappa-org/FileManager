@@ -50,10 +50,6 @@ class DirectoryFormProcessor extends FormProcessor
 			$form->getParent()->flashMessage("Složku '{$values['name']}' se nepodařilo vytořit", 'error');
 		}
 		$form->restore();
-		if ($form->getParent()->getPresenter()->isAjax()) {
-			$form->getParent()->invalidateControl('Kappa-fileManager');
-		} else {
-			$form->getParent()->redirect('this');
-		}
+		$form->getParent()->redirect('this');
 	}
 }
