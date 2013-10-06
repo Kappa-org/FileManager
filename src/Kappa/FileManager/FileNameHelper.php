@@ -18,6 +18,10 @@ use Nette\Object;
  */
 class FileNameHelper extends Object
 {
+	/**
+	 * @param string $path
+	 * @return string
+	 */
 	public function getUniqueDirectoryName($path)
 	{
 		$i = 0;

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Kappa/FileManager package.
+ * This file is part of the Kappa\FileManager package.
  *
  * (c) Ondřej Záruba <zarubaondra@gmail.com>
  *
@@ -21,6 +21,7 @@ use Nette\Diagnostics\Debugger;
  */
 class FileManagerExtension extends CompilerExtension
 {
+	/** @var array */
 	private $defaultParams = array(
 		'uploadDir' => 'uploads',
 		'maxWidth' => 940,
