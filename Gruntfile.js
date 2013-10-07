@@ -65,7 +65,8 @@ module.exports = function(grunt) {
 		coffee: {
 			build: {
 				options: {
-					join: true
+					join: true,
+					bare: true
 				},
 				files: {
 					'<%= paths.assets %>/js/<%= pkg.name %>.js': [
