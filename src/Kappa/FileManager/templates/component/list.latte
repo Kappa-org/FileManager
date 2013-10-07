@@ -11,7 +11,7 @@
 	<tr n:foreach="$directories as $directory">
 		<td class="input">
 			{if $openType == "directories"}
-				<input type="checkbox" data-src="{$directory->getInfo()->getRelativePath($basePath)}">
+				<input type="checkbox" class="forInsert" data-src="{$directory->getInfo()->getRelativePath($basePath)}">
 			{/if}
 		</td>
 		<td class="icon">
@@ -31,7 +31,7 @@
 	<tr n:foreach="$files as $file">
 		<td class="input">
 			{if $openType == "files"}
-			<input type="checkbox" class="img-checkbox"
+			<input type="checkbox" class="forInsert"
 				   data-src="{$file->getInfo()->getRelativePath($basePath)}"
 				   data-type="{if $file->getInfo()->isImage()}image{else}other{/if}">
 			{/if}
