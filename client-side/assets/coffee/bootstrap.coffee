@@ -40,7 +40,7 @@ $(document).ready(->
       else
         alert("Musíte vybrat soubor!")
         return false
-      window.opener.document.getElementById("forMy").value = URL
+      window.opener.$("input[data-kappa-filemanager]").val(URL)
       window.close()
     return false;
   )
