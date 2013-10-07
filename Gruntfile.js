@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	grunt.registerTask('default', ['coffee', 'less', 'concat', 'copy']);
-	grunt.registerTask('compile', ['coffee', 'less', 'uglify', 'cssmin', 'copy', 'concat']);
+	grunt.registerTask('compile', ['coffee', 'less', 'uglify', 'uglify:forms', 'cssmin', 'copy', 'concat']);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -42,6 +42,14 @@ module.exports = function(grunt) {
 				src: ['*.js'],
 				dest: '<%= paths.assets %>/js',
 				ext: '.js'
+			},
+			forms: {
+				expand: true,
+				flatten: true,
+				cwd: '<%= paths.public %>/js',
+				src: ['<%= pkg.name %>.forms.js'],
+				dest: '<%= paths.public %>/js'
+				//ext: '*.js'
 			}
 		},
 		cssmin: {
@@ -62,6 +70,9 @@ module.exports = function(grunt) {
 				files: {
 					'<%= paths.assets %>/js/<%= pkg.name %>.js': [
 						'<%= paths.assets %>/coffee/bootstrap.coffee'
+					],
+					'<%= paths.public %>/js/<%= pkg.name %>.forms.js': [
+						'<%= paths.assets %>/coffee/<%= pkg.name %>.forms.coffee'
 					]
 				}
 			}
