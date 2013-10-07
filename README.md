@@ -1,7 +1,5 @@
 #Kappa\FileManager
 
-**EXPERIMENTAL!**
-
 Modern system for easy working with files and folders on the server. Can by used as plugin fot tinyMCE, CKEditor or as clasic Nette Framework component too.
 
 ##Requirements:
@@ -9,7 +7,7 @@ Modern system for easy working with files and folders on the server. Can by used
 * PHP 5.3.* or higher
 * [Nette Framework](http://nette.org)
 * [Kappa\Framework](https://github.com/Kappa-org/Framework)
-* [Kappa\Nette-FileSystem](https://github.com/Kappa-app/Nette-FileSystem)
+* [Kappa\FileSystem](https://github.com/Kappa-app/FileSystem)
 
 ##Installation
 
@@ -20,13 +18,6 @@ $ composer require kappa/filemanager:@dev
 ```
 
 ### 1. Step
-
-Add into composer.json
-```json
-"minimum-stability": "dev"
-```
-
-### 2. Step
 
 Register extension:
 
@@ -41,21 +32,26 @@ extensions:
 	fileManager: Kappa\FileManager\Component\DI\FileManagerExtension
 ```
 
-### 3. Step
 
-Add section fileManager into
+### 2. Step
+
+Add section fileManager into config file
 
 ```yaml
 fileManager:
-	uploadDir: 'media/upload'
+	uploadDir: 'upload'
 	maxWidth: 940
 	maxHeight: null
-	maxFileSize: 32000000
+	maxFileSize: 32mb
 	wwwDir: %wwwDir%
-	assetsDir: FileManager
+	js: path/to/filemanager.js
+	css: path/to/filemanager.css
+	plupupload: path/to/plupuploadDir
 ```
 
-### 4. Step
+And add scripts adn styles *(kappa/filemanager/client-side/public/js|css)* and plupload directory *(kappa/filemanager/client-side/public/plupload)* into public directory and wrtite path into config
+
+### 3. Step
 
 Add route for FileManager
 
@@ -64,6 +60,8 @@ $router[] = new Route('/file-manager/<type>', array(
 	'module' => 'FileManager',
 	'presenter' => 'FileManager',
 	'action' => 'default',
-	'type' => 'images',
+	'type' => 'files',
 ));
 ```
+
+
