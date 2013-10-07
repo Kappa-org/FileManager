@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	grunt.registerTask('default', ['coffee', 'less', 'concat', 'copy']);
-	grunt.registerTask('compile', ['coffee', 'less', 'copy', 'cssmin', 'uglify']);
+	grunt.registerTask('compile', ['coffee', 'less', 'uglify', 'cssmin', 'copy', 'concat']);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -38,9 +38,9 @@ module.exports = function(grunt) {
 			build: {
 				expand: true,
 				flatten: true,
-				cwd: '<%= paths.public %>/js',
+				cwd: '<%= paths.assets %>/js',
 				src: ['*.js'],
-				dest: '<%= paths.public %>/js',
+				dest: '<%= paths.assets %>/js',
 				ext: '.js'
 			}
 		},
@@ -80,8 +80,8 @@ module.exports = function(grunt) {
 			build: {
 				files: {
 					'<%= paths.public %>/js/<%= pkg.name %>.js': [
-						'<%= paths.components %>/jquery/jquery.js',
-						'<%= paths.components %>/bootstrap/bootstrap.js',
+						'<%= paths.components %>/jquery/jquery.min.js',
+						'<%= paths.components %>/bootstrap/bootstrap.min.js',
 						'<%= paths.components %>/nette/nette.ajax.js',
 						'<%= paths.components %>/nette/netteForms.js',
 						'<%= paths.components %>/tinymce/tinymce.min.js',
