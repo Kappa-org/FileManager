@@ -1,1 +1,30 @@
-(function(){$(document).ready(function(){var a;return a=function(a,b){var c,d;return d=$(document).width()-100,c=$(document).height()-100,window.open(a+"/"+b+"#"+b,"Správce souborů","width="+d+",height="+c)},$("input[data-kappa-filemanager]").click(function(){return a("/file",$(this).attr("data-kappa-filemanager"))})})}).call(this);
+var $fileManager, FileManager;
+
+FileManager = (function() {
+  function FileManager() {}
+
+  FileManager.prototype.width = 960;
+
+  FileManager.prototype.height = 600;
+
+  FileManager.prototype.init = function(url, width, height) {
+    var _this = this;
+    this.url = url;
+    this.width = width;
+    this.height = height;
+    return $("input[data-kappa-filemanager]").click(function(element) {
+      var type;
+      type = $("#" + element.target.id).attr('data-kappa-filemanager');
+      return _this.openWindow(type);
+    });
+  };
+
+  FileManager.prototype.openWindow = function(type) {
+    return window.open(this.url + '/' + type + '#' + type, 'Správce souborů', "width=" + this.width + ",height=" + this.height);
+  };
+
+  return FileManager;
+
+})();
+
+$fileManager = new FileManager();

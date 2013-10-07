@@ -64,4 +64,10 @@ $router[] = new Route('/file-manager/<type>', array(
 ));
 ```
 
+###4. Step
 
+For work with form extension you must add
+
+```javascript
+$fileManager.init('/url', width, height);
+```
