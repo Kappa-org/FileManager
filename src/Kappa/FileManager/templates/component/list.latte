@@ -10,8 +10,9 @@
 	<tbody id="list-checkboxs">
 	<tr n:foreach="$directories as $directory">
 		<td class="input">
-			<input type="checkbox"{if $openType == "files"} disabled{/if}
-				   data-src="{$directory->getInfo()->getRelativePath($basePath)}">
+			{if $openType == "directories"}
+				<input type="checkbox" data-src="{$directory->getInfo()->getRelativePath($basePath)}">
+			{/if}
 		</td>
 		<td class="icon">
 			<img alt=""
@@ -29,9 +30,11 @@
 	</tr>
 	<tr n:foreach="$files as $file">
 		<td class="input">
-			<input type="checkbox" class="img-checkbox"{if $openType == "directories"} disabled{/if}
+			{if $openType == "files"}
+			<input type="checkbox" class="img-checkbox"
 				   data-src="{$file->getInfo()->getRelativePath($basePath)}"
 				   data-type="{if $file->getInfo()->isImage()}image{else}other{/if}">
+			{/if}
 		</td>
 		<td class="icon">
 			<img alt=""
