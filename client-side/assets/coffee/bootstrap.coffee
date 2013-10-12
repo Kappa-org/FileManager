@@ -42,6 +42,7 @@ $(document).ready(->
         return false
       hash = window.location.hash.substring(1)
       window.opener.$("input[data-kappa-filemanager="+hash+"]").val(URL)
+      window.opener.$("input[data-kappa-filemanager="+hash+"]").after('<div class="insertedImage"><img src="' + URL + '"></div>')
       window.close()
     return false;
   )
