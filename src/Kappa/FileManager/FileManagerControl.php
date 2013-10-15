@@ -140,6 +140,8 @@ class FileManagerControl extends Control
 						$image = Image::fromFile($file->getTemporaryFile());
 						$image->resize($this->_params->getMaxWidth(), $this->_params->getMaxHeight());
 						$image->save($newFileName);
+					} else {
+						$file->move($newFileName);
 					}
 				} else {
 					$file->move($newFileName);
