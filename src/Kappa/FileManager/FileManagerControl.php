@@ -32,9 +32,6 @@ class FileManagerControl extends Control
 	/** @var \Kappa\FileManager\Helpers\DataProvider */
 	private $_params;
 
-	/** @var string */
-	private $type;
-
 	/** @var \Kappa\FileManager\Forms\Directory\DirectoryFormFactory */
 	private $directoryFormFactory;
 
@@ -50,14 +47,6 @@ class FileManagerControl extends Control
 			$this->session->actualDir = array();
 		$this->directoryFormFactory = $directoryFormFactory;
 		$this->_params = $dataProvider;
-	}
-
-	/**
-	 * @param string $type
-	 */
-	public function setType($type)
-	{
-		$this->type = $type;
 	}
 
 	/**
@@ -183,7 +172,6 @@ class FileManagerControl extends Control
 		$this->template->navigation = $this->session->actualDir;
 		$this->template->directories = $this->getActualDir()->getDirectories();
 		$this->template->files = $this->getActualDir()->getFiles();
-		$this->template->openType = $this->type;
 		$this->template->params = $this->_params;
 		$this->template->render();
 	}
