@@ -1,9 +1,1 @@
 .idea
-vendor
-coverage.dat
-*.actual
-*.expected
-composer.lock
-node_modules
-client-side/assets/js
-client-side/assets/css
