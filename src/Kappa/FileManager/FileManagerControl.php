@@ -15,6 +15,8 @@ use Kappa\FileManager\Helpers\DataProvider;
 use Nette\Application\UI\Control;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\File;
+use Kappa\FileSystem\Image;
+use Nette\Diagnostics\Debugger;
 use Nette\Http\FileUpload;
 use Nette\Http\Session;
 
@@ -143,7 +145,16 @@ class FileManagerControl extends Control
 		if (array_key_exists('file', $_FILES)) {
 			$file = new FileUpload($_FILES['file']);
 			if ($file->isOk()) {
-				$file->move($this->getActualDir()->getPath() . DIRECTORY_SEPARATOR . $file->getSanitizedName());
+				$newFileName = $this->getActualDir()->getPath() . DIRECTORY_SEPARATOR . $file->getSanitizedName();
+				if ($file->isImage()) {
+					if ($file->getImageSize()[0] > $this->_params->getMaxWidth() || $file->getImageSize()[1] > $this->_params->getMaxHeight()) {
+						$image = Image::fromFile($file->getTemporaryFile());
+						$image->resize($this->_params->getMaxWidth(), $this->_params->getMaxHeight());
+						$image->save($newFileName);
+					}
+				} else {
+					$file->move($newFileName);
+				}
 			}
 		}
 	}
