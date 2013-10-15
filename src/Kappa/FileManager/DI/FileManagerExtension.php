@@ -25,7 +25,7 @@ class FileManagerExtension extends CompilerExtension
 	private $defaultParams = array(
 		'uploadDir' => 'uploads',
 		'maxWidth' => 940,
-		'maxHeight' => null,
+		'maxHeight' => 600,
 		'maxFileSize' => '32mb',
 		'wwwDir' => '%wwwDir%',
 		'js' => 'public/js/filemanager.js',
