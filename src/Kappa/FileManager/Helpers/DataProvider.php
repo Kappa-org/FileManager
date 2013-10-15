@@ -10,6 +10,7 @@
 
 namespace Kappa\FileManager\Helpers;
 
+use Kappa\FileManager\InvalidStateException;
 use Nette\Object;
 
 /**
