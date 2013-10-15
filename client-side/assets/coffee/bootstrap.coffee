@@ -44,7 +44,7 @@ $(document).ready(->
       window.opener.$("input[data-kappa-filemanager="+hash+"]").val(URL)
       if window.opener.$('.insertedImage').length > 0
         window.opener.$('.insertedImage').remove()
-      window.opener.$("input[data-kappa-filemanager="+hash+"]").after('<div class="insertedImage"><img src="' + URL + '"></div>')
+      window.opener.$("input[data-kappa-filemanager=files]").after('<div class="insertedImage"><img src="' + URL + '"></div>')
       window.close()
     return false;
   )
