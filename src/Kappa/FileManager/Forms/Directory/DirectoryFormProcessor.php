@@ -50,6 +50,6 @@ class DirectoryFormProcessor extends FormProcessor
 			$form->getParent()->flashMessage("Složku '{$values['name']}' se nepodařilo vytořit", 'error');
 		}
 		$form->restore();
-		$form->getParent()->redirect('this');
+		$form->getParent()->getPresenter()->redirect('this', array('type' => $form->getData('type')));
 	}
 }

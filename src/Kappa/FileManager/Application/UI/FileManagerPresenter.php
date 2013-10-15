@@ -51,6 +51,7 @@ class FileManagerPresenter extends Presenter
 	protected function createComponentFileManager()
 	{
 		$manager = $this->fileManagerFactory;
+		$manager->setType($this->getParameter('type'));
 
 		return $manager->create();
 	}

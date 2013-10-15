@@ -46,6 +46,14 @@ class FileManagerFactory extends Object
 	}
 
 	/**
+	 * @param string $type
+	 */
+	public function setType($type)
+	{
+		$this->type = $type;
+	}
+
+	/**
 	 * @return DataProvider
 	 */
 	public function getParams()
@@ -59,6 +67,7 @@ class FileManagerFactory extends Object
 	public function create()
 	{
 		$manager = new FileManagerControl($this->session, $this->directoryFormFactory, $this->getParams());
+		$manager->setType($this->type);
 
 		return $manager;
 	}

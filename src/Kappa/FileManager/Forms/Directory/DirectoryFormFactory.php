@@ -35,14 +35,17 @@ class DirectoryFormFactory extends Object
 
 	/**
 	 * @param Directory $actualDirectory
-	 * @return \Kappa\Application\UI\TemplateForm
+	 * @param $type
+	 * @return \Kappa\Application\UI\Form
 	 */
-	public function createForm(Directory $actualDirectory)
+	public function createForm(Directory $actualDirectory, $type)
 	{
 		$form = $this->formFactory->createForm();
 		$form->setData('actualDirectory', $actualDirectory);
 		$form->addText('name', 'Název složky:');
 		$form->addSubmit('send', 'Vytvořit složku');
+		$form->setData('type', $type);
+		$form->setAction('/file-manager/' . $type);
 
 		return $form;
 	}

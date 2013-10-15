@@ -35,6 +35,9 @@ class FileManagerControl extends Control
 	/** @var \Kappa\FileManager\Forms\Directory\DirectoryFormFactory */
 	private $directoryFormFactory;
 
+  	/** @var string */
+  	private $type;
+
 	/**
 	 * @param Session $session
 	 * @param DirectoryFormFactory $directoryFormFactory
@@ -47,6 +50,14 @@ class FileManagerControl extends Control
 			$this->session->actualDir = array();
 		$this->directoryFormFactory = $directoryFormFactory;
 		$this->_params = $dataProvider;
+	}
+
+	/**
+	 * @param string $type
+	 */
+	public function setType($type)
+	{
+		$this->type = $type;
 	}
 
 	/**
@@ -157,7 +168,7 @@ class FileManagerControl extends Control
 	public function handleReload($message, $type = null)
 	{
 		$this->flashMessage($message, $type);
-		$this->redirect('this');
+		$this->getPresenter()->redirect('this', array('type' => $this->type));
 	}
 
 	/**
@@ -165,7 +176,7 @@ class FileManagerControl extends Control
 	 */
 	protected function createComponentDirectory()
 	{
-		return $this->directoryFormFactory->createForm($this->getActualDir());
+		return $this->directoryFormFactory->createForm($this->getActualDir(), $this->type);
 	}
 
 	public function render()
