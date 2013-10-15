@@ -40,8 +40,10 @@ $(document).ready(->
       else
         alert("Musíte vybrat soubor!")
         return false
-      hash = window.location.hash.substring(1)
-      window.opener.$("input[data-kappa-filemanager="+hash+"]").val(URL)
+      location = window.location.href
+      splited = location.split('/')
+      type = splited[splited.length - 1].match(/(\w+)/);
+      window.opener.$("input[data-kappa-filemanager=" + type[0] + "]").val(URL)
       if window.opener.$('.insertedImage').length > 0
         window.opener.$('.insertedImage').remove()
       window.opener.$("input[data-kappa-filemanager=files]").after('<div class="insertedImage"><img src="' + URL + '"></div>')
