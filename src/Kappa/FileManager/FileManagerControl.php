@@ -147,7 +147,8 @@ class FileManagerControl extends Control
 			if ($file->isOk()) {
 				$newFileName = $this->getActualDir()->getPath() . DIRECTORY_SEPARATOR . $file->getSanitizedName();
 				if ($file->isImage()) {
-					if ($file->getImageSize()[0] > $this->_params->getMaxWidth() || $file->getImageSize()[1] > $this->_params->getMaxHeight()) {
+					$imageSize = $file->getImageSize();
+					if ($imageSize[0] > $this->_params->getMaxWidth() || $imageSize[1] > $this->_params->getMaxHeight()) {
 						$image = Image::fromFile($file->getTemporaryFile());
 						$image->resize($this->_params->getMaxWidth(), $this->_params->getMaxHeight());
 						$image->save($newFileName);
