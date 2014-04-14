@@ -52,6 +52,6 @@ class FileManagerExtension extends CompilerExtension
 			->setClass('Kappa\FileManager\Helpers\FileNameHelper');
 
 		$builder->addDefinition($this->prefix('fileManagerFactory'))
-			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', '@filemanager.directoryForm', '@filemanager.dataProvider'));
+			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', $this->prefix('@directoryForm'), $this->prefix('@dataProvider')));
 	}
 }

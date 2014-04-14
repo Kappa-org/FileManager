@@ -11,7 +11,7 @@
 namespace Kappa\FileManager\Forms\Directory;
 
 use Flame\Forms\FormProcessor;
-use Kappa\Application\UI\Form;
+use Nette\Application\UI\Form;
 use Kappa\FileManager\Helpers\FileNameHelper;
 use Kappa\FileSystem\Directory;
 use Kappa\Utils\Strings;
