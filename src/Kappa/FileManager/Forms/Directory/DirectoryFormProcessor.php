@@ -10,10 +10,10 @@
 
 namespace Kappa\FileManager\Forms\Directory;
 
+use Flame\Forms\FormProcessor;
 use Kappa\Application\UI\Form;
 use Kappa\FileManager\Helpers\FileNameHelper;
 use Kappa\FileSystem\Directory;
-use Kappa\Forms\FormProcessor;
 use Kappa\Utils\Strings;
 
 /**
@@ -44,7 +44,7 @@ class DirectoryFormProcessor extends FormProcessor
 		$newPath = $actualDirectory->getPath() . DIRECTORY_SEPARATOR . Strings::webalize($values['name']);
 		$newDirectory = $this->fileNameHelper->getUniqueDirectoryName($newPath);
 		try {
-			new Directory($newDirectory);
+			Directory::create($newDirectory);
 			$form->getParent()->flashMessage("Nová složka '{$values['name']}' byla vytvořena", 'success');
 		} catch (\Exception $e) {
 			$form->getParent()->flashMessage("Složku '{$values['name']}' se nepodařilo vytořit", 'error');

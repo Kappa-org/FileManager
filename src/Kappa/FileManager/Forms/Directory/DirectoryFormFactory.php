@@ -10,8 +10,8 @@
 
 namespace Kappa\FileManager\Forms\Directory;
 
+use Flame\Forms\IFormFactory;
 use Kappa\FileSystem\Directory;
-use Kappa\Forms\ITemplateFormFactory;
 use Nette\Object;
 
 /**
@@ -20,17 +20,17 @@ use Nette\Object;
  */
 class DirectoryFormFactory extends Object
 {
-	/** @var \Kappa\Forms\TemplateFormFactory */
+	/** @var $this */
 	private $formFactory;
 
 	/**
-	 * @param ITemplateFormFactory $formFactory
+	 * @param IFormFactory $formFactory
 	 * @param DirectoryFormProcessor $processor
 	 */
-	public function __construct(ITemplateFormFactory $formFactory, DirectoryFormProcessor $processor)
+	public function __construct(IFormFactory $formFactory, DirectoryFormProcessor $processor)
 	{
-		$this->formFactory = $formFactory->setProcessor($processor)
-			->setTemplate(__DIR__ . '/../../templates/forms/directoryForm.latte');
+		$this->formFactory = $formFactory;
+		$this->formFactory->addProcessor($processor);
 	}
 
 	/**
@@ -40,6 +40,7 @@ class DirectoryFormFactory extends Object
 	 */
 	public function createForm(Directory $actualDirectory, $type)
 	{
+		/** @var \Kappa\Application\UI\Form $form */
 		$form = $this->formFactory->createForm();
 		$form->setData('actualDirectory', $actualDirectory);
 		$form->addText('name', 'Název složky:');
