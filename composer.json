@@ -5,6 +5,7 @@
 	"homepage": "https://github.com/Kappa-org/FileManager",
 	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
 	"type": "library",
+	"minimum-stability": "dev",
 	"authors": [
 		{
 			"name": "Ondřej Záruba",
@@ -17,8 +18,8 @@
 	},
 	"require": {
 		"php": ">= 5.3.0",
-		"nette/nette": "@dev",
-		"kappa/framework": "@dev",
+		"nette/nette": "~2.1",
+		"kappa/framework": "dev-master#bec285a",
 		"kappa/filesystem": "@dev"
 	},
 	"require-dev": {

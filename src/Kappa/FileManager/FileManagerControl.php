@@ -12,11 +12,11 @@ namespace Kappa\FileManager;
 
 use Kappa\FileManager\Forms\Directory\DirectoryFormFactory;
 use Kappa\FileManager\Helpers\DataProvider;
+use Kappa\FileSystem\FileSystem;
 use Nette\Application\UI\Control;
 use Kappa\FileSystem\Directory;
 use Kappa\FileSystem\File;
-use Kappa\FileSystem\Image;
-use Nette\Diagnostics\Debugger;
+use Nette\Image;
 use Nette\Http\FileUpload;
 use Nette\Http\Session;
 
@@ -74,7 +74,7 @@ class FileManagerControl extends Control
 			$dir .= '/';
 		}
 
-		return new Directory($dir, Directory::LOAD);
+		return Directory::open($dir);
 	}
 
 	/**
@@ -96,7 +96,7 @@ class FileManagerControl extends Control
 			}
 		}
 		if ($this->presenter->isAjax()) {
-			$this->invalidateControl('Kappa-fileManager');
+			$this->redrawControl('Kappa-fileManager');
 		} else {
 			$this->redirect('this');
 		}
@@ -107,15 +107,12 @@ class FileManagerControl extends Control
 	 */
 	public function handleDeleteDir($path)
 	{
-		$directory = new Directory($path, Directory::LOAD);
-		$dirName = $directory->getBaseName();
-		if ($directory->remove()) {
-			$this->flashMessage("Složka '{$dirName}' byla odstraněna", 'success');
-		} else {
-			$this->flashMessage("Složku '{$dirName}' se nepodařilo odstranit", 'error');
-		}
+		$directory = Directory::open($path);
+		$dirName = $directory->getInfo()->getBasename();
+		FileSystem::remove($directory);
+		$this->flashMessage("Složka '{$dirName}' byla odstraněna", 'success');
 		if ($this->presenter->isAjax()) {
-			$this->invalidateControl('Kappa-fileManager');
+			$this->redrawControl('Kappa-fileManager');
 		} else {
 			$this->redirect('this');
 		}
@@ -126,15 +123,12 @@ class FileManagerControl extends Control
 	 */
 	public function handleDeleteFile($path)
 	{
-		$file = new File($path, File::LOAD);
-		$fileName = $file->getBaseName();
-		if ($file->remove()) {
-			$this->flashMessage("Soubor '{$fileName}' byl odstraněn", 'success');
-		} else {
-			$this->flashMessage("Soubor '{$fileName}' se nepodařilo odstranit", 'error');
-		}
+		$file = File::open($path);
+		$fileName = $file->getInfo()->getBasename();
+		FileSystem::remove($file);
+		$this->flashMessage("Soubor '{$fileName}' byl odstraněn", 'success');
 		if ($this->presenter->isAjax()) {
-			$this->invalidateControl('Kappa-fileManager');
+			$this->redrawControl('Kappa-fileManager');
 		} else {
 			$this->redirect('this');
 		}
@@ -145,7 +139,7 @@ class FileManagerControl extends Control
 		if (array_key_exists('file', $_FILES)) {
 			$file = new FileUpload($_FILES['file']);
 			if ($file->isOk()) {
-				$newFileName = $this->getActualDir()->getPath() . DIRECTORY_SEPARATOR . $file->getSanitizedName();
+				$newFileName = $this->getActualDir()->getInfo()->getPathname() . DIRECTORY_SEPARATOR . $file->getSanitizedName();
 				if ($file->isImage()) {
 					if ($file->getImageSize()[0] > $this->_params->getMaxWidth() || $file->getImageSize()[1] > $this->_params->getMaxHeight()) {
 						$image = Image::fromFile($file->getTemporaryFile());

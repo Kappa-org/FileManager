@@ -13,7 +13,6 @@ namespace Kappa\FileManager\DI;
 use Nette\Configurator;
 use Nette\DI\Compiler;
 use Nette\DI\CompilerExtension;
-use Nette\Diagnostics\Debugger;
 
 /**
  * Class FileManagerExtension
@@ -54,15 +53,5 @@ class FileManagerExtension extends CompilerExtension
 
 		$builder->addDefinition($this->prefix('fileManagerFactory'))
 			->setClass('Kappa\FileManager\FileManagerFactory', array('@session', '@filemanager.directoryForm', '@filemanager.dataProvider'));
-	}
-
-	/**
-	 * @param \Nette\Configurator $config
-	 */
-	public static function register(Configurator $config)
-	{
-		$config->onCompile[] = function (\Nette\Configurator $config, Compiler $compiler) {
-			$compiler->addExtension('fileManager', new FileManagerExtension());
-		};
 	}
 }
