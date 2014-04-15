@@ -46,7 +46,6 @@ class DirectoryFormFactory extends Object
 		$form->addText('name', 'Název složky:');
 		$form->addSubmit('send', 'Vytvořit složku');
 		$form->setData('type', $type);
-		$form->setAction('/file-manager/' . $type);
 
 		return $form;
 	}

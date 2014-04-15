@@ -41,14 +41,10 @@ class DirectoryFormProcessor extends FormProcessor
 		/** @var \Kappa\FileSystem\Directory $actualDirectory */
 		$actualDirectory = $form->getData('actualDirectory');
 		$values = $form->getValues();
-		$newPath = $actualDirectory->getPath() . DIRECTORY_SEPARATOR . Strings::webalize($values['name']);
+		$newPath = $actualDirectory->getInfo()->getPathname() . DIRECTORY_SEPARATOR . Strings::webalize($values['name']);
 		$newDirectory = $this->fileNameHelper->getUniqueDirectoryName($newPath);
-		try {
-			Directory::create($newDirectory);
-			$form->getParent()->flashMessage("Nová složka '{$values['name']}' byla vytvořena", 'success');
-		} catch (\Exception $e) {
-			$form->getParent()->flashMessage("Složku '{$values['name']}' se nepodařilo vytořit", 'error');
-		}
+		Directory::create($newDirectory);
+		$form->getParent()->flashMessage("Nová složka '{$values['name']}' byla vytvořena", 'success');
 		$form->restore();
 		$form->getParent()->getPresenter()->redirect('this', array('type' => $form->getData('type')));
 	}

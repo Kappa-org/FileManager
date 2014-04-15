@@ -1,2 +1,21 @@
 <a href="#newDirectory" data-toggle="modal" class="btn btn-default">Vytvořit složku</a>
-{control directory}
+<div class="modal fade" id="newDirectory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+
+</div>
+</div>
+{form directory}
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">Vytvořit novou složku</h4>
+		</div>
+		<div class="modal-body">
+			{label name /} {input name class=>'form-control'}
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			{input send class=>'btn btn-primary'}
+		</div>
+	</div>
+{/form}
