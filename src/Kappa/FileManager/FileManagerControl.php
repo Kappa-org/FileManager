@@ -95,11 +95,7 @@ class FileManagerControl extends Control
 				$this->session->actualDir[] = $move;
 			}
 		}
-		if ($this->presenter->isAjax()) {
-			$this->redrawControl('Kappa-fileManager');
-		} else {
-			$this->redirect('this');
-		}
+		$this->redirect('this');
 	}
 
 	/**
@@ -111,11 +107,7 @@ class FileManagerControl extends Control
 		$dirName = $directory->getInfo()->getBasename();
 		FileSystem::remove($directory);
 		$this->flashMessage("Složka '{$dirName}' byla odstraněna", 'success');
-		if ($this->presenter->isAjax()) {
-			$this->redrawControl('Kappa-fileManager');
-		} else {
-			$this->redirect('this');
-		}
+		$this->redirect('this');
 	}
 
 	/**
@@ -127,11 +119,7 @@ class FileManagerControl extends Control
 		$fileName = $file->getInfo()->getBasename();
 		FileSystem::remove($file);
 		$this->flashMessage("Soubor '{$fileName}' byl odstraněn", 'success');
-		if ($this->presenter->isAjax()) {
-			$this->redrawControl('Kappa-fileManager');
-		} else {
-			$this->redirect('this');
-		}
+		$this->redirect('this');
 	}
 
 	public function handleUpload()
