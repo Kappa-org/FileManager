@@ -20,7 +20,7 @@ use Nette\Object;
  */
 class DirectoryFormFactory extends Object
 {
-	/** @var $this */
+	/** @var \Flame\Forms\IFormFactory */
 	private $formFactory;
 
 	/**
@@ -35,17 +35,16 @@ class DirectoryFormFactory extends Object
 
 	/**
 	 * @param Directory $actualDirectory
-	 * @param $type
-	 * @return \Kappa\Application\UI\Form
+	 * @param string $type
+	 * @return \Nette\Application\UI\Form
 	 */
 	public function createForm(Directory $actualDirectory, $type)
 	{
-		/** @var \Kappa\Application\UI\Form $form */
 		$form = $this->formFactory->createForm();
-		$form->setData('actualDirectory', $actualDirectory);
+		$form->addHidden('actualDirectory', $actualDirectory->getInfo()->getPathname());
 		$form->addText('name', 'Název složky:');
 		$form->addSubmit('send', 'Vytvořit složku');
-		$form->setData('type', $type);
+		$form->addHidden('type', $type);
 
 		return $form;
 	}

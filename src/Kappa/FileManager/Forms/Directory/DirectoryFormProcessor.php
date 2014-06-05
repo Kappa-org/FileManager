@@ -38,14 +38,13 @@ class DirectoryFormProcessor extends FormProcessor
 	 */
 	public function success(Form $form)
 	{
-		/** @var \Kappa\FileSystem\Directory $actualDirectory */
-		$actualDirectory = $form->getData('actualDirectory');
 		$values = $form->getValues();
-		$newPath = $actualDirectory->getInfo()->getPathname() . DIRECTORY_SEPARATOR . Strings::webalize($values['name']);
+		$actualDirectory = Directory::open($values->actualDirectory);
+		$newPath = $actualDirectory->getInfo()->getPathname() . DIRECTORY_SEPARATOR . Strings::webalize($values->name);
 		$newDirectory = $this->fileNameHelper->getUniqueDirectoryName($newPath);
 		Directory::create($newDirectory);
 		$form->getParent()->flashMessage("Nová složka '{$values['name']}' byla vytvořena", 'success');
 		$form->restore();
-		$form->getParent()->getPresenter()->redirect('this', array('type' => $form->getData('type')));
+		$form->getParent()->getPresenter()->redirect('this', array('type' => $values->type));
 	}
 }

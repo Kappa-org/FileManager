@@ -10,7 +10,7 @@
 
 namespace Kappa\FileManager\Application\UI;
 
-use Kappa\Application\UI\Form as BaseForm;
+use Nette\Application\UI\Form as BaseForm;
 use Kappa\FileManager\Forms\Controls\SelectDirectories;
 use Kappa\FileManager\Forms\Controls\SelectFiles;
 
